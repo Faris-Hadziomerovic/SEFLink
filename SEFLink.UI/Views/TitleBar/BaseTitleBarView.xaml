@@ -8,21 +8,81 @@
              xmlns:titlebar="clr-namespace:SEFLink.UI.ViewModels" 
              d:DataContext="{d:DesignInstance Type=titlebar:BaseTitleBarViewModel}"
              d:DesignHeight="50" d:DesignWidth="200">
-    
-    
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="TitleBar.Background" Color="#2a2e31"/>
+
+        <!--#region Rounded Button Style -->
+        <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="5" 
+                            Opacity="{TemplateBinding Opacity}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--#endregion-->
+
+        <!--#region Transparent Rounded Button Style-->
+        <Style x:Key="TransparentRoundedButton" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
+
+            <!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
+            <Setter Property="BorderThickness" Value="0" />
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Window Control Buttons Style-->
+        <Style x:Key="WindowControlButton" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region X Button Style-->
+        <Style x:Key="CloseButton" BasedOn="{StaticResource WindowControlButtonStyle}" TargetType="{x:Type Button}">
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Button.OrangeRed.Background.MouseOver}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--#endregion-->
+    </UserControl.Resources>
+
     <Grid Height="40">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!--#region Background-->
-        <Border Background="{StaticResource Global.TitleBar.Background}" 
+        <Border Background="{StaticResource TitleBar.Background}" 
                 Grid.ColumnSpan="3"
                 CornerRadius="0"/>
 
@@ -35,57 +95,28 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+           
 
-            
-            <!--
-            <Border Background="#222" Grid.Column="0" CornerRadius="5 0 0 5"/>
-            <Border Background="#222" Grid.Column="1"/>
-            <Border Background="#222" Grid.Column="2" CornerRadius="0 5 5 0"/>
-            -->
-            
-
-            <Button Style="{StaticResource WindowControlButtonStyle}" 
+            <Button Style="{StaticResource WindowControlButton}" 
                     Grid.Column="0" 
                     Click="Minimize"
                     Content="&#128469;" />
-                     
 
-            <Button Style="{StaticResource WindowControlButtonStyle}" 
+
+            <!--    🗖 ==  "&#x1f5d6;"   -->
+            <Button Style="{StaticResource WindowControlButton}" 
                     x:Name="btnResize" 
                     Grid.Column="1" 
                     Click="Resize"
-                    Content="{Binding ResizeIcon, Mode=TwoWay, FallbackValue=🗖}" /> 
-                    <!--Content="&#x1f5d6;" />--> 
+                    Content="{Binding ResizeIcon, Mode=TwoWay, FallbackValue=🗖}" />
 
-            <Button Style="{StaticResource CloseButtonStyle}" 
+            <Button Style="{StaticResource CloseButton}" 
                     Grid.Column="2" 
                     Click="ExitApp"
-                    Content="&#10005;" /> 
-                    <!--Content="X" />-->
-
+                    Content="&#10005;" />
 
         </Grid>
 
-
     </Grid>
-    
+
 </UserControl>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <!--#region Menu buttons--><!--
-        <StackPanel Orientation="Horizontal" Margin="5 2">
-            <Button Content="Podešavanja"/>
-
-            <Button Content="Knjigovođa"/>
-
-            <Button Content="Baza znanja"/>
-        </StackPanel>-->

@@ -26,7 +26,7 @@
                        FontWeight="DemiBold"
                        Width="45"/>
 
-            <Image Style="{StaticResource LoginIcon}"/>
+            <Image Style="{DynamicResource LoginIcon}"/>
 
         </StackPanel>
         <!--#endregion-->
@@ -34,7 +34,7 @@
         <!--#region Outgoing Button code snippet-->
         <StackPanel x:Key="OutgoingButtonContent" Orientation="Horizontal">
 
-            <Image Style="{StaticResource CloudUploadIcon_White}"/>
+            <Image Style="{DynamicResource CloudUploadIcon_White}"/>
 
             <TextBlock Text="Odlazni dokumenti"
                        VerticalAlignment="Center" 
@@ -49,7 +49,7 @@
         <!--#region Incoming Button code snippet-->
         <StackPanel x:Key="IncomingButtonContent" Orientation="Horizontal">
 
-            <Image Style="{StaticResource CloudDownloadIcon_White}"/>
+            <Image Style="{DynamicResource CloudDownloadIcon_White}"/>
 
             <TextBlock Text="Dolazni dokumenti"
                        VerticalAlignment="Center" 
@@ -64,7 +64,7 @@
         <!--#region Outgoing Button - PRESSED code snippet-->
         <StackPanel x:Key="OutgoingButtonPressedContent" Orientation="Horizontal" HorizontalAlignment="Center">
 
-            <Image Style="{StaticResource CloudUploadIcon_Colored}"/>
+            <Image Style="{DynamicResource CloudUploadIcon_Colored}"/>
 
             <TextBlock Text="Odlazni dokumenti"
                        VerticalAlignment="Center" 
@@ -79,7 +79,7 @@
         <!--#region Incoming Button - PRESSED code snippet-->
         <StackPanel x:Key="IncomingButtonPressedContent" Orientation="Horizontal" HorizontalAlignment="Center">
 
-            <Image Style="{StaticResource CloudDownloadIcon_Colored}"/>
+            <Image Style="{DynamicResource CloudDownloadIcon_Colored}"/>
 
             <TextBlock Text="Dolazni dokumenti"
                        VerticalAlignment="Center" 
@@ -175,11 +175,11 @@
         <titlebar:BaseTitleBarView DataContext="{Binding BaseTitleBarViewModel}"/>
 
         <StackPanel Orientation="Horizontal" Margin="5 2">
-            <Button Content="Podešavanja" Style="{StaticResource TitleBarNavButtonStyle}"/>
+            <Button Content="Podešavanja" Style="{DynamicResource TitleBarNavButtonStyle}"/>
 
-            <Button Content="Knjigovođa" Style="{StaticResource TitleBarNavButtonStyle}"/>
+            <Button Content="Knjigovođa" Style="{DynamicResource TitleBarNavButtonStyle}"/>
 
-            <Button Content="Baza znanja" Style="{StaticResource TitleBarNavButtonStyle}"/>
+            <Button Content="Baza znanja" Style="{DynamicResource TitleBarNavButtonStyle}"/>
         </StackPanel>
         <!--#endregion-->
 
@@ -237,7 +237,7 @@
                     <Grid Style="{StaticResource NavButtonWrapperGridStyle}" Grid.Row="0">
 
                         <Button Command="{Binding ShowOutgoingDocsCommand}" 
-                                Style="{StaticResource TransparentRoundedButtonStyle}"                             
+                                Style="{DynamicResource TransparentRoundedButtonStyle}"                             
                                 Content="{StaticResource OutgoingButtonContent}"                                
                                 Height="40"
                                 VerticalAlignment="Center"
@@ -253,13 +253,13 @@
                                 <RowDefinition Height="15"/>
                             </Grid.RowDefinitions>
 
-                            <Image Style="{StaticResource WhiteCurvedCorner-BottomRight}" Grid.Row="0"/>
+                            <Image Style="{DynamicResource WhiteCurvedCorner-BottomRight}" Grid.Row="0"/>
 
                             <Border Style="{StaticResource NavPressedButtonBorderStyle}" 
                                     Grid.Row="1" 
                                     Child="{StaticResource OutgoingButtonPressedContent}"/>
 
-                            <Image Style="{StaticResource WhiteCurvedCorner-TopRight}" Grid.Row="2"/>
+                            <Image Style="{DynamicResource WhiteCurvedCorner-TopRight}" Grid.Row="2"/>
 
                         </Grid>
                         <!--#endregion-->
@@ -273,7 +273,7 @@
                     <Grid Style="{StaticResource NavButtonWrapperGridStyle}" Grid.Row="1">
 
                         <Button Command="{Binding ShowIncomingDocsCommand}"
-                                Style="{StaticResource TransparentRoundedButtonStyle}" 
+                                Style="{DynamicResource TransparentRoundedButtonStyle}" 
                                 Content="{StaticResource IncomingButtonContent}"
                                 VerticalAlignment="Center"
                                 FocusVisualStyle="{x:Null}"
@@ -290,13 +290,13 @@
                                 <RowDefinition Height="15"/>
                             </Grid.RowDefinitions>
 
-                            <Image Style="{StaticResource WhiteCurvedCorner-BottomRight}" Grid.Row="0"/>
+                            <Image Style="{DynamicResource WhiteCurvedCorner-BottomRight}" Grid.Row="0"/>
 
                             <Border Style="{StaticResource NavPressedButtonBorderStyle}" 
                                     Grid.Row="1" 
                                     Child="{StaticResource IncomingButtonPressedContent}"/>
 
-                            <Image Style="{StaticResource WhiteCurvedCorner-TopRight}" Grid.Row="2"/>
+                            <Image Style="{DynamicResource WhiteCurvedCorner-TopRight}" Grid.Row="2"/>
                         </Grid>
                         <!--#endregion-->
 
@@ -316,7 +316,7 @@
                                    Style="{StaticResource DocumentNumberPlaceholderText}"/>
 
                         <TextBox Text="{Binding DocumentNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Style="{StaticResource DashboardTransparentTextBoxStyle}" 
+                                 Style="{DynamicResource DashboardTransparentTextBoxStyle}" 
                                  x:Name="DocumentNumberTextBox"/>
                     </Grid>
                     <!--#endregion-->
@@ -340,7 +340,7 @@
                     <Grid Margin="5">
                         <DatePicker x:Name="DTP" 
                                     FontSize="10"
-                                    Style="{StaticResource CustomDatePickerStyle}"
+                                    Style="{DynamicResource CustomDatePickerStyle}"
                                     Text="{Binding DocumentDateString, UpdateSourceTrigger=LostFocus, Mode=TwoWay}"/>
                                                                         
                         <TextBlock Text="XX / XX / XXXX"
@@ -357,12 +357,12 @@
                         <TextBox x:Name="SearchTermTextBox" 
                                  Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="5" FontWeight="DemiBold"
-                                 Style="{StaticResource RoundedTextBoxStyle2}"/>
+                                 Style="{DynamicResource RoundedTextBoxStyle2}"/>
                         
                         <TextBlock Text="Pretraži"
                                    Style="{StaticResource SearchPlaceholderText}"/>
 
-                        <Image Style="{StaticResource SearchIcon}"/>
+                        <Image Style="{DynamicResource SearchIcon}"/>
 
                     </Grid>
                     <!--#endregion-->
@@ -378,7 +378,7 @@
                         Margin="10"
                         Height="35"
                         Cursor="Hand"
-                        Style="{StaticResource TransparentRoundedButtonStyle}"/>
+                        Style="{DynamicResource TransparentRoundedButtonStyle}"/>
                 <!--#endregion-->
 
             </Grid>
@@ -389,7 +389,7 @@
             <ContentControl Content="{Binding CurrentViewModel}" 
                             Focusable="False" 
                             Margin="20 10" 
-                            Grid.Column="1"  />
+                            Grid.Column="1"/>
 
         </Grid>
 

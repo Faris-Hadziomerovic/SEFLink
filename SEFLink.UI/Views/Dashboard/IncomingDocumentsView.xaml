@@ -26,10 +26,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Image Style="{StaticResource BellIcon}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Image Style="{DynamicResource BellIcon}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
             <Border Visibility="{Binding NotificationVisibility, Converter={StaticResource BoolToVisibility}}" 
-                    Background="{StaticResource Global.Purple}" 
+                    Background="{DynamicResource Global.Purple}" 
                     Grid.Column="1" 
                     Grid.Row="0" 
                     CornerRadius="25"
@@ -55,7 +55,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" MinHeight="50"/>       <!-- Sort, Refresh & Notifications -->
             <RowDefinition Height="auto" MinHeight="35"/>       <!-- Header -->
-            <RowDefinition Height="*" />                        <!--ListView -->
+            <RowDefinition Height="*" />                        <!-- ListView -->
             <RowDefinition Height="auto" MinHeight="10"/>       <!-- Spacing -->
         </Grid.RowDefinitions>
 
@@ -72,23 +72,23 @@
                 <ColumnDefinition Width="auto"/>        <!-- notifications -->
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource SortButtonStyle}"
-                        Command="{Binding SortCommand}"
-                        Grid.Column="1"/>
+            <Button Style="{DynamicResource SortButtonStyle}"
+                    Command="{Binding SortCommand}"
+                    Grid.Column="1"/>
 
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" 
-                           Width="0.5" 
-                           Height="40" 
-                           Background="#c1c3c6" 
-                           Grid.Column="2" 
-                           Margin="5"/>
+            <Separator Style="{DynamicResource {x:Static ToolBar.SeparatorStyleKey}}" 
+                       Width="0.5" 
+                       Height="40" 
+                       Background="#c1c3c6" 
+                       Grid.Column="2" 
+                       Margin="5"/>
 
-            <Button Style="{StaticResource RefreshButtonStyle}"
-                        Command="{Binding RefreshCommand}"
-                        Grid.Column="3"/>
+            <Button Style="{DynamicResource RefreshButtonStyle}"
+                    Command="{Binding RefreshCommand}"
+                    Grid.Column="3"/>
 
             <!-- Transparent when disabled -->
-            <Button Style="{StaticResource GrayButtonStyle2}"
+            <Button Style="{DynamicResource GrayButtonStyle2}"
                     Command="{Binding NotificationsCommand}"
                     Grid.Column="5"
                     Content="{StaticResource OutgoingView_NotificationsButtonContent}"/>
@@ -114,19 +114,19 @@
             <!--#endregion-->
 
             <!--#region Content -->
-            <Border Background="{StaticResource Global.LightGray1}" CornerRadius="7" Grid.ColumnSpan="10"/>
+            <Border Background="{DynamicResource Global.LightGray1}" CornerRadius="7" Grid.ColumnSpan="10"/>
 
             <CheckBox Margin="10" IsChecked="{Binding SelectedAll, Mode=TwoWay}"/> <!-- Select All -->
 
-            <TextBlock Text="POŠILJALAC" Style="{StaticResource DocumentsViewHeaderTextStyle}"  Grid.Column="1"/>
+            <TextBlock Text="POŠILJALAC" Style="{DynamicResource DocumentsViewHeaderTextStyle}"  Grid.Column="1"/>
 
-            <TextBlock Text="BROJ" Style="{StaticResource DocumentsViewHeaderTextStyle}" Grid.Column="2"/>
+            <TextBlock Text="BROJ" Style="{DynamicResource DocumentsViewHeaderTextStyle}" Grid.Column="2"/>
 
-            <TextBlock Text="TIP" Style="{StaticResource DocumentsViewHeaderTextStyle}" HorizontalAlignment="Center" Grid.Column="3"/>
+            <TextBlock Text="TIP" Style="{DynamicResource DocumentsViewHeaderTextStyle}" HorizontalAlignment="Center" Grid.Column="3"/>
 
-            <TextBlock Text="DATUM" Style="{StaticResource DocumentsViewHeaderTextStyle}" Grid.Column="4"/>
+            <TextBlock Text="DATUM" Style="{DynamicResource DocumentsViewHeaderTextStyle}" Grid.Column="4"/>
 
-            <TextBlock Text="STATUS" Style="{StaticResource DocumentsViewHeaderTextStyle}" HorizontalAlignment="Center" Margin="-5 0 0 0" Grid.Column="5"/>
+            <TextBlock Text="STATUS" Style="{DynamicResource DocumentsViewHeaderTextStyle}" HorizontalAlignment="Center" Margin="-5 0 0 0" Grid.Column="5"/>
             <!--#endregion-->
 
         </Grid>
@@ -135,7 +135,7 @@
 
         <!-- #region Documents ListView -->
         <ListView ItemsSource="{Binding ShownDocuments}" 
-                  Style="{StaticResource DocumentsInfoListViewStyle}"
+                  Style="{DynamicResource DocumentsInfoListViewStyle}"
                   Grid.Row="2">
 
             <ListView.ItemTemplate>
@@ -164,18 +164,18 @@
             <!--#region ComboBox & ApplyButton -->
             
             <ComboBox Style="{DynamicResource CustomComboBoxStyle_Gray}" 
-                          ItemsSource="{Binding Actions}" 
-                          SelectedItem="{Binding SelectedAction, Mode=TwoWay}"
-                          VerticalContentAlignment="Center"
-                          Width="150"/>
+                      ItemsSource="{Binding Actions}" 
+                      SelectedItem="{Binding SelectedAction, Mode=TwoWay}"
+                      VerticalContentAlignment="Center"
+                      Width="150"/>
 
             <Button Command="{Binding ApplyActionCommand}"
-                        Style="{StaticResource WhiteButtonStyle3}" 
-                        Content="Primeni"                        
-                        Margin="10 0"
-                        Width="60"
-                        Height="30"
-                        Grid.Column="1"/>
+                    Style="{DynamicResource WhiteButtonStyle3}" 
+                    Content="Primeni"                        
+                    Margin="10 0"
+                    Width="60"
+                    Height="30"
+                    Grid.Column="1"/>
             
             <!--#endregion-->
             
@@ -183,29 +183,29 @@
             <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
 
                 <TextBlock Text="{Binding ShowFrom}" 
-                           Style="{StaticResource PageInfo_Black}"/>
+                           Style="{DynamicResource PageInfo_Black}"/>
                 
                 <TextBlock Text="-" 
-                           Style="{StaticResource PageInfo_Black}"/>
+                           Style="{DynamicResource PageInfo_Black}"/>
                 
                 <TextBlock Text="{Binding ShowTo}" 
-                           Style="{StaticResource PageInfo_Black}"/>
+                           Style="{DynamicResource PageInfo_Black}"/>
                 
                 <TextBlock Text="  od  "
-                           Style="{StaticResource PageInfo_LightGray}"/>
+                           Style="{DynamicResource PageInfo_LightGray}"/>
                 
                 <TextBlock Text="{Binding TotalNumberOfDocuments}" 
-                           Style="{StaticResource PageInfo_LightGray}"/>
+                           Style="{DynamicResource PageInfo_LightGray}"/>
                 
             </StackPanel>
 
             <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="15 0">
 
                 <Button Command="{Binding PreviousPageCommand}"
-                            Style="{StaticResource PreviousPageButtonStyle}"/>
+                        Style="{DynamicResource PreviousPageButtonStyle}"/>
 
                 <Button Command="{Binding NextPageCommand}"
-                            Style="{StaticResource NextPageButtonStyle}"/>
+                        Style="{DynamicResource NextPageButtonStyle}"/>
 
             </StackPanel>
 

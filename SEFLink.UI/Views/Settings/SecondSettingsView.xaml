@@ -21,7 +21,7 @@
                        FontWeight="DemiBold"
                        Padding="10 0 0 0"/>
 
-            <Image Style="{StaticResource RightArrowIcon}"/>
+            <Image Style="{DynamicResource RightArrowIcon}"/>
 
         </StackPanel>
         <!--#endregion-->
@@ -80,7 +80,7 @@
 
     <Grid>
 
-        <Border Background="{StaticResource Global.Background}"/>
+        <Border Background="{DynamicResource Global.Background}"/>
 
         <ScrollViewer VerticalScrollBarVisibility="Hidden"                       
                       HorizontalScrollBarVisibility="Hidden" 
@@ -129,30 +129,30 @@
                     <!--#endregion-->
 
                     <!--#region Bubble 1 -->
-                    <Border Grid.Column="1" Style="{StaticResource ProgressBar_Bubble}">
+                    <Border Grid.Column="1" Style="{DynamicResource ProgressBar_Bubble}">
                         <TextBlock Text="1" 
                                    Padding="0 0 1 2"                                   
-                                   Style="{StaticResource ProgressBar_BubbleText}"/>
+                                   Style="{DynamicResource ProgressBar_BubbleText}"/>
                     </Border>
 
                     <TextBlock Text="SEF" 
-                               Grid.Row="1" Grid.Column="1" Style="{StaticResource ProgressBar_UnderText}"/>
+                               Grid.Row="1" Grid.Column="1" Style="{DynamicResource ProgressBar_UnderText}"/>
                     <!--#endregion-->
-                                        
-                    <Border Grid.Column="2" Style="{StaticResource ProgressBarConnectorStyle}"/>
+
+                    <Border Grid.Column="2" Style="{DynamicResource ProgressBarConnectorStyle}"/>
 
                     <!--#region Bubble 2 -->
-                    <Border Grid.Column="3" Style="{StaticResource ProgressBar_CurrentBubble}">
+                    <Border Grid.Column="3" Style="{DynamicResource ProgressBar_CurrentBubble}">
                         <TextBlock Text="2" 
                                    Padding="0 2 0 4"
-                                   Style="{StaticResource ProgressBar_CurrentBubbleText}"/>
+                                   Style="{DynamicResource ProgressBar_CurrentBubbleText}"/>
                     </Border>
 
 
                     <TextBlock Text="UBL" 
                                Grid.Row="1"
                                Grid.Column="3" 
-                               Style="{StaticResource ProgressBar_CurrentUnderText}"/>
+                               Style="{DynamicResource ProgressBar_CurrentUnderText}"/>
                     <!--#endregion-->
 
 
@@ -160,7 +160,7 @@
                 <!--#endregion-->
 
                 <!--#region Incoming Formats -->
-                <Border Style="{StaticResource BorderBoxStyle}"
+                <Border Style="{DynamicResource BorderBoxStyle}"
                         Grid.Row="4" 
                         Grid.Column="1">
 
@@ -178,12 +178,12 @@
 
                             <Image ToolTip="Da li želite da automatski konvertujemo vaše dolazne fajlove u jedan &#x0a; od predefinisanih formata ili u format po Vašoj želji?"
                                    Grid.Column="1"                           
-                                   Style="{StaticResource InfoIcon}"/>
+                                   Style="{DynamicResource InfoIcon}"/>
 
                         </Grid>
                         <!--#endregion-->
                         
-                        <!--#region Incoming Format Radio Buttons -->
+                        <!--#region Incoming Format Buttons -->
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -198,7 +198,7 @@
                             
                             <Button Command="{Binding OtherFormatInCommand}"
                                     Grid.Column="3"
-                                    Style="{StaticResource OtherFormatButtonStyle}" />
+                                    Style="{DynamicResource OtherFormatButtonStyle}" />
 
                         </Grid>
                         <!--#endregion-->
@@ -207,13 +207,13 @@
                         <Grid x:Name="InCustomFormatTextbox" Visibility="{Binding CustomInFormatTextboxVisibility}">
 
                             <TextBox Text="{Binding CustomIncomingFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource SettingsTextBoxStyle}"/>
+                                     Style="{DynamicResource SettingsTextBoxStyle}"/>
 
                             
                             <Label Content="Drugi format"
                                    Width="50"
                                    Margin="10 3"
-                                   Style="{StaticResource TextBoxLabelStyle}"/>
+                                   Style="{DynamicResource TextBoxLabelStyle}"/>
 
                         </Grid>
                         <!--#endregion-->
@@ -226,7 +226,7 @@
                 <!--#endregion-->  
                 
                 <!--#region Outgoing Formats -->
-                <Border Style="{StaticResource BorderBoxStyle}"
+                <Border Style="{DynamicResource BorderBoxStyle}"
                         Grid.Row="5" 
                         Grid.Column="1">
 
@@ -245,12 +245,12 @@
 
                             <Image ToolTip="Da li želite da automatski konvertujemo vaše odlazne fajlove u jedan &#x0a; od predefinisanih formata ili u format po Vašoj želji?"
                                    Grid.Column="1"  
-                                   Style="{StaticResource InfoIcon}"/>
+                                   Style="{DynamicResource InfoIcon}"/>
 
                         </Grid>
                         <!--#endregion-->
 
-                        <!--#region Outgoing Format Radio Buttons -->
+                        <!--#region Outgoing Format Buttons -->
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -265,7 +265,7 @@
                             
                             <Button Command="{Binding OtherFormatOutCommand}"
                                     Grid.Column="3"
-                                    Style="{StaticResource OtherFormatButtonStyle}" />
+                                    Style="{DynamicResource OtherFormatButtonStyle}" />
                             
                         </Grid>
                         <!--#endregion-->
@@ -274,13 +274,13 @@
                         <Grid x:Name="OutCustomFormatTextbox" Visibility="{Binding CustomOutFormatTextboxVisibility}">
 
                             <TextBox Text="{Binding CustomOutgoingFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     Style="{StaticResource SettingsTextBoxStyle}"/>
+                                     Style="{DynamicResource SettingsTextBoxStyle}"/>
 
 
                             <Label Content="Drugi format"
                                    Width="50"
                                    Margin="10 3"
-                                   Style="{StaticResource TextBoxLabelStyle}"/>
+                                   Style="{DynamicResource TextBoxLabelStyle}"/>
 
                         </Grid>
                         <!--#endregion-->
@@ -296,7 +296,7 @@
                 <Grid Grid.Row="7" Grid.Column="1">
 
                     <TextBox Text="{Binding IncomingFilesLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource SettingsTextBoxStyle}" 
+                             Style="{DynamicResource SettingsTextBoxStyle}" 
                              x:Name="IncomingLocationTextBox"/>
 
                     <TextBlock Text="C:\SEFLink\Incoming" 
@@ -305,11 +305,11 @@
                     <Button Command="{Binding ChooseInFolderCommand}" 
                             HorizontalAlignment="Right"                           
                             Width="80"                                                        
-                            Style="{StaticResource ChooseFolderButtonStyle}"/>
+                            Style="{DynamicResource ChooseFolderButtonStyle}"/>
 
                     <Label Content="Lokacija dolaznih formata"
                            Width="105"
-                           Style="{StaticResource TextBoxLabelStyle}"/>
+                           Style="{DynamicResource TextBoxLabelStyle}"/>
 
                 </Grid>
                 <!--#endregion-->
@@ -318,7 +318,7 @@
                 <Grid Grid.Row="8" Grid.Column="1">
 
                     <TextBox Text="{Binding OutgoingFilesLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Style="{StaticResource SettingsTextBoxStyle}"                                  
+                             Style="{DynamicResource SettingsTextBoxStyle}"                                  
                              x:Name="OutgoingLocationTextBox"/>
 
                     <TextBlock Text="C:\SEFLink\Outgoing" 
@@ -327,11 +327,11 @@
                     <Button Command="{Binding ChooseOutFolderCommand}" 
                             HorizontalAlignment="Right"                           
                             Width="80"                                                        
-                            Style="{StaticResource ChooseFolderButtonStyle}"/>
+                            Style="{DynamicResource ChooseFolderButtonStyle}"/>
 
                     <Label Content="Lokacija odlaznih formata"
                            Width="105"
-                           Style="{StaticResource TextBoxLabelStyle}"/>
+                           Style="{DynamicResource TextBoxLabelStyle}"/>
 
                 </Grid>
                 <!--#endregion-->
@@ -349,12 +349,12 @@
                         
                             Command="{Binding PreviousCommand}"
                             Grid.Column="0"
-                            Style="{StaticResource GrayButtonStyle}"/>
+                            Style="{DynamicResource GrayButtonStyle}"/>
                 
                     <Button Content="{StaticResource FinishButtonContent}"
                             Command="{Binding FinishCommand}"
                             Grid.Column="2"
-                            Style="{StaticResource BlueButtonStyle}"/>
+                            Style="{DynamicResource BlueButtonStyle}"/>
                 </Grid>
                 <!--#endregion-->
 

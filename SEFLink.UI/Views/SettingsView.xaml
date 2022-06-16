@@ -39,7 +39,7 @@
                     WindowChrome.IsHitTestVisibleInChrome="False" 
                     Focusable="False"
                     IsEnabled="False"
-                    Style="{StaticResource TitleBarNavButtonStyle}"/>
+                    Style="{DynamicResource TitleBarNavButtonStyle}"/>
         </StackPanel>
         <!--#endregion-->
         

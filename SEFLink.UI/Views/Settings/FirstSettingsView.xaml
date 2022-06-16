@@ -16,7 +16,7 @@
             <TextBlock Text="Dalje"
                        FontSize="10"/>
 
-            <Image Style="{StaticResource RightArrowIcon}"/>
+            <Image Style="{DynamicResource RightArrowIcon}"/>
 
         </StackPanel>
         <!--#endregion-->
@@ -57,7 +57,7 @@
 
     <Grid>
 
-        <Border Background="{StaticResource Global.Background}"/>
+        <Border Background="{DynamicResource Global.Background}"/>
 
         <ScrollViewer VerticalScrollBarVisibility="Hidden" 
                       HorizontalScrollBarVisibility="Hidden" 
@@ -106,30 +106,30 @@
                     <!--#endregion-->
 
                     <!--#region Bubble 1 -->
-                    <Border Grid.Column="1" Style="{StaticResource ProgressBar_CurrentBubble}">
+                    <Border Grid.Column="1" Style="{DynamicResource ProgressBar_CurrentBubble}">
                         <TextBlock Text="1" 
                                    Padding="0 0 1 2"                                   
-                                   Style="{StaticResource ProgressBar_CurrentBubbleText}"/>
+                                   Style="{DynamicResource ProgressBar_CurrentBubbleText}"/>
                     </Border>
 
                     <TextBlock Text="SEF" 
-                               Grid.Row="1" Grid.Column="1" Style="{StaticResource ProgressBar_CurrentUnderText}"/>
+                               Grid.Row="1" Grid.Column="1" Style="{DynamicResource ProgressBar_CurrentUnderText}"/>
                     <!--#endregion-->
 
-                    <Border Grid.Column="2" Style="{StaticResource ProgressBarConnectorStyle}"/>
+                    <Border Grid.Column="2" Style="{DynamicResource ProgressBarConnectorStyle}"/>
 
                     <!--#region Bubble 2 -->
-                    <Border Grid.Column="3" Style="{StaticResource ProgressBar_Bubble}">
+                    <Border Grid.Column="3" Style="{DynamicResource ProgressBar_Bubble}">
                         <TextBlock Text="2" 
                                    Padding="0 2 0 4"
-                                   Style="{StaticResource ProgressBar_BubbleText}"/>
+                                   Style="{DynamicResource ProgressBar_BubbleText}"/>
                     </Border>
 
 
                     <TextBlock Text="UBL" 
                                Grid.Row="1"
                                Grid.Column="3" 
-                               Style="{StaticResource ProgressBar_UnderText}"/>
+                               Style="{DynamicResource ProgressBar_UnderText}"/>
                     <!--#endregion-->
 
                 </Grid>
@@ -159,19 +159,19 @@
                 <!--#region API key textbox-->
                 <Grid Grid.Row="4" Grid.Column="1">
 
-                    <Image Style="{StaticResource KeyIcon}"/>
+                    <Image Style="{DynamicResource KeyIcon}"/>
 
                     <TextBox Text="{Binding APIKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Style="{StaticResource SettingsTextBoxStyle}" 
-                                    x:Name="APIKeyTextBox" 
-                                    Padding="23 0"/>
+                             Style="{DynamicResource SettingsTextBoxStyle}" 
+                             x:Name="APIKeyTextBox" 
+                             Padding="23 0"/>
 
                     <TextBlock Text="9c127b1b-6290-4754-9434-ee8344c48321" 
                                Style="{StaticResource APIKeyPlaceholderText}"/>
 
                     <Image ToolTip="Ključ možete pronaći na našoj stranici u postavkama nakon što se logujete u svoj račun."
                            HorizontalAlignment="Right"
-                           Style="{StaticResource InfoIcon}"/>
+                           Style="{DynamicResource InfoIcon}"/>
 
                 </Grid>
                 <!--#endregion-->
@@ -180,7 +180,7 @@
                 <Grid Grid.Row="5" Grid.Column="1">
 
                     <TextBox Text="{Binding IncomingFilesLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource SettingsTextBoxStyle}" 
+                             Style="{DynamicResource SettingsTextBoxStyle}" 
                              x:Name="IncomingLocationTextBox"/>
 
                     <TextBlock Text="C:\SEFLink\Incoming" 
@@ -189,10 +189,10 @@
                     <Button Command="{Binding ChooseInFolderCommand}" 
                             HorizontalAlignment="Right"                           
                             Width="80"
-                            Style="{StaticResource ChooseFolderButtonStyle}"/>
+                            Style="{DynamicResource ChooseFolderButtonStyle}"/>
 
                     <Label Content="Dolazne UBL datoteke"
-                           Style="{StaticResource TextBoxLabelStyle}"/>
+                           Style="{DynamicResource TextBoxLabelStyle}"/>
 
                 </Grid>
                 <!--#endregion-->
@@ -201,7 +201,7 @@
                 <Grid Grid.Row="6" Grid.Column="1">
 
                     <TextBox Text="{Binding OutgoingFilesLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                             Style="{StaticResource SettingsTextBoxStyle}"                                  
+                             Style="{DynamicResource SettingsTextBoxStyle}"                                  
                              x:Name="OutgoingLocationTextBox"/>
 
                     <TextBlock Text="C:\SEFLink\Outgoing" 
@@ -210,11 +210,11 @@
                     <Button Command="{Binding ChooseOutFolderCommand}"
                             HorizontalAlignment="Right"
                             Width="80"                                                        
-                            Style="{StaticResource ChooseFolderButtonStyle}"/>
+                            Style="{DynamicResource ChooseFolderButtonStyle}"/>
 
                     <Label Content="Odlazne datoteke"
                            Width="72"
-                           Style="{StaticResource TextBoxLabelStyle}"/>
+                           Style="{DynamicResource TextBoxLabelStyle}"/>
 
                 </Grid>
                 <!--#endregion-->
@@ -240,7 +240,7 @@
 
                     <Image ToolTip="Da li želite da automatski šlaljemo vaše fajlove na SEF?"
                            Grid.Column="1"
-                           Style="{StaticResource InfoIcon}"/>
+                           Style="{DynamicResource InfoIcon}"/>
                     <!--#endregion-->
 
                     <!--#region Automatic Conversion CheckBox-->
@@ -251,7 +251,7 @@
                     <Image ToolTip="Da li želite da automatski konvertujemo vaše fajlove u UBL format?"
                            Grid.Column="1"
                            Grid.Row="1"
-                           Style="{StaticResource InfoIcon}"/>
+                           Style="{DynamicResource InfoIcon}"/>
                     <!--#endregion-->
 
                 </Grid>
@@ -261,7 +261,7 @@
                 <Button Command="{Binding NextCommand}" 
                         Content="{StaticResource NextButtonContent}"                        
                         Grid.Row="9" Grid.Column="1"
-                        Style="{StaticResource BlueButtonStyle}"/>
+                        Style="{DynamicResource BlueButtonStyle}"/>
                 <!--#endregion-->
 
             </Grid>

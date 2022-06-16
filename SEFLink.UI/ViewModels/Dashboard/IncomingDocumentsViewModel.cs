@@ -3,7 +3,6 @@ using Prism.Events;
 using SEFLink.Model;
 using SEFLink.UI.Data;
 using SEFLink.UI.Events;
-using SEFLink.UI.Wrappers;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

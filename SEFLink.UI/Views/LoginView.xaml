@@ -19,8 +19,8 @@
 
         <!--#region Login Button code snippet-->
         <StackPanel x:Key="LoginButtonContent" Orientation="Horizontal">
-            
-            <Image Style="{StaticResource LoginIcon}"/>
+
+            <Image Style="{DynamicResource LoginIcon}"/>
             
             <TextBlock Text="Prijavi se"
                        VerticalAlignment="Center"                       
@@ -46,12 +46,12 @@
             <Setter Property="FontFamily" Value="{Binding FontFamily, ElementName=PasswordSearchTermTextBox}"/>
             <Setter Property="FontSize" Value="{Binding FontSize, ElementName=PasswordSearchTermTextBox}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="{StaticResource Font.Black}" />
+            <Setter Property="Foreground" Value="{DynamicResource Font.Black}" />
             
             <Setter Property="Text" Value="{Binding Password, 
-                                              Converter={StaticResource TextToPasswordCharConverter}, 
-                                              UpdateSourceTrigger=PropertyChanged, 
-                                              Mode=OneWay}" />
+                                                    Converter={StaticResource TextToPasswordCharConverter}, 
+                                                    UpdateSourceTrigger=PropertyChanged, 
+                                                    Mode=OneWay}" />
 
         </Style>
         <!--#endregion-->
@@ -88,9 +88,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-        </Grid.RowDefinitions> 
-        
-        <Border Grid.RowSpan="2" Style="{StaticResource LoginViewBackgroundBorderStyle}"/> 
+        </Grid.RowDefinitions>
+
+        <Border Grid.RowSpan="2" Style="{DynamicResource LoginViewBackgroundBorderStyle}"/> 
         
         <titlebar:BaseTitleBarView DataContext="{Binding BaseTitleBarViewModel}"/> 
                
@@ -100,7 +100,7 @@
                     WindowChrome.IsHitTestVisibleInChrome="False" 
                     Focusable="False"
                     IsEnabled="False"
-                    Style="{StaticResource TitleBarNavButtonStyle}"/>
+                    Style="{DynamicResource TitleBarNavButtonStyle}"/>
         </StackPanel>
         <!--#endregion-->
 
@@ -130,7 +130,7 @@
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
 
-                <Image Grid.Row="1" Grid.Column="1" Style="{StaticResource LoginViewLogoStyle}"/>
+                <Image Grid.Row="1" Grid.Column="1" Style="{DynamicResource LoginViewLogoStyle}"/>
 
                 <!--#region Email textbox-->
                 <Grid Grid.Row="3" Grid.Column="1">
@@ -143,7 +143,7 @@
                     <TextBlock Text="Vaša e-mail adresa" 
                            Style="{StaticResource EmailPlaceholderText}"/>
 
-                    <Image Style="{StaticResource MailIcon}"/>
+                    <Image Style="{DynamicResource MailIcon}"/>
 
                 </Grid>
                 <!--#endregion-->
@@ -164,7 +164,7 @@
                     <TextBlock Text="Vaša lozinka" 
                                Style="{StaticResource PasswordPlaceholderText}"/>
 
-                    <Image Style="{StaticResource LockIcon}"/>
+                    <Image Style="{DynamicResource LockIcon}"/>
 
                 </Grid>
                 <!--#endregion-->                                
@@ -188,7 +188,7 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Right">
                     
-                    <Hyperlink Foreground="#8c00f5"
+                    <Hyperlink Foreground="{DynamicResource Global.Purple}"
                                FontWeight="Bold"
                                TextDecorations="None">
                         Izgubljena lozinka?
@@ -201,9 +201,9 @@
 
                 <!--#region Login button-->
                 <Button Content="{StaticResource LoginButtonContent}"
-                    Command="{Binding SignInCommand}"
-                    Grid.Row="6" Grid.Column="1"
-                    Style="{StaticResource BlueButtonStyle}"/>
+                        Command="{Binding SignInCommand}"
+                        Grid.Row="6" Grid.Column="1"
+                        Style="{DynamicResource BlueButtonStyle}"/>
                 <!--#endregion-->
 
             </Grid>
