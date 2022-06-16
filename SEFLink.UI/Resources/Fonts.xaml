@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region Fonts-->
+    <FontFamily x:Key="TanseekFont">..\Assets\Fonts\tanseek-modern-pro-arabic\#Tanseek Modern Pro Arabic</FontFamily>
+    
+    <FontFamily x:Key="QuanFont">..\Assets\Fonts\Quan\#Quan Regular</FontFamily>
+    
+    <FontFamily x:Key="NotoFont">..\Assets\Fonts\Noto_Sans\#Noto Sans Regular</FontFamily>
+    <!--#endregion-->
+
+</ResourceDictionary>

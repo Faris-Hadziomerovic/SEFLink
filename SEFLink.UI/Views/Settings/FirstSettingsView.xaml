@@ -1,0 +1,271 @@
+﻿<UserControl x:Class="SEFLink.UI.Views.FirstSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SEFLink.UI.Views" 
+             xmlns:viewmodels="clr-namespace:SEFLink.UI.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FirstSettingsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <UserControl.Resources>
+
+        <!--#region Next Button code snippet-->
+        <StackPanel x:Key="NextButtonContent" Orientation="Horizontal">
+
+            <TextBlock Text="Dalje"
+                       FontSize="10"/>
+
+            <Image Style="{StaticResource RightArrowIcon}"/>
+
+        </StackPanel>
+        <!--#endregion-->
+
+                        
+        <!--#region TextBlock Placeholder Triggers-->
+
+        <Style x:Key="APIKeyPlaceholderText" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="Margin" Value="25 0"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=APIKeyTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="IncomingLocationPlaceholderText" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=IncomingLocationTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="OutgoingLocationPlaceholderText" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=OutgoingLocationTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--#endregion-->
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Border Background="{StaticResource Global.Background}"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" 
+                      HorizontalScrollBarVisibility="Hidden" 
+                      FocusVisualStyle="{x:Null}">
+            
+            <Grid>
+
+                <!--#region Grid definitions-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MinHeight="30" MaxHeight="30"/>
+                    <RowDefinition Height="auto"/>      <!-- Progress bar -->
+                    <RowDefinition Height="auto"/>      <!-- SEFLink Header -->
+                    <RowDefinition Height="auto"/>      <!-- Text -->
+                    <RowDefinition Height="auto"/>      <!-- API Key -->
+                    <RowDefinition Height="auto"/>      <!-- Incoming -->
+                    <RowDefinition Height="auto"/>      <!-- Outgoing -->
+                    <RowDefinition Height="auto"/>      <!-- Sending & Conversion checkBoxes -->
+                    <RowDefinition Height="auto"/>      <!-- placeholder -->
+                    <RowDefinition Height="auto"/>      <!-- Next button -->
+                    <RowDefinition Height="*" MinHeight="50"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2.5*" MinWidth="275" MaxWidth="400"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+
+                <!--#region Progress Bar -->
+                <Grid Grid.Column="1" Grid.Row="1" Margin="0 0 0 20">
+
+                    <!--#region Grid Definitions -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+
+                    <!--#region Bubble 1 -->
+                    <Border Grid.Column="1" Style="{StaticResource ProgressBar_CurrentBubble}">
+                        <TextBlock Text="1" 
+                                   Padding="0 0 1 2"                                   
+                                   Style="{StaticResource ProgressBar_CurrentBubbleText}"/>
+                    </Border>
+
+                    <TextBlock Text="SEF" 
+                               Grid.Row="1" Grid.Column="1" Style="{StaticResource ProgressBar_CurrentUnderText}"/>
+                    <!--#endregion-->
+
+                    <Border Grid.Column="2" Style="{StaticResource ProgressBarConnectorStyle}"/>
+
+                    <!--#region Bubble 2 -->
+                    <Border Grid.Column="3" Style="{StaticResource ProgressBar_Bubble}">
+                        <TextBlock Text="2" 
+                                   Padding="0 2 0 4"
+                                   Style="{StaticResource ProgressBar_BubbleText}"/>
+                    </Border>
+
+
+                    <TextBlock Text="UBL" 
+                               Grid.Row="1"
+                               Grid.Column="3" 
+                               Style="{StaticResource ProgressBar_UnderText}"/>
+                    <!--#endregion-->
+
+                </Grid>
+                <!--#endregion-->
+                
+                <!--#region Header and text-->
+                
+                <TextBlock Grid.Row="2" Grid.Column="1" 
+                           Text="Slanje na SEF" 
+                           FontSize="20" 
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+
+
+                <TextBlock Grid.Row="3" Grid.Column="1"
+                           Text="Unesite API ključ sa SEF platforme i odaberite lokaciju dolaznih i odlaznih Datoteka (ili ostavite već predefinisane sistemske lokacije)"                             
+                           Margin="0 15 0 20"
+                           FontSize="10" 
+                           MaxWidth="350"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Foreground="#555"
+                           HorizontalAlignment="Center"/>
+                   
+                <!--#endregion-->
+                
+                <!--#region API key textbox-->
+                <Grid Grid.Row="4" Grid.Column="1">
+
+                    <Image Style="{StaticResource KeyIcon}"/>
+
+                    <TextBox Text="{Binding APIKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{StaticResource SettingsTextBoxStyle}" 
+                                    x:Name="APIKeyTextBox" 
+                                    Padding="23 0"/>
+
+                    <TextBlock Text="9c127b1b-6290-4754-9434-ee8344c48321" 
+                               Style="{StaticResource APIKeyPlaceholderText}"/>
+
+                    <Image ToolTip="Ključ možete pronaći na našoj stranici u postavkama nakon što se logujete u svoj račun."
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource InfoIcon}"/>
+
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Incoming textbox-->
+                <Grid Grid.Row="5" Grid.Column="1">
+
+                    <TextBox Text="{Binding IncomingFilesLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource SettingsTextBoxStyle}" 
+                             x:Name="IncomingLocationTextBox"/>
+
+                    <TextBlock Text="C:\SEFLink\Incoming" 
+                               Style="{StaticResource IncomingLocationPlaceholderText}"/>
+
+                    <Button Command="{Binding ChooseInFolderCommand}" 
+                            HorizontalAlignment="Right"                           
+                            Width="80"
+                            Style="{StaticResource ChooseFolderButtonStyle}"/>
+
+                    <Label Content="Dolazne UBL datoteke"
+                           Style="{StaticResource TextBoxLabelStyle}"/>
+
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Outgoing textbox-->
+                <Grid Grid.Row="6" Grid.Column="1">
+
+                    <TextBox Text="{Binding OutgoingFilesLocation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource SettingsTextBoxStyle}"                                  
+                             x:Name="OutgoingLocationTextBox"/>
+
+                    <TextBlock Text="C:\SEFLink\Outgoing" 
+                               Style="{StaticResource OutgoingLocationPlaceholderText}"/>
+
+                    <Button Command="{Binding ChooseOutFolderCommand}"
+                            HorizontalAlignment="Right"
+                            Width="80"                                                        
+                            Style="{StaticResource ChooseFolderButtonStyle}"/>
+
+                    <Label Content="Odlazne datoteke"
+                           Width="72"
+                           Style="{StaticResource TextBoxLabelStyle}"/>
+
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Sending & Conversion checkBoxes-->
+                <Grid Grid.Row="7" Grid.Column="1">
+
+                    <!--#region Grid definitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--#endregion-->
+
+                    <!--#region Automatic Sending CheckBox-->
+                    <CheckBox Content="Automatsko slanje na SEF (preporučeno)"
+                              IsChecked="{Binding AutomaticSending, Mode=TwoWay}"/>
+
+                    <Image ToolTip="Da li želite da automatski šlaljemo vaše fajlove na SEF?"
+                           Grid.Column="1"
+                           Style="{StaticResource InfoIcon}"/>
+                    <!--#endregion-->
+
+                    <!--#region Automatic Conversion CheckBox-->
+                    <CheckBox Content="Automatska konverzija formata u UBL"
+                              IsChecked="{Binding AutomaticConversion, Mode=TwoWay}"
+                              Grid.Row="1"/>
+
+                    <Image ToolTip="Da li želite da automatski konvertujemo vaše fajlove u UBL format?"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Style="{StaticResource InfoIcon}"/>
+                    <!--#endregion-->
+
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Next button-->
+                <Button Command="{Binding NextCommand}" 
+                        Content="{StaticResource NextButtonContent}"                        
+                        Grid.Row="9" Grid.Column="1"
+                        Style="{StaticResource BlueButtonStyle}"/>
+                <!--#endregion-->
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

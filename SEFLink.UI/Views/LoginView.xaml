@@ -1,0 +1,217 @@
+﻿<UserControl x:Class="SEFLink.UI.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SEFLink.UI.Views" 
+             xmlns:viewmodels="clr-namespace:SEFLink.UI.ViewModels" 
+             xmlns:titlebar="clr-namespace:SEFLink.UI.Views.TitleBar" 
+             xmlns:converters="clr-namespace:SEFLink.UI.Converters"
+             d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600"
+             BorderThickness="0"             
+             >
+
+    <UserControl.Resources>
+
+        <converters:TextToPasswordCharConverter x:Key="TextToPasswordCharConverter"/>
+
+        <!--#region Login Button code snippet-->
+        <StackPanel x:Key="LoginButtonContent" Orientation="Horizontal">
+            
+            <Image Style="{StaticResource LoginIcon}"/>
+            
+            <TextBlock Text="Prijavi se"
+                       VerticalAlignment="Center"                       
+                       FontSize="10"
+                       Width="55"/>
+            
+        </StackPanel>
+        <!--#endregion-->
+                        
+        <!--#region Login TextBox Style-->
+        <Style x:Key="LoginTextBoxStyle" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="FontSize" Value="9"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Password Characters Overlay - TextBlock Style -->
+        <Style x:Key="PasswordCharacterOverlay" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="Padding" Value="25 0"/>
+
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="FontFamily" Value="{Binding FontFamily, ElementName=PasswordSearchTermTextBox}"/>
+            <Setter Property="FontSize" Value="{Binding FontSize, ElementName=PasswordSearchTermTextBox}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource Font.Black}" />
+            
+            <Setter Property="Text" Value="{Binding Password, 
+                                              Converter={StaticResource TextToPasswordCharConverter}, 
+                                              UpdateSourceTrigger=PropertyChanged, 
+                                              Mode=OneWay}" />
+
+        </Style>
+        <!--#endregion-->
+
+        <!--#region TextBlock Placeholder Triggers-->
+        
+        <Style x:Key="EmailPlaceholderText" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="Margin" Value="25 0"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=EmailSearchTermTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PasswordPlaceholderText" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="Margin" Value="25 0"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=PasswordSearchTermTextBox}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+                
+        <!--#endregion-->                
+                
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions> 
+        
+        <Border Grid.RowSpan="2" Style="{StaticResource LoginViewBackgroundBorderStyle}"/> 
+        
+        <titlebar:BaseTitleBarView DataContext="{Binding BaseTitleBarViewModel}"/> 
+               
+        <!--#region View Title -->
+        <StackPanel Orientation="Horizontal" Margin="5 2">
+            <Button Content="Log-in" 
+                    WindowChrome.IsHitTestVisibleInChrome="False" 
+                    Focusable="False"
+                    IsEnabled="False"
+                    Style="{StaticResource TitleBarNavButtonStyle}"/>
+        </StackPanel>
+        <!--#endregion-->
+
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" 
+                      HorizontalScrollBarVisibility="Hidden"
+                      Grid.Column="1" Grid.Row="1"
+                      FocusVisualStyle="{x:Null}">
+
+            <Grid Grid.Row="1">
+
+                <!--#region Grid definitions-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MinHeight="30"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="0.5*" MinHeight="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2*" MinHeight="30"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*" MinWidth="200" MaxWidth="400"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+
+                <Image Grid.Row="1" Grid.Column="1" Style="{StaticResource LoginViewLogoStyle}"/>
+
+                <!--#region Email textbox-->
+                <Grid Grid.Row="3" Grid.Column="1">
+
+                    <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource LoginTextBoxStyle}" 
+                             Padding="23 0"
+                             x:Name="EmailSearchTermTextBox"/>
+
+                    <TextBlock Text="Vaša e-mail adresa" 
+                           Style="{StaticResource EmailPlaceholderText}"/>
+
+                    <Image Style="{StaticResource MailIcon}"/>
+
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Password textbox-->
+                <Grid Grid.Row="4" Grid.Column="1">
+
+
+                    <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource LoginTextBoxStyle}"  
+                             Padding="23 0"
+                             Foreground="Transparent"
+                             FontFamily="Consolas"                             
+                             x:Name="PasswordSearchTermTextBox"/>
+
+                    <TextBlock Style="{StaticResource PasswordCharacterOverlay}"/>
+
+                    <TextBlock Text="Vaša lozinka" 
+                               Style="{StaticResource PasswordPlaceholderText}"/>
+
+                    <Image Style="{StaticResource LockIcon}"/>
+
+                </Grid>
+                <!--#endregion-->                                
+
+                <!--#region Remember me? & Forgotten password-->
+                <Grid Grid.Row="5" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3*" MinWidth="175"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <CheckBox Content="Zapamti me"
+                          IsChecked="{Binding RememberUser, Mode=TwoWay}"
+                          Grid.Column="1"/>
+
+                    <TextBlock Margin="0"
+                           Grid.Column="1"
+                           FontSize="9"       
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">
+                    
+                    <Hyperlink Foreground="#8c00f5"
+                               FontWeight="Bold"
+                               TextDecorations="None">
+                        Izgubljena lozinka?
+                    </Hyperlink>
+                    </TextBlock>
+
+
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Login button-->
+                <Button Content="{StaticResource LoginButtonContent}"
+                    Command="{Binding SignInCommand}"
+                    Grid.Row="6" Grid.Column="1"
+                    Style="{StaticResource BlueButtonStyle}"/>
+                <!--#endregion-->
+
+            </Grid>
+            
+        </ScrollViewer>
+
+    </Grid>
+    
+</UserControl>
+
+

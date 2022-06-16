@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="SEFLink.UI.Views.Dashboard.DocumentInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SEFLink.UI.Views.Dashboard"
+             xmlns:model="clr-namespace:SEFLink.Model;assembly=SEFLink.Model" xmlns:dashboard="clr-namespace:SEFLink.UI.ViewModels.Dashboard" d:DataContext="{d:DesignInstance Type=dashboard:DocumentInfoViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+
+        <!--#region Grid Definitions -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"  MinWidth="35" />    <!-- checkbox -->
+            <ColumnDefinition Width="3*"    MinWidth="75"/>     <!-- endpoint -->
+            <ColumnDefinition Width="2.5*"  MinWidth="60"/>     <!-- number -->
+            <ColumnDefinition Width="*"     MinWidth="40"/>     <!-- type -->
+            <ColumnDefinition Width="*"     MinWidth="60"/>     <!-- date -->
+            <ColumnDefinition Width="*"     MinWidth="50"/>     <!-- status -->
+            <ColumnDefinition Width="auto"  MinWidth="20"/>     <!-- eye? -->
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+
+
+        <!--#region Status Content Resources -->
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type model:DocStatus}">
+                
+                <Button x:Name="btn"/>
+                
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding}" Value="{x:Static model:DocStatus.Saved}">
+                        <Setter TargetName="btn" Property="Style" Value="{StaticResource SavedStatus}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding}" Value="{x:Static model:DocStatus.Pending}">
+                        <Setter TargetName="btn" Property="Style" Value="{StaticResource PendingStatus}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding}" Value="{x:Static model:DocStatus.Error}">
+                        <Setter TargetName="btn" Property="Style" Value="{StaticResource ErrorStatus}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding}" Value="{x:Static model:DocStatus.Archived}">
+                        <Setter TargetName="btn" Property="Style" Value="{StaticResource ArchivedStatus}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </Grid.Resources>
+        <!--#endregion-->
+
+
+        <!--#region Content -->
+        <CheckBox Margin="10" IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
+
+        <TextBlock Text="{Binding Endpoint}" 
+                   Style="{StaticResource CustomTextStyle_Normal}"
+                   ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}"                                       
+                   Grid.Column="1"/>
+
+        <TextBlock Text="{Binding Number}" 
+                   Style="{StaticResource CustomTextStyle_Normal}" 
+                   ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}"                                       
+                   Grid.Column="2"/>
+
+        <Border CornerRadius="5" 
+                Grid.Column="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="40"
+                Height="30"
+                Background="{StaticResource Global.LightPink}">
+
+            <TextBlock Text="{Binding Type}" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource CustomTextStyle_Normal}"/>
+
+        </Border>
+
+        <TextBlock Text="{Binding Date}" 
+                   Style="{StaticResource CustomTextStyle_Normal}" 
+                   Grid.Column="4"/>
+
+        <ContentControl Content="{Binding Status}" Width="30" Focusable="False" Grid.Column="5">
+            <ContentControl.ToolTip>
+                
+                <ToolTip Background="Transparent" Padding="0" BorderThickness="0" Placement="Left">
+                    
+                    <Border CornerRadius="5" MinHeight="50" MinWidth="100" Padding="15">
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                                       
+                            <TextBlock Text="{Binding TooltipText}"
+                                       Grid.Row="0"
+                                       FontSize="14" 
+                                       FontWeight="DemiBold" 
+                                       Foreground="White"/>
+
+                            <TextBlock Text="{Binding TooltipDateTime}" 
+                                       Grid.Row="2"
+                                       FontSize="10" 
+                                       FontWeight="DemiBold" 
+                                       Foreground="White" 
+                                       Margin="0"/>
+                                                    
+                        </Grid>
+
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Status}" Value="Saved">
+                                        <Setter Property="Background" Value="#237b4b" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Status}" Value="Pending">
+                                        <Setter Property="Background" Value="#d69e26" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Status}" Value="{x:Static model:DocStatus.Error}">
+                                        <Setter Property="Background" Value="#c4314b" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Status}" Value="{x:Static model:DocStatus.Archived}">
+                                        <Setter Property="Background" Value="#5555ff" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    
+                </ToolTip>
+
+            </ContentControl.ToolTip>
+            
+        </ContentControl>
+
+        <Button Style="{StaticResource TransparentRoundedButtonStyle}" 
+                ToolTip="Add to watch list." 
+                Height="25" 
+                VerticalAlignment="Center" 
+                Focusable="False"
+                Margin="5"
+                Grid.Column="6">
+            <Image Style="{StaticResource EyeIcon}"/>
+        </Button>
+        <!--#endregion-->
+
+
+    </Grid>
+</UserControl>
