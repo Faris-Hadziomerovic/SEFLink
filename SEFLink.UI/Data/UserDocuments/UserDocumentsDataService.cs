@@ -42,6 +42,11 @@ namespace SEFLink.UI.Data
         {
             return UserDocuments.SingleOrDefault(x => x.User.Id == Id);
         }
+        
+        public IDocumentInfoDataService GetDocumentsByUserId(int Id)
+        {
+            return UserDocuments.SingleOrDefault(x => x.User.Id == Id).GetDocuments();
+        }
 
         public async Task<bool> Exists_Async(string Email, string Password)
         {
@@ -64,6 +69,13 @@ namespace SEFLink.UI.Data
             return UserDocuments.SingleOrDefault(x => x.User.Id == Id);
         }
 
+        public async Task<IDocumentInfoDataService> GetDocumentsByUserIdAsync(int Id)
+        {
+            await Task.Delay(500); /*simulating something heavy*/
+
+            return UserDocuments.SingleOrDefault(x => x.User.Id == Id).GetDocuments();
+        }
+        
         #endregion
     }
 }

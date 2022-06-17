@@ -1,6 +1,6 @@
-﻿using SEFLink.Model;
+﻿using System.Collections.Generic;
+using SEFLink.Model;
 using SEFLink.UI.Events;
-using System.Collections.Generic;
 
 namespace SEFLink.UI.Data
 {
@@ -52,7 +52,7 @@ namespace SEFLink.UI.Data
         public UserSettings GetUserSettings() => User.UserSettings;
 
         public IDocumentInfoDataService GetDocuments() => DocumentInfoDataService;
-
+       
         public List<DocumentInfo> GetIncomingDocuments() => DocumentInfoDataService.GetAllIncomingDocuments();
 
         public List<DocumentInfo> GetOutgoingDocuments() => DocumentInfoDataService.GetAllOutgoingDocuments();

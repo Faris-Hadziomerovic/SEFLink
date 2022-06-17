@@ -17,7 +17,7 @@ namespace SEFLink.UI.Startup
 
             #region Base ViewModels
             builder.RegisterType<MainViewModel>().AsSelf();
-            builder.RegisterType<BaseTitleBarViewModel>().AsSelf();
+            builder.RegisterType<BaseTitleBarViewModel>().AsSelf().SingleInstance();
             #endregion
 
             #region Other ViewModels

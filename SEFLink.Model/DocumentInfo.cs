@@ -33,42 +33,11 @@ namespace SEFLink.Model
 
     public enum DocStatus
     {
-        Error, Pending, Saved, Archived, Deleted
+        Saved = 1, Pending, Error, Archived, Deleted
     }
 
     public enum DocType 
     {
-        TIP, KO, KF, KZ, AF
-    }
-
-    public class DocDate
-    {
-        public DocDate(int day, int month, int year)
-        {
-            Day = day;
-            Month = month;
-            Year = year;
-        }
-
-        public DocDate(DocDate x)
-        {
-            Day = x.Day;
-            Month = x.Month;
-            Year = x.Year;
-        }
-
-        public override string ToString()
-        {
-            return $"{Day}.{Month}.{Year}.";
-        }
-        
-        public string ToString(char separator)
-        {
-            return $"{Day}{separator}{Month}{separator}{Year}{separator}";
-        }
-
-        public int Day { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
+        TIP = 1, KO, KF, KZ, AF
     }
 }

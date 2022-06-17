@@ -1,12 +1,12 @@
-﻿using Prism.Commands;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Events;
 using SEFLink.Model;
 using SEFLink.UI.Data;
 using SEFLink.UI.Events;
 using SEFLink.UI.ViewModels.Dashboard;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace SEFLink.UI.ViewModels
 {
@@ -15,6 +15,8 @@ namespace SEFLink.UI.ViewModels
         #region Fields
 
         private UserDocuments _userDocuments;
+
+        private bool _canFilter = false; // stops unnecessary event publishing
 
         private string _selectedDocumentType;
         private string _documentNumber;
@@ -40,16 +42,12 @@ namespace SEFLink.UI.ViewModels
 
         public ICommand LogOutCommand { get; }
 
-
-
         #endregion
 
 
         #region Constructor
 
-        public DashboardViewModel(BaseTitleBarViewModel baseTitleBarViewModel,
-                                  IncomingDocumentsViewModel incomingDocumentsViewModel,
-                                  OutgoingDocumentsViewModel outgoingDocumentsViewModel,
+        public DashboardViewModel(BaseTitleBarViewModel baseTitleBarViewModel,                                  
                                   IUserDocumentsDataService userDocumentsDataService,
                                   IEventAggregator eventAggregator)
         {
@@ -61,18 +59,13 @@ namespace SEFLink.UI.ViewModels
             ShowIncomingDocsCommand = new DelegateCommand(Execute_ShowIncomingDocs, CanExecute_ShowIncomingDocs);
 
             LogOutCommand = new DelegateCommand(Execute_LogOut, CanExecute_LogOut);
-
-            IncomingDocumentsViewModel = incomingDocumentsViewModel;
-            OutgoingDocumentsViewModel = outgoingDocumentsViewModel;
-
+            
             LoadDefaultData();
 
             _eventAggregator.GetEvent<LoggedInEvent>().Subscribe(OnLoggedIn);
+
         }
 
-        
-
-        
         #endregion
 
 
@@ -89,19 +82,55 @@ namespace SEFLink.UI.ViewModels
         public string SelectedDocumentType
         {
             get { return _selectedDocumentType; }
-            set { _selectedDocumentType = value; OnPropertyChanged(); }
-        }        
+            set
+            {
+                _selectedDocumentType = value;
+                OnPropertyChanged();
+
+                if (ResetFilter() == false)
+                {
+                    Filter();
+                }
+            }
+        }
 
         public string DocumentNumber
         {
             get { return _documentNumber; }
-            set { _documentNumber = value; OnPropertyChanged(); }
+            set
+            {
+                _documentNumber = value;
+                OnPropertyChanged();
+
+                if (ResetFilter() == false)
+                {
+                    Filter();
+                }
+            }
         }
 
         public string DocumentDateString
         {
             get { return _docDateString; }
-            set { _docDateString = value; OnPropertyChanged(); }
+            set
+            {
+                _docDateString = value;
+                OnPropertyChanged();
+
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    if (ResetFilter() == false)
+                    {
+                        Filter();
+                    }
+                }
+                else
+                {
+                    DocumentDate = DateTime.Parse(value);
+
+                    Filter();
+                }
+            }
         }
 
         public DateTime DocumentDate
@@ -117,7 +146,16 @@ namespace SEFLink.UI.ViewModels
         public string SearchTerm
         {
             get { return _searchTerm; }
-            set { _searchTerm = value; OnPropertyChanged(); }
+            set
+            {
+                _searchTerm = value;
+                OnPropertyChanged();
+
+                if (ResetFilter() == false)
+                {
+                    Filter();
+                }
+            }
         }
 
         public object CurrentViewModel
@@ -174,30 +212,166 @@ namespace SEFLink.UI.ViewModels
         #endregion
 
 
-        #region Methods
+        #region Methods        
 
         private void LoadDefaultData()
         {
             IncomingDocsButtonPressed = false;
             OutgoingDocsButtonPressed = false;
 
-            DocumentDateString = "";
-
-            CurrentViewModel = null;
-
             DocumentTypes = new ObservableCollection<string> { "Izaberi tip dokumenta", "TIP", "KO", "KF", "KZ", "AF" };
 
             SelectedDocumentType = DocumentTypes[0];
+
+            DocumentNumber = "";
+
+            DocumentDateString = "";
+
+            SearchTerm = "";
+
+            CurrentViewModel = null;
+
         }
 
-        private void OnLoggedIn(LoggedInEventArgs args)
+        private async void OnLoggedIn(LoggedInEventArgs args)
         {
-            UserDocuments = _userDocumentsDataService.GetUserDocuments(args.Id);
+            UserDocuments = await _userDocumentsDataService.GetUserDocumentsAsync(args.Id);
+            IDocumentInfoDataService Documents = await _userDocumentsDataService.GetDocumentsByUserIdAsync(args.Id);
 
-            IncomingDocumentsViewModel = new IncomingDocumentsViewModel(UserDocuments.GetDocuments(), _eventAggregator);
-            OutgoingDocumentsViewModel = new OutgoingDocumentsViewModel(UserDocuments.GetDocuments(), _eventAggregator);
+            IncomingDocumentsViewModel = new IncomingDocumentsViewModel(Documents, _eventAggregator);
+            OutgoingDocumentsViewModel = new OutgoingDocumentsViewModel(Documents, _eventAggregator);
 
             LoadDefaultData();
+
+            _canFilter = true;
+        }
+
+
+        private bool Filter()
+        {
+            if (_canFilter == false)
+            {
+                return false;
+            }
+
+            var filter_args = GetFilterArgs();
+
+            //Filter_Data(filter_args);
+
+            _eventAggregator.GetEvent<FilterEvent>().Publish(filter_args);
+
+            return true;
+        }
+
+        private bool ResetFilter()
+        {
+            if (_canFilter == false)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(DocumentNumber) &&
+                string.IsNullOrWhiteSpace(DocumentDateString) &&
+                string.IsNullOrWhiteSpace(SearchTerm) &&
+                SelectedDocumentType == DocumentTypes[0])
+            {
+                //System.Windows.Forms.MessageBox.Show("reset filter");
+
+                _eventAggregator.GetEvent<FilterEvent>()
+                                .Publish(new FilterEventArgs { ResetFilter = true });
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private FilterEventArgs GetFilterArgs()
+        {
+            string number = null;
+            string searchterm = null;
+            DateTime? date = null;
+            DocType? type = null;
+
+            if (!string.IsNullOrWhiteSpace(DocumentNumber))
+            {
+                number = DocumentNumber;
+            }
+
+            if (!string.IsNullOrWhiteSpace(SearchTerm))
+            {
+                searchterm = SearchTerm;
+            }
+
+            if (!string.IsNullOrWhiteSpace(DocumentDateString))
+            {
+                date = DocumentDate;
+            }
+
+            if (SelectedDocumentType != DocumentTypes[0])
+            {
+                type = (DocType)Enum.Parse(typeof(DocType), SelectedDocumentType, true);
+            }
+
+            return new FilterEventArgs
+            {
+                ResetFilter = false,
+                Number = number,
+                Date = date,
+                SearchTerm = searchterm,
+                Type = type
+            };
+        }
+
+        private static void Filter_Data(FilterEventArgs filter_args)
+        {
+            string message = "Number: ";
+
+            if (filter_args.Number != null)
+            {
+                message += filter_args.Number;
+            }
+            else
+            {
+                message += "null";
+            }
+
+            message += "\nType: ";
+
+            if (filter_args.Type != null)
+            {
+                message += filter_args.Type;
+            }
+            else
+            {
+                message += "null";
+            }
+
+            message += "\nDate: ";
+
+            if (filter_args.Date != null)
+            {
+                message += filter_args.Date;
+            }
+            else
+            {
+                message += "null";
+            }
+
+            message += "\nSearch: ";
+
+            if (filter_args.SearchTerm != null)
+            {
+                message += filter_args.SearchTerm;
+            }
+            else
+            {
+                message += "null";
+            }
+
+
+
+            System.Windows.Forms.MessageBox.Show(message, "Filter data");
         }
 
 
@@ -233,6 +407,8 @@ namespace SEFLink.UI.ViewModels
         private void Execute_LogOut()
         {
             _eventAggregator.GetEvent<LoggedOutEvent>().Publish();
+
+            _canFilter = false;
         }
 
         private bool CanExecute_LogOut()

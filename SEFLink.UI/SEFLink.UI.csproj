@@ -111,6 +111,7 @@
     <Compile Include="Data\User\IUserDataService.cs" />
     <Compile Include="Data\User\UserDataService.cs" />
     <Compile Include="Data\UserDocuments\UserDocumentsDataService.cs" />
+    <Compile Include="Events\FilterEvent.cs" />
     <Compile Include="Events\FinishSettingsViewEvent.cs" />
     <Compile Include="Events\LoggedInEvent.cs" />
     <Compile Include="Events\LoggedOutEvent.cs" />
