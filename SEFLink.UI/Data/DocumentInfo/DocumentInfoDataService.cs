@@ -13,21 +13,21 @@ namespace SEFLink.UI.Data
         public int Owner_Id { get; set; }
         public int NotificationsNumber { get; set; }
 
-        public ObservableCollection<DocumentInfo> Documents { get; private set; }
-        public ObservableCollection<DocumentInfo> IncomingDocuments { get; set; }
-        public ObservableCollection<DocumentInfo> OutgoingDocuments { get; set; }
+        public List<DocumentInfo> Documents { get; private set; }
+        public List<DocumentInfo> IncomingDocuments { get; set; }
+        public List<DocumentInfo> OutgoingDocuments { get; set; }
 
 
         public DocumentInfoDataService()
         {
-            Documents = new ObservableCollection<DocumentInfo>
+            Documents = new List<DocumentInfo>
             {
                 new DocumentInfo {
                     Id = 1,
                     Sender = "Pošiljalac-Firma-B-DOO",
                     Receiver = "Primalac-Firma-A-DOO",
                     Number = 1324,
-                    Date = new DateTime(2022,2,15),
+                    Date = DateTime.Today,
                     Type = DocType.TIP,
                     Status = DocStatus.Saved
                 },
@@ -36,7 +36,7 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-B-DOO",
                     Receiver = "Primalac-Firma-A-DOO",
                     Number = 1325,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2022,6,10),
                     Type = DocType.KO,
                     Status = DocStatus.Saved
                 },
@@ -45,7 +45,7 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-A-DOO",
                     Receiver = "Primalac-Firma-C-DOO",
                     Number = 1326,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2022,6,1),
                     Type = DocType.KF,
                     Status = DocStatus.Pending
                 },
@@ -54,7 +54,7 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-A-DOO",
                     Receiver = "Primalac-Firma-B-DOO",
                     Number = 1327,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2022,5,7),
                     Type = DocType.KZ,
                     Status = DocStatus.Saved
                 },
@@ -63,32 +63,32 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-B-DOO",
                     Receiver = "Primalac-Firma-A-DOO",
                     Number = 1623,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2022,5,7),
                     Type = DocType.AF,
                     Status = DocStatus.Saved
                 },
                 new DocumentInfo {
                     Id = 6,
-                    Sender = "Pošiljalac-Firma-B-DOO",
-                    Receiver = "abc",
+                    Sender = "Pošiljalac-ABC",
+                    Receiver = "ABC",
                     Number = 1324,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2022,5,7),
                     Type = DocType.TIP,
                     Status = DocStatus.Pending
                 },
                 new DocumentInfo {
                     Id = 7,
-                    Sender = "Pošiljalac-Firma-B-DOO",
-                    Receiver = "aaa",
+                    Sender = "Pošiljalac-AAA",
+                    Receiver = "AAA",
                     Number = 1325,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2022,3,25),
                     Type = DocType.KO,
                     Status = DocStatus.Saved
                 },
                 new DocumentInfo {
                     Id = 8,
-                    Sender = "Pošiljalac-Firma-A-DOO",
-                    Receiver = "ddd",
+                    Sender = "Pošiljalac-DDD",
+                    Receiver = "DDD",
                     Number = 1326,
                     Date = new DateTime(2022,2,15),
                     Type = DocType.KF,
@@ -96,19 +96,19 @@ namespace SEFLink.UI.Data
                 },
                 new DocumentInfo {
                     Id = 9,
-                    Sender = "Pošiljalac-Firma-A-DOO",
-                    Receiver = "bbb",
+                    Sender = "Pošiljalac-BBB",
+                    Receiver = "BBB",
                     Number = 1327,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2021,12,1),
                     Type = DocType.KZ,
                     Status = DocStatus.Saved
                 },
                 new DocumentInfo {
                     Id = 10,
-                    Sender = "Pošiljalac-Firma-B-DOO",
-                    Receiver = "ccc",
+                    Sender = "Pošiljalac-CCC",
+                    Receiver = "CCC",
                     Number = 1623,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2021,11,15),
                     Type = DocType.AF,
                     Status = DocStatus.Saved
                 },
@@ -117,7 +117,7 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-B-DOO",
                     Receiver = "Primalac-Firma-A-DOO",
                     Number = 1324,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2021,9,10),
                     Type = DocType.TIP,
                     Status = DocStatus.Saved
                 },
@@ -126,7 +126,7 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-B-DOO",
                     Receiver = "Primalac-Firma-A-DOO",
                     Number = 1325,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2021,6,18),
                     Type = DocType.KO,
                     Status = DocStatus.Saved
                 },
@@ -135,16 +135,16 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-A-DOO",
                     Receiver = "Primalac-Firma-C-DOO",
                     Number = 1326,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2021,3,15),
                     Type = DocType.KF,
                     Status = DocStatus.Pending
                 },
                 new DocumentInfo {
                     Id = 14,
-                    Sender = "Pošiljalac-Firma-A-DOO",
-                    Receiver = "Primalac-Firma-B-DOO",
+                    Sender = "Pošiljalac-CDE",
+                    Receiver = "Primalac-CDE",
                     Number = 1327,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,12,28),
                     Type = DocType.KZ,
                     Status = DocStatus.Saved
                 },
@@ -153,59 +153,59 @@ namespace SEFLink.UI.Data
                     Sender = "Pošiljalac-Firma-B-DOO",
                     Receiver = "Primalac-Firma-A-DOO",
                     Number = 1623,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,10,25),
                     Type = DocType.AF,
                     Status = DocStatus.Saved
                 },
                 new DocumentInfo {
                     Id = 16,
-                    Sender = "Pošiljalac-Firma-B-DOO",
-                    Receiver = "abc",
+                    Sender = "Pošiljalac-ABC",
+                    Receiver = "ABC",
                     Number = 1324,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,5,1),
                     Type = DocType.TIP,
                     Status = DocStatus.Pending
                 },
                 new DocumentInfo {
                     Id = 17,
-                    Sender = "Pošiljalac-Firma-B-DOO",
-                    Receiver = "aaa",
+                    Sender = "Pošiljalac-Firma-AAA",
+                    Receiver = "AAA",
                     Number = 1325,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,4,5),
                     Type = DocType.KO,
                     Status = DocStatus.Saved
                 },
                 new DocumentInfo {
                     Id = 18,
-                    Sender = "Pošiljalac-Firma-A-DOO",
-                    Receiver = "ddd",
+                    Sender = "Pošiljalac-Firma-DDD",
+                    Receiver = "Primalac-Firma-DDD",
                     Number = 1326,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,4,5),
                     Type = DocType.KF,
                     Status = DocStatus.Error
                 },
                 new DocumentInfo {
                     Id = 19,
-                    Sender = "Pošiljalac-Firma-A-DOO",
-                    Receiver = "bbb",
+                    Sender = "Pošiljalac-Firma-BCD",
+                    Receiver = "Primalac-Firma-BCD",
                     Number = 1327,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,3,25),
                     Type = DocType.KZ,
                     Status = DocStatus.Saved
                 },
                 new DocumentInfo {
                     Id = 20,
-                    Sender = "Pošiljalac-Firma-B-DOO",
-                    Receiver = "ccc",
+                    Sender = "Pošiljalac-Firma-CCC",
+                    Receiver = "Primalac-BCD",
                     Number = 1623,
-                    Date = new DateTime(2022,2,15),
+                    Date = new DateTime(2020,2,15),
                     Type = DocType.AF,
                     Status = DocStatus.Saved
                 }
             };
 
-            IncomingDocuments = new ObservableCollection<DocumentInfo>();
-            OutgoingDocuments = new ObservableCollection<DocumentInfo>();
+            IncomingDocuments = new List<DocumentInfo>();
+            OutgoingDocuments = new List<DocumentInfo>();
 
             foreach (var doc in Documents)
             {

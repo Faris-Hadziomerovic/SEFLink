@@ -1,10 +1,6 @@
-﻿using SEFLink.Model;
+﻿using System;
+using SEFLink.Model;
 using SEFLink.UI.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEFLink.UI.ViewModels.Dashboard
 {
@@ -13,7 +9,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
         #region Fields
 
         private int _id;
-        
+
         private bool _isSelected;
 
         private string _endpoint;
@@ -48,7 +44,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
             switch (Status)
             {
-                case DocStatus.Saved: 
+                case DocStatus.Saved:
                     TooltipText = "Poslano na SEF.";
                     break;
 
@@ -68,7 +64,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
                     TooltipText = "Error";
                     break;
             }
-            
+
         }
 
         #endregion
@@ -79,60 +75,64 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
         public int Id
         {
-            get { return _id; }
-            set { _id = value; OnPropertyChanged(); }
+            get => _id;
+            private set => _id = value;
         }
 
         public bool IsSelected
         {
-            get { return _isSelected; }
-            set { _isSelected = value; OnPropertyChanged(); }
-        }
-
-        public string Endpoint
-        {
-            get { return _endpoint; }
-            set { _endpoint = value; OnPropertyChanged(); }
-        }
-
-        public string Number
-        {
-            get { return _number; }
-            set { _number = value; OnPropertyChanged(); }
-        }
-
-        public string Type
-        {
-            get { return _type; }
-            set { _type = value; OnPropertyChanged(); }
-        }
-
-        public DocStatus Status
-        {
-            get { return _status; }
-            set { _status = value; OnPropertyChanged(); }
-        }
-
-        public string Date
-        {
-            get { return _date; }
-            set { _date = value; OnPropertyChanged(); }
-        }
-
-        public string TooltipDateTime
-        {
-            get { return _tooltipDateTime; }
+            get => _isSelected;
             set
             {
-                _tooltipDateTime = value;
+                _isSelected = value;
                 OnPropertyChanged();
             }
         }
 
+        public DocStatus Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Endpoint
+        {
+            get => _endpoint;
+            set => _endpoint = value;
+        }
+
+        public string Number
+        {
+            get => _number;
+            set => _number = value;
+        }
+
+        public string Type
+        {
+            get => _type;
+            set => _type = value;
+        }        
+
+        public string Date
+        {
+            get => _date;
+            set => _date = value;
+        }
+
+        public string TooltipDateTime
+        {
+            get => _tooltipDateTime;
+            set => _tooltipDateTime = value;
+        }
+
         public string TooltipText
         {
-            get { return _tooltipText; }
-            set { _tooltipText = value; OnPropertyChanged(); }
+            get => _tooltipText;
+            set => _tooltipText = value;
         }
 
         #endregion

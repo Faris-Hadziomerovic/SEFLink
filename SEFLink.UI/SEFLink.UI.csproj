@@ -122,6 +122,7 @@
     <Compile Include="Events\WindowStateChangedEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\Dashboard\DocumentInfoHelper.cs" />
     <Compile Include="ViewModels\Dashboard\DocumentInfoViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\IncomingDocumentsViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\OutgoingDocumentsViewModel.cs" />

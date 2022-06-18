@@ -1,12 +1,12 @@
-﻿using Prism.Commands;
+﻿using System.Linq;
+using System.Windows.Input;
+using System.Collections.ObjectModel;
+using Prism.Commands;
 using Prism.Events;
 using SEFLink.Model;
 using SEFLink.UI.Data;
 using SEFLink.UI.Events;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
+using System.Collections.Generic;
 
 namespace SEFLink.UI.ViewModels.Dashboard
 {
@@ -14,18 +14,22 @@ namespace SEFLink.UI.ViewModels.Dashboard
     {
         #region Fields
 
+        private FilterEventArgs _filterArgs;
+
+        private bool _filterIsActive;
         private int _showFrom;
         private int _showTo;
         private int _totalNumberOfDocuments;
+        private int _totalNumberOfFilteredDocuments;
         private int _numberOfDocumentsPerPage;
         private string _selectedAction;
         private int _notificationNumber;
         private bool _selectedAll;
 
+        public bool PageNumberingVisibility { get => ! FilterIsActive; }
         public bool NotificationVisibility { get => NotificationNumber > 0; }
         
-        private IDocumentInfoDataService _documentInfoDataService;
-       
+        private IDocumentInfoDataService _documentInfoDataService;       
         private IEventAggregator _eventAggregator;
 
         public ICommand NextPageCommand { get; }
@@ -63,6 +67,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
 
             _eventAggregator.GetEvent<NotificationsClickedEvent>().Subscribe(OnNotificationsClicked);
+            _eventAggregator.GetEvent<FilterEvent>().Subscribe(OnFilterApplied);
         }
 
         #endregion
@@ -72,6 +77,8 @@ namespace SEFLink.UI.ViewModels.Dashboard
         #region Properties
 
         public ObservableCollection<DocumentInfoViewModel> ShownDocuments { get; set; }
+
+        public List<DocumentInfo> FilteredDocuments { get; set; }
 
         public ObservableCollection<string> Actions { get; set; }
 
@@ -91,6 +98,21 @@ namespace SEFLink.UI.ViewModels.Dashboard
                 ((DelegateCommand)ApplyActionCommand).RaiseCanExecuteChanged();
 
                 OnPropertyChanged();
+            }
+        }
+
+        public bool FilterIsActive
+        {
+            get { return _filterIsActive; }
+            set
+            {
+                _filterIsActive = value;
+                OnPropertyChanged();
+
+                OnPropertyChanged(nameof(PageNumberingVisibility));
+
+                ((DelegateCommand)PreviousPageCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)NextPageCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -155,6 +177,12 @@ namespace SEFLink.UI.ViewModels.Dashboard
             private set { _totalNumberOfDocuments = value; OnPropertyChanged(); }
         }
 
+        public int TotalNumberOfFilteredDocuments
+        {
+            get { return _totalNumberOfFilteredDocuments; }
+            private set { _totalNumberOfFilteredDocuments = value; OnPropertyChanged(); }
+        }
+
         public int NotificationNumber
         {
             get { return _notificationNumber; }
@@ -187,6 +215,8 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
         private void LoadViewData()
         {
+            FilteredDocuments = new List<DocumentInfo>();
+
             ShownDocuments = new ObservableCollection<DocumentInfoViewModel>();
 
             Actions = new ObservableCollection<string> { "Odaberi akciju", "Obriši", "Arhiviraj" };
@@ -201,6 +231,8 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
             ShowFrom = 1;
             ShowTo = ShowFrom + NumberOfDocumentsPerPage - 1;
+
+            FilterIsActive = false;
 
             ShowDocuments();
         }
@@ -217,38 +249,75 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
             for (int i = ShowFrom - 1; i <= ShowTo - 1; i++)
             {
-                var item = CreateDocumentInfoViewModel(docs[i]);
+                var item = DocumentInfoHelper.CreateDocumentInfoViewModel(docs[i], DocumentInfoType.Incoming);
 
                 ShownDocuments.Add(item);
             }
         }
 
-        private DocumentInfoViewModel CreateDocumentInfoViewModel(DocumentInfo documentInfo)
+
+        private void OnFilterApplied(FilterEventArgs args)
         {
-            int id = documentInfo.Id;
-            string endpoint = documentInfo.Sender;
-            string number = documentInfo.NumberDisplayMember;
-            string type = documentInfo.TypeDisplayMember;
-            DocStatus status = documentInfo.Status;
+            _filterArgs = args;
 
-            int year = documentInfo.Date.Year;
-            int month = documentInfo.Date.Month;
-            int day = documentInfo.Date.Day;
-
-            int hour = DateTime.Now.Hour;
-            int minute = DateTime.Now.Minute;
-            int second = DateTime.Now.Second;
-
-            DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
-
-            return new DocumentInfoViewModel(id, endpoint, number, type, dateTime, status);
+            if (args.ResetFilter)
+            {
+                FilterIsActive = false;
+                ShowDocuments();
+            }
+            else
+            {
+                FilterIsActive = true;
+                FilterDocuments();
+            }
         }
 
-        
+        private async void FilterDocuments()
+        {
+            FilteredDocuments.Clear();
+            ShownDocuments.Clear();
+
+            FilteredDocuments = await _documentInfoDataService.GetAllIncomingDocumentsAsync();
+
+            if (_filterArgs.Type != null)
+            {
+                FilteredDocuments = FilteredDocuments.Where(x => x.Type == _filterArgs.Type).ToList();                
+            }
+
+            if (_filterArgs.Date != null)
+            {
+                FilteredDocuments = FilteredDocuments
+                    .Where(x => x.Date.Year == _filterArgs.Date.Value.Year && 
+                                x.Date.Month == _filterArgs.Date.Value.Month && 
+                                x.Date.Day == _filterArgs.Date.Value.Day).ToList();
+            }
+
+            if (_filterArgs.Number != null)
+            {
+                FilteredDocuments = FilteredDocuments
+                    .Where(x => x.NumberDisplayMember.ToLower().Contains( _filterArgs.Number.ToLower() )).ToList();
+            }
+            
+            if (_filterArgs.SearchTerm != null)
+            {
+                FilteredDocuments = FilteredDocuments
+                    .Where(x => x.Sender.ToLower().Contains( _filterArgs.SearchTerm.ToLower() )).ToList();
+            }
+
+            TotalNumberOfFilteredDocuments = FilteredDocuments.Count();
+
+            foreach (var document in FilteredDocuments)
+            {
+                var item = DocumentInfoHelper.CreateDocumentInfoViewModel(document, DocumentInfoType.Incoming);
+
+                ShownDocuments.Add(item);
+            }
+        }
+
 
         private bool CanExecute_PreviousPage()
         {
-            return ShowFrom > 1;
+            return ShowFrom > 1 && !FilterIsActive;
         }
 
         private void Execute_PreviousPage()
@@ -261,7 +330,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
         private bool CanExecute_NextPage()
         {
-            return ShowTo < TotalNumberOfDocuments;
+            return ShowTo < TotalNumberOfDocuments && !FilterIsActive;
         }
 
         private void Execute_NextPage()
@@ -294,8 +363,6 @@ namespace SEFLink.UI.ViewModels.Dashboard
                         }
                     }
                 }
-
-                //System.Windows.MessageBox.Show("The selected files have been deleted.");
             }
 
 
@@ -314,7 +381,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
             ShowTo = ShowFrom + NumberOfDocumentsPerPage - 1;
 
-            ShowDocuments();
+            Refresh();
         }
 
         private bool CanExecute_Notifications()
@@ -338,7 +405,7 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
         private void Execute_Refresh()
         {
-            ShowDocuments();
+            Refresh();
         }
 
         private bool CanExecute_Sort() => true;
@@ -358,6 +425,20 @@ namespace SEFLink.UI.ViewModels.Dashboard
             foreach (var item in ShownDocuments)
             {
                 item.IsSelected = SelectedAll;
+            }
+        }
+
+        private void Refresh()
+        {
+            SelectedAll = false;
+
+            if (FilterIsActive)
+            {
+                FilterDocuments();
+            }
+            else
+            {
+                ShowDocuments();
             }
         }
 

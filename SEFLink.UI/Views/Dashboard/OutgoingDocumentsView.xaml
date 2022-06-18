@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dashboard="clr-namespace:SEFLink.UI.ViewModels.Dashboard"
+             xmlns:dashboardViews="clr-namespace:SEFLink.UI.Views.Dashboard"
              d:DataContext="{d:DesignInstance Type=dashboard:OutgoingDocumentsViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800"
-             xmlns:dashboardViews="clr-namespace:SEFLink.UI.Views.Dashboard">
+             d:DesignHeight="450" d:DesignWidth="800">
 
 
     <UserControl.Resources>
@@ -45,6 +45,10 @@
 
     </UserControl.Resources>
 
+    
+    
+    
+    
     <Grid FocusVisualStyle="{x:Null}">
 
         <Grid.RowDefinitions>
@@ -174,24 +178,43 @@
             <!--#endregion-->
 
             <!--#region Page Numbers & Navigation -->
-            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" 
+                        Visibility="{Binding PageNumberingVisibility, Converter={StaticResource BoolToVisibility}}">
 
-                <TextBlock Text="{Binding ShowFrom}" 
+                <TextBlock Text="{Binding ShowFrom, FallbackValue=1}" 
                            Style="{DynamicResource PageInfo_Black}"/>
 
                 <TextBlock Text="-" 
                            Style="{DynamicResource PageInfo_Black}"/>
 
-                <TextBlock Text="{Binding ShowTo}" 
+                <TextBlock Text="{Binding ShowTo, FallbackValue=5}" 
                            Style="{DynamicResource PageInfo_Black}"/>
 
                 <TextBlock Text="  od  "
                            Style="{DynamicResource PageInfo_LightGray}"/>
 
-                <TextBlock Text="{Binding TotalNumberOfDocuments}" 
+                <TextBlock Text="{Binding TotalNumberOfDocuments, FallbackValue=100}" 
                            Style="{DynamicResource PageInfo_LightGray}"/>
 
             </StackPanel>
+
+
+
+            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" 
+                        Visibility="{Binding FilterIsActive, Converter={StaticResource BoolToVisibility}, FallbackValue=Hidden}">
+
+                <TextBlock Text="{Binding TotalNumberOfFilteredDocuments, FallbackValue=1}" 
+                           Style="{DynamicResource PageInfo_LightGray}"/>
+
+                <TextBlock Text="  od  "
+                           Style="{DynamicResource PageInfo_LightGray}"/>
+
+                <TextBlock Text="{Binding TotalNumberOfDocuments, FallbackValue=100}" 
+                           Style="{DynamicResource PageInfo_LightGray}"/>
+
+            </StackPanel>
+
+
 
             <StackPanel Grid.Column="4" Orientation="Horizontal" Margin="15 0">
 
@@ -208,6 +231,5 @@
         <!--#endregion-->
 
     </Grid>
-
 
 </UserControl>
