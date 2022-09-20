@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:SEFLink.UI.ViewModels"
+        xmlns:viewModels="clr-namespace:SEFLink.UI.ViewModels"
+        xmlns:HCI="clr-namespace:SEFLink.UI.HCI.ViewModels"
         xmlns:views="clr-namespace:SEFLink.UI.Views" 
-        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}" 
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}" 
         mc:Ignorable="d"
         
-        Title="SEFLink App" 
+        Title="My Order" 
         
         FontFamily="Segoe UI"
         
@@ -43,23 +44,29 @@
 
 
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+            <!--#region SEFLink Views-->
+            <DataTemplate DataType="{x:Type viewModels:LoginViewModel}">
                 <views:LoginView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
                 <views:SettingsView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:FirstSettingsViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:FirstSettingsViewModel}">
                 <views:FirstSettingsView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:SecondSettingsViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:SecondSettingsViewModel}">
                 <views:SecondSettingsView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+            <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
+                <views:DashboardView/>
+            </DataTemplate>
+            <!--#endregion-->
+            
+            <DataTemplate DataType="{x:Type HCI:AppViewModel}">
                 <views:DashboardView/>
             </DataTemplate>
         </Grid.Resources>

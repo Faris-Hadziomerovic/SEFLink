@@ -3,6 +3,7 @@ using SEFLink.UI.Events;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using SEFLink.UI.HCI.Events;
 
 namespace SEFLink.UI.ViewModels
 {

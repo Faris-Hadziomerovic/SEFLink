@@ -3,14 +3,13 @@ using System.Linq;
 using SEFLink.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace SEFLink.UI.Data
 {
     public class DocumentInfoDataService : IDocumentInfoDataService
     {
         public int Id { get; set; }
-        public int Owner_Id { get; set; }
+        public int OwnerId { get; set; }
         public int NotificationsNumber { get; set; }
 
         public List<DocumentInfo> Documents { get; private set; }

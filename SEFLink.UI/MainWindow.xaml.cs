@@ -1,5 +1,6 @@
 ﻿using Prism.Events;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Events;
 using SEFLink.UI.ViewModels;
 using System;
 using System.Windows;
@@ -8,7 +9,7 @@ namespace SEFLink.UI
 {
     public partial class MainWindow : Window
     {
-        private MainViewModel _viewModel;
+        private readonly MainViewModel _viewModel;
         private IEventAggregator _eventAggregator;
 
         public MainWindow(MainViewModel ViewModel, IEventAggregator eventAggregator)
@@ -37,16 +38,16 @@ namespace SEFLink.UI
 
         private void RegulateWindowState()
         {
-            if (this.WindowState == WindowState.Maximized)
+            if (WindowState == WindowState.Maximized)
             {
-                this.BorderThickness = new System.Windows.Thickness(7);
+                BorderThickness = new Thickness(7);
             }
             else
             {
-                this.BorderThickness = new System.Windows.Thickness(0);
+                BorderThickness = new Thickness(0);
             }
 
-            _eventAggregator.GetEvent<WindowStateChangedEvent>().Publish(new WindowStateChangedEventArgs(this.WindowState));
+            _eventAggregator.GetEvent<WindowStateChangedEvent>().Publish(new WindowStateChangedEventArgs(WindowState));
         }
 
         private void OnNewViewSelected(NewViewSelectedEventArgs args)

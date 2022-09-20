@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -120,6 +120,58 @@
     <Compile Include="Events\NotificationsClickedEvent.cs" />
     <Compile Include="Events\PreviousSettingsViewEvent.cs" />
     <Compile Include="Events\WindowStateChangedEvent.cs" />
+    <Compile Include="HCI\Data\UndoStack.cs" />
+    <Compile Include="HCI\Events\OtherEvents\ChangeLanguageEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderConfirmedEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\EditItemEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\ExpandItemDetailsEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\ResetAppEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\UndoRemoveItemEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\LanguageViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\FoodViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\FoodDrinkViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\DrinksViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\MainViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\HelpViewEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutConfirmedEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\RemoveItemConfirmedEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\RemoveItemEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\AddItemEvent.cs" />
+    <Compile Include="HCI\Model\OrderItem.cs" />
+    <Compile Include="HCI\ViewModels\AppViewModel.cs" />
+    <Compile Include="HCI\ViewModels\LanguageSettingsViewModel.cs" />
+    <Compile Include="HCI\ViewModels\MainViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Menu\FoodDrinkViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Menu\PaymentOptionsViewModel.cs" />
+    <Compile Include="HCI\ViewModels\NavigationBarViewModel.cs" />
+    <Compile Include="HCI\ViewModels\OrderItem\OrderItemViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Overlay.xaml.cs">
+      <DependentUpon>Overlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\ViewModels\SidebarViewModel.cs" />
+    <Compile Include="HCI\Views\AppView.xaml.cs">
+      <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\LanguageSettingsView.xaml.cs">
+      <DependentUpon>LanguageSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\Menu\FoodDrinkView.xaml.cs">
+      <DependentUpon>FoodDrinkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\Menu\PaymentOptionsView.xaml.cs">
+      <DependentUpon>PaymentOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\NavigationBarView.xaml.cs">
+      <DependentUpon>NavigationBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\SidebarView.xaml.cs">
+      <DependentUpon>SidebarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\Dashboard\DocumentInfoHelper.cs" />
@@ -161,6 +213,38 @@
       <DependentUpon>BaseTitleBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\UserDocuments\UserDocuments.cs" />
+    <Page Include="HCI\ViewModels\Overlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\AppView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\LanguageSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\Menu\FoodDrinkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\Menu\PaymentOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\NavigationBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\SidebarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

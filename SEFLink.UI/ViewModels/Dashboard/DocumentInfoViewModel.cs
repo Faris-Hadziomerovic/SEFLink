@@ -28,19 +28,19 @@ namespace SEFLink.UI.ViewModels.Dashboard
 
         #region Constructor
 
-        public DocumentInfoViewModel(int Id, string Endpoint, string Number, string Type, DateTime DateTime, DocStatus Status)
+        public DocumentInfoViewModel(int id, string endpoint, string number, string type, DateTime dateTime, DocStatus status)
         {
-            this.Id = Id;
-            this.IsSelected = false;
+            Id = id;
+            IsSelected = false;
 
-            this.Endpoint = Endpoint;
-            this.Number = Number;
-            this.Type = Type;
+            Endpoint = endpoint;
+            Number = number;
+            Type = type;
 
-            this.Date = DateTime.ToString("dd.MM.yyyy");
-            this.TooltipDateTime = DateTime.ToString("dd/MM/yyyy   H:mm");
+            Date = dateTime.ToString("dd.MM.yyyy");
+            TooltipDateTime = dateTime.ToString("dd/MM/yyyy   H:mm");
 
-            this.Status = Status;
+            Status = status;
 
             switch (Status)
             {

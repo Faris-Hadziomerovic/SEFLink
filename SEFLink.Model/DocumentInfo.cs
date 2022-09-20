@@ -25,10 +25,10 @@ namespace SEFLink.Model
         public DocType Type { get; set; }
         public DocStatus Status { get; set; }
 
-        public string NumberDisplayMember { get => $"#{Number}/{Date.Year}"; }
-        public string DateDisplayMember { get => $"{Date.Day}.{Date.Month}.{Date.Year}."; }
-        public string TypeDisplayMember { get => $"{Type}"; }
-        public string StatusDisplayMember { get => $"{Status}"; }
+        public string NumberDisplayMember => $"#{Number}/{Date.Year}"; 
+        public string DateDisplayMember => $"{Date.Day}.{Date.Month}.{Date.Year}."; 
+        public string TypeDisplayMember => $"{Type}"; 
+        public string StatusDisplayMember => $"{Status}"; 
     }
 
     public enum DocStatus

@@ -36,7 +36,6 @@
     <!--#endregion-->
     
     <!--#region Status Button Colors -->
-
     <SolidColorBrush x:Key="Status.Foreground.Red" Color="#c4314b"/>
     <SolidColorBrush x:Key="Status.Background.Red" Color="#fcf4f6"/>
     <SolidColorBrush x:Key="Status.Background.Red.MouseOver" Color="#c4314b"/>

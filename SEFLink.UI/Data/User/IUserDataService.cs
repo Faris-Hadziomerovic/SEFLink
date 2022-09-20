@@ -16,6 +16,6 @@ namespace SEFLink.UI.Data
         Task<User> GetUserByIdAsync(int Id);
 
         ObservableCollection<User> GetAllUsers();
-        Task < ObservableCollection<User> > GetAllUsersAsync();
+        Task<ObservableCollection<User>> GetAllUsersAsync();
     }
 }

@@ -7,6 +7,7 @@ using SEFLink.Model;
 using SEFLink.UI.Data;
 using SEFLink.UI.Events;
 using System.Collections.Generic;
+using SEFLink.UI.HCI.Events;
 
 namespace SEFLink.UI.ViewModels.Dashboard
 {

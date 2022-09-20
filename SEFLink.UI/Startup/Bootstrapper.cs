@@ -15,6 +15,23 @@ namespace SEFLink.UI.Startup
             // Main Window
             builder.RegisterType<MainWindow>().AsSelf();
 
+
+
+            #region HCI ViewModels
+            builder.RegisterType<HCI.ViewModels.AppViewModel>().AsSelf();
+
+            builder.RegisterType<HCI.ViewModels.NavigationBarViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.LanguageSettingsViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.MainViewModel>().AsSelf();
+
+            builder.RegisterType<HCI.ViewModels.SidebarViewModel>().AsSelf();
+
+            builder.RegisterType<HCI.ViewModels.Menu.FoodDrinkViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.Menu.PaymentOptionsViewModel>().AsSelf();
+            #endregion
+
+
+
             #region Base ViewModels
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<BaseTitleBarViewModel>().AsSelf().SingleInstance();

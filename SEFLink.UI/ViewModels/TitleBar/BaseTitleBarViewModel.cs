@@ -1,5 +1,6 @@
 ﻿using Prism.Events;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Events;
 
 namespace SEFLink.UI.ViewModels
 {

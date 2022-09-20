@@ -7,6 +7,7 @@ using Prism.Events;
 using SEFLink.Model;
 using SEFLink.UI.Data;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Events;
 using SEFLink.UI.ViewModels.Dashboard;
 
 namespace SEFLink.UI.ViewModels

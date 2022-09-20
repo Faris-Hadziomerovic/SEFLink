@@ -2,6 +2,7 @@
 using Prism.Events;
 using SEFLink.UI.Data;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Events;
 using System;
 using System.Windows.Input;
 
