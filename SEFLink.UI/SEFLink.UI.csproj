@@ -129,30 +129,39 @@
     <Compile Include="HCI\Events\OtherEvents\ExpandItemDetailsEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ResetAppEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\UndoRemoveItemEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\AppViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentCreditCardViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentCashViewEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\LanguageViewEvent.cs" />
-    <Compile Include="HCI\Events\ViewSwitchEvents\FoodViewEvent.cs" />
-    <Compile Include="HCI\Events\ViewSwitchEvents\FoodDrinkViewEvent.cs" />
-    <Compile Include="HCI\Events\ViewSwitchEvents\DrinksViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\MenuViews\FoodViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\MenuViews\FoodDrinkViewEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\MenuViews\DrinksViewEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\MainViewEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\HelpViewEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutConfirmedEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\RemoveItemConfirmedEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\RemoveItemEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\AddItemEvent.cs" />
+    <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentOptionsViewEvent.cs" />
     <Compile Include="HCI\Model\OrderItem.cs" />
     <Compile Include="HCI\ViewModels\AppViewModel.cs" />
+    <Compile Include="HCI\ViewModels\DialogOverlayViewModel.cs" />
     <Compile Include="HCI\ViewModels\LanguageSettingsViewModel.cs" />
-    <Compile Include="HCI\ViewModels\MainViewModel.cs" />
+    <Compile Include="HCI\ViewModels\MenuViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Menu\DrinksViewModel.cs" />
     <Compile Include="HCI\ViewModels\Menu\FoodDrinkViewModel.cs" />
-    <Compile Include="HCI\ViewModels\Menu\PaymentOptionsViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Menu\FoodViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Payment\PaymentCashViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Payment\PaymentCreditCardViewModel.cs" />
+    <Compile Include="HCI\ViewModels\Payment\PaymentOptionsViewModel.cs" />
     <Compile Include="HCI\ViewModels\NavigationBarViewModel.cs" />
     <Compile Include="HCI\ViewModels\OrderItem\OrderItemViewModel.cs" />
-    <Compile Include="HCI\ViewModels\Overlay.xaml.cs">
-      <DependentUpon>Overlay.xaml</DependentUpon>
-    </Compile>
     <Compile Include="HCI\ViewModels\SidebarViewModel.cs" />
     <Compile Include="HCI\Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\DialogOverlayView.xaml.cs">
+      <DependentUpon>DialogOverlayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\LanguageSettingsView.xaml.cs">
       <DependentUpon>LanguageSettingsView.xaml</DependentUpon>
@@ -213,11 +222,11 @@
       <DependentUpon>BaseTitleBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\UserDocuments\UserDocuments.cs" />
-    <Page Include="HCI\ViewModels\Overlay.xaml">
+    <Page Include="HCI\Views\AppView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HCI\Views\AppView.xaml">
+    <Page Include="HCI\Views\DialogOverlayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

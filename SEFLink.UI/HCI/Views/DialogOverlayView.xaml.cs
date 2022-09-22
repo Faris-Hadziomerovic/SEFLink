@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SEFLink.UI.HCI.ViewModels
+namespace SEFLink.UI.HCI.Views
 {
     /// <summary>
-    /// Interaction logic for Overlay.xaml
+    /// Interaction logic for DialogOverlayView.xaml
     /// </summary>
-    public partial class Overlay : UserControl
+    public partial class DialogOverlayView : UserControl
     {
-        public Overlay()
+        public DialogOverlayView()
         {
             InitializeComponent();
         }

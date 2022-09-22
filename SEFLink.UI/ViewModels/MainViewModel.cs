@@ -1,6 +1,7 @@
 ﻿using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.ViewModels;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -17,6 +18,7 @@ namespace SEFLink.UI.ViewModels
         private LoginViewModel _loginViewModel;
         private SettingsViewModel _settingsViewModel;
         private DashboardViewModel _dashboardViewModel;
+        private AppViewModel _appViewModel;
 
         private IEventAggregator _eventAggregator;
 
@@ -29,6 +31,7 @@ namespace SEFLink.UI.ViewModels
                              LoginViewModel loginViewModel,
                              DashboardViewModel dashboardViewModel,
                              SettingsViewModel settingsViewModel,
+                             AppViewModel appViewModel,
                              IEventAggregator eventAggregator)
         {
 
@@ -40,11 +43,13 @@ namespace SEFLink.UI.ViewModels
             SettingsViewModel = settingsViewModel;
             DashboardViewModel = dashboardViewModel;
             
-            CurrentViewModel = loginViewModel;
+            _appViewModel = appViewModel;
+            CurrentViewModel = appViewModel;
 
             _eventAggregator.GetEvent<LoggedInEvent>().Subscribe(OnLoggedIn);
             _eventAggregator.GetEvent<LoggedOutEvent>().Subscribe(OnLoggedOut);
             _eventAggregator.GetEvent<FinishSettingsViewEvent>().Subscribe(OnFinishedSettings);
+            _eventAggregator.GetEvent<AppViewEvent>().Subscribe(OnSwitchToMyOrderApp);
         }
 
         #endregion
@@ -64,6 +69,9 @@ namespace SEFLink.UI.ViewModels
                     _eventAggregator.GetEvent<NewViewSelectedEvent>().Publish(new NewViewSelectedEventArgs(500));
 
                 if (value is DashboardViewModel)
+                    _eventAggregator.GetEvent<NewViewSelectedEvent>().Publish(new NewViewSelectedEventArgs(1000));
+                
+                if (value is AppViewModel)
                     _eventAggregator.GetEvent<NewViewSelectedEvent>().Publish(new NewViewSelectedEventArgs(1000));
 
 
@@ -116,6 +124,11 @@ namespace SEFLink.UI.ViewModels
         private void OnFinishedSettings(FinishSettingsViewEventArgs settings)
         {
             CurrentViewModel = DashboardViewModel;
+        }
+        
+        private void OnSwitchToMyOrderApp(AppViewEventArgs args)
+        {
+            CurrentViewModel = _appViewModel;
         }
 
         #endregion

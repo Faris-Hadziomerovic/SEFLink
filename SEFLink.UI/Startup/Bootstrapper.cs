@@ -20,14 +20,25 @@ namespace SEFLink.UI.Startup
             #region HCI ViewModels
             builder.RegisterType<HCI.ViewModels.AppViewModel>().AsSelf();
 
+            // App base level views models
             builder.RegisterType<HCI.ViewModels.NavigationBarViewModel>().AsSelf();
             builder.RegisterType<HCI.ViewModels.LanguageSettingsViewModel>().AsSelf();
-            builder.RegisterType<HCI.ViewModels.MainViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.DialogOverlayViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.MenuViewModel>().AsSelf();
 
+            // Menu base level views models
             builder.RegisterType<HCI.ViewModels.SidebarViewModel>().AsSelf();
 
+            // Menu payment views models
+            builder.RegisterType<HCI.ViewModels.Payment.PaymentOptionsViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.Payment.PaymentCashViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.Payment.PaymentCreditCardViewModel>().AsSelf();
+
+            // Menu navigation views models
             builder.RegisterType<HCI.ViewModels.Menu.FoodDrinkViewModel>().AsSelf();
-            builder.RegisterType<HCI.ViewModels.Menu.PaymentOptionsViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.Menu.DrinksViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.Menu.FoodViewModel>().AsSelf();
+
             #endregion
 
 

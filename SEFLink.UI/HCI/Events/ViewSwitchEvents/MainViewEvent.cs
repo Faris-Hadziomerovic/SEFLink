@@ -2,9 +2,9 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class MainViewEvent : PubSubEvent<MainViewEventArgs> { }
+    public class MenuViewEvent : PubSubEvent<MenuViewEventArgs> { }
 
-    public class MainViewEventArgs
+    public class MenuViewEventArgs
     {
     }
 }

@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:SEFLink.UI.ViewModels"
-        xmlns:HCI="clr-namespace:SEFLink.UI.HCI.ViewModels"
+        xmlns:HciViewModels="clr-namespace:SEFLink.UI.HCI.ViewModels"
         xmlns:views="clr-namespace:SEFLink.UI.Views" 
+        xmlns:HciViews="clr-namespace:SEFLink.UI.HCI.Views"
         d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}" 
         mc:Ignorable="d"
         
@@ -53,21 +54,13 @@
                 <views:SettingsView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModels:FirstSettingsViewModel}">
-                <views:FirstSettingsView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModels:SecondSettingsViewModel}">
-                <views:SecondSettingsView/>
-            </DataTemplate>
-
             <DataTemplate DataType="{x:Type viewModels:DashboardViewModel}">
                 <views:DashboardView/>
             </DataTemplate>
             <!--#endregion-->
-            
-            <DataTemplate DataType="{x:Type HCI:AppViewModel}">
-                <views:DashboardView/>
+
+            <DataTemplate DataType="{x:Type HciViewModels:AppViewModel}">
+                <HciViews:AppView/>
             </DataTemplate>
         </Grid.Resources>
 

@@ -1,13 +1,6 @@
-﻿using Prism.Commands;
-using Prism.Events;
-using SEFLink.Model;
-using SEFLink.UI.Data;
+﻿using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Events;
-using System;
-using System.Windows;
-using System.Windows.Input;
-//using SEFLink.UI.ViewModels;
 
 namespace SEFLink.UI.HCI.ViewModels
 {
@@ -15,19 +8,17 @@ namespace SEFLink.UI.HCI.ViewModels
     {
         #region Fields
 
-        private User _user;
-
         private NavigationBarViewModel _navigationBarViewModel;
 
-        private MainViewModel _mainViewModel;
+        private MenuViewModel _menuViewModel;
         private LanguageSettingsViewModel _languageSettingsViewModel;
 
-        private object _currentSettingsViewModel;
+        private object _currentViewModel;
         private IEventAggregator _eventAggregator;
 
         private string _viewTitle;
-        private readonly string _firstTitle = "Main";
-        private readonly string _secondTitle = "Language";
+        private readonly string _menuTitle = "Menu";
+        private readonly string _languageTitle = "Language";
 
         #endregion
 
@@ -35,25 +26,20 @@ namespace SEFLink.UI.HCI.ViewModels
         #region Constructor
 
         public AppViewModel(NavigationBarViewModel navigationBarViewModel,
-                            MainViewModel mainViewModel,
+                            MenuViewModel menuViewModel,
                             LanguageSettingsViewModel languageSettingsViewModel,
                             IEventAggregator eventAggregator)
         {
 
+            _eventAggregator = eventAggregator;
             NavigationBarViewModel = navigationBarViewModel;
-
-            MainViewModel = mainViewModel;
+            MenuViewModel = menuViewModel;
             LanguageSettingsViewModel = languageSettingsViewModel;
 
-            CurrentSettingsViewModel = mainViewModel;
+            Setup();
 
-            ViewTitle = _firstTitle;
-
-            _eventAggregator = eventAggregator;
-
-            _eventAggregator.GetEvent<LoggedInEvent>().Subscribe(OnLoggedIn);
-            _eventAggregator.GetEvent<MainViewEvent>().Subscribe(OnMainView);
-            _eventAggregator.GetEvent<LanguageViewEvent>().Subscribe(OnLanguageView);
+            _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnMenuViewSelected);
+            _eventAggregator.GetEvent<LanguageViewEvent>().Subscribe(OnLanguageViewSelected);
             _eventAggregator.GetEvent<CancelOrderEvent>().Subscribe(OnCancelOrder);
         }
 
@@ -62,16 +48,10 @@ namespace SEFLink.UI.HCI.ViewModels
 
         #region Properties
 
-        public User User
+        public object CurrentViewModel
         {
-            get { return _user; }
-            set { _user = value; OnPropertyChanged(); }
-        }
-
-        public object CurrentSettingsViewModel
-        {
-            get { return _currentSettingsViewModel; }
-            set { _currentSettingsViewModel = value; OnPropertyChanged(); }
+            get { return _currentViewModel; }
+            set { _currentViewModel = value; OnPropertyChanged(); }
         }
 
         public NavigationBarViewModel NavigationBarViewModel
@@ -80,10 +60,10 @@ namespace SEFLink.UI.HCI.ViewModels
             set { _navigationBarViewModel = value; OnPropertyChanged(); }
         }
 
-        public MainViewModel MainViewModel
+        public MenuViewModel MenuViewModel
         {
-            get { return _mainViewModel; }
-            set { _mainViewModel = value; OnPropertyChanged(); }
+            get { return _menuViewModel; }
+            set { _menuViewModel = value; OnPropertyChanged(); }
         }
 
         public LanguageSettingsViewModel LanguageSettingsViewModel
@@ -103,21 +83,23 @@ namespace SEFLink.UI.HCI.ViewModels
 
         #region Other Methods
 
-        private void OnLoggedIn(LoggedInEventArgs args)
+        private void Setup()
         {
-            CurrentSettingsViewModel = MainViewModel;
+            CurrentViewModel = MenuViewModel;
+
+            ViewTitle = _menuTitle;
         }
 
-        private void OnMainView(MainViewEventArgs args)
+        private void OnMenuViewSelected(MenuViewEventArgs args)
         {
-            CurrentSettingsViewModel = LanguageSettingsViewModel;
-            ViewTitle = _secondTitle;
+            CurrentViewModel = MenuViewModel;
+            ViewTitle = _menuTitle;
         }
 
-        private void OnLanguageView(LanguageViewEventArgs args)
+        private void OnLanguageViewSelected(LanguageViewEventArgs args)
         {
-            CurrentSettingsViewModel = MainViewModel;
-            ViewTitle = _firstTitle;
+            CurrentViewModel = LanguageSettingsViewModel;
+            ViewTitle = _languageTitle;
         }
 
         private void OnCancelOrder(CancelOrderEventArgs args)
