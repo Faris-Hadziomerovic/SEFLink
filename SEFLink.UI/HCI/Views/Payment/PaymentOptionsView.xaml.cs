@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SEFLink.UI.HCI.Views.Menu
+namespace SEFLink.UI.HCI.Views.Payment
 {
     /// <summary>
     /// Interaction logic for PaymentOptionsView.xaml

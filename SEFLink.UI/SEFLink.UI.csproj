@@ -144,7 +144,8 @@
     <Compile Include="HCI\Events\OtherEvents\AddItemEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentOptionsViewEvent.cs" />
     <Compile Include="HCI\Model\OrderItem.cs" />
-    <Compile Include="HCI\ViewModels\AppViewModel.cs" />
+    <Compile Include="HCI\AppViewModel.cs" />
+    <Compile Include="HCI\ViewModels\DialogOverlayViewModel.cs" />
     <Compile Include="HCI\ViewModels\LanguageSettingsViewModel.cs" />
     <Compile Include="HCI\ViewModels\MenuViewModel.cs" />
     <Compile Include="HCI\ViewModels\Menu\DrinksViewModel.cs" />
@@ -155,8 +156,8 @@
     <Compile Include="HCI\ViewModels\Payment\PaymentOptionsViewModel.cs" />
     <Compile Include="HCI\ViewModels\NavigationBarViewModel.cs" />
     <Compile Include="HCI\ViewModels\OrderItem\OrderItemViewModel.cs" />
-    <Compile Include="HCI\ViewModels\SidebarViewModel.cs" />
-    <Compile Include="HCI\Views\AppView.xaml.cs">
+    <Compile Include="HCI\ViewModels\Sidebar\SidebarViewModel.cs" />
+    <Compile Include="HCI\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\LanguageSettingsView.xaml.cs">
@@ -165,16 +166,28 @@
     <Compile Include="HCI\Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HCI\Views\Menu\DrinksView.xaml.cs">
+      <DependentUpon>DrinksView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HCI\Views\Menu\FoodDrinkView.xaml.cs">
       <DependentUpon>FoodDrinkView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HCI\Views\Menu\PaymentOptionsView.xaml.cs">
-      <DependentUpon>PaymentOptionsView.xaml</DependentUpon>
+    <Compile Include="HCI\Views\Menu\FoodView.xaml.cs">
+      <DependentUpon>FoodView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\NavigationBarView.xaml.cs">
       <DependentUpon>NavigationBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HCI\Views\SidebarView.xaml.cs">
+    <Compile Include="HCI\Views\Payment\PaymentCashView.xaml.cs">
+      <DependentUpon>PaymentCashView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\Payment\PaymentCreditCardView.xaml.cs">
+      <DependentUpon>PaymentCreditCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\Payment\PaymentOptionsView.xaml.cs">
+      <DependentUpon>PaymentOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\Sidebar\SidebarView.xaml.cs">
       <DependentUpon>SidebarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Startup\Bootstrapper.cs" />
@@ -218,7 +231,7 @@
       <DependentUpon>BaseTitleBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\UserDocuments\UserDocuments.cs" />
-    <Page Include="HCI\Views\AppView.xaml">
+    <Page Include="HCI\AppView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,11 +243,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HCI\Views\Menu\DrinksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HCI\Views\Menu\FoodDrinkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HCI\Views\Menu\PaymentOptionsView.xaml">
+    <Page Include="HCI\Views\Menu\FoodView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,7 +259,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HCI\Views\SidebarView.xaml">
+    <Page Include="HCI\Views\Payment\PaymentCashView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\Payment\PaymentCreditCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\Payment\PaymentOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\Sidebar\SidebarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

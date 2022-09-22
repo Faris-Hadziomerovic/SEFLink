@@ -21,10 +21,10 @@ namespace SEFLink.UI.Startup
             builder.RegisterType<HCI.ViewModels.AppViewModel>().AsSelf();
 
             // App base level views models
-            builder.RegisterType<HCI.ViewModels.NavigationBarViewModel>().AsSelf();
-            builder.RegisterType<HCI.ViewModels.LanguageSettingsViewModel>().AsSelf();
             builder.RegisterType<HCI.ViewModels.DialogOverlayViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.LanguageSettingsViewModel>().AsSelf();
             builder.RegisterType<HCI.ViewModels.MenuViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.NavigationBarViewModel>().AsSelf();
 
             // Menu base level views models
             builder.RegisterType<HCI.ViewModels.SidebarViewModel>().AsSelf();
@@ -38,6 +38,9 @@ namespace SEFLink.UI.Startup
             builder.RegisterType<HCI.ViewModels.Menu.FoodDrinkViewModel>().AsSelf();
             builder.RegisterType<HCI.ViewModels.Menu.DrinksViewModel>().AsSelf();
             builder.RegisterType<HCI.ViewModels.Menu.FoodViewModel>().AsSelf();
+
+            // Other
+            builder.RegisterType<HCI.ViewModels.OrderItemViewModel>().AsSelf();
 
             #endregion
 

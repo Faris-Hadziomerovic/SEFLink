@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SEFLink.UI.HCI.Views
+namespace SEFLink.UI.HCI.Views.Menu
 {
     /// <summary>
-    /// Interaction logic for SidebarView.xaml
+    /// Interaction logic for DrinksView.xaml
     /// </summary>
-    public partial class SidebarView : UserControl
+    public partial class DrinksView : UserControl
     {
-        public SidebarView()
+        public DrinksView()
         {
             InitializeComponent();
         }
