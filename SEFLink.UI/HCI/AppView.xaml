@@ -11,14 +11,14 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid.Resources>
 
-            <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
-                <local:MainView/>
+            <DataTemplate DataType="{x:Type viewModels:MenuViewModel}">
+                <local:MenuView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModels:LanguageSettingsViewModel}">

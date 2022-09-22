@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SEFLink.UI.HCI.Views
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for MenuView.xaml
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class MenuView : UserControl
     {
-        public MainView()
+        public MenuView()
         {
             InitializeComponent();
         }

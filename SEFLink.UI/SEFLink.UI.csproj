@@ -160,11 +160,14 @@
     <Compile Include="HCI\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HCI\Views\DialogOverlayView.xaml.cs">
+      <DependentUpon>DialogOverlayView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HCI\Views\LanguageSettingsView.xaml.cs">
       <DependentUpon>LanguageSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HCI\Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="HCI\Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\Menu\DrinksView.xaml.cs">
       <DependentUpon>DrinksView.xaml</DependentUpon>
@@ -235,11 +238,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HCI\Views\DialogOverlayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HCI\Views\LanguageSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HCI\Views\MainView.xaml">
+    <Page Include="HCI\Views\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
