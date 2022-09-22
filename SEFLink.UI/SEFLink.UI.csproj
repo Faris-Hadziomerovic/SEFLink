@@ -145,7 +145,6 @@
     <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentOptionsViewEvent.cs" />
     <Compile Include="HCI\Model\OrderItem.cs" />
     <Compile Include="HCI\ViewModels\AppViewModel.cs" />
-    <Compile Include="HCI\ViewModels\DialogOverlayViewModel.cs" />
     <Compile Include="HCI\ViewModels\LanguageSettingsViewModel.cs" />
     <Compile Include="HCI\ViewModels\MenuViewModel.cs" />
     <Compile Include="HCI\ViewModels\Menu\DrinksViewModel.cs" />
@@ -159,9 +158,6 @@
     <Compile Include="HCI\ViewModels\SidebarViewModel.cs" />
     <Compile Include="HCI\Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="HCI\Views\DialogOverlayView.xaml.cs">
-      <DependentUpon>DialogOverlayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\LanguageSettingsView.xaml.cs">
       <DependentUpon>LanguageSettingsView.xaml</DependentUpon>
@@ -223,10 +219,6 @@
     </Compile>
     <Compile Include="Data\UserDocuments\UserDocuments.cs" />
     <Page Include="HCI\Views\AppView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HCI\Views\DialogOverlayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
