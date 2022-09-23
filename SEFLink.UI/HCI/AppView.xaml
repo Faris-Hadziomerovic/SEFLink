@@ -8,7 +8,13 @@
              d:DataContext="{d:DesignInstance Type=viewModels:AppViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -31,21 +37,35 @@
         
         <Border Background="White" Grid.RowSpan="2"/>
 
-        <local:NavigationBarView DataContext="{Binding NavigationBarViewModel}"/>
+        <!--#region Global Navigation Bar -->
+            <local:NavigationBarView DataContext="{Binding NavigationBarViewModel}"/>
+        <!--#endregion-->
+
 
         <!--#region Navigation Bar Content Title -->
-        <StackPanel Orientation="Horizontal" Margin="5 2">
-            <Button Content="{Binding ViewTitle}" 
+        <Button Content="{Binding ViewTitle}" 
+                    HorizontalAlignment="Center"
                     WindowChrome.IsHitTestVisibleInChrome="False" 
                     Focusable="False"
                     IsEnabled="False"
                     Style="{DynamicResource TitleBarNavButtonStyle}"/>
-        </StackPanel>
         <!--#endregion-->
 
         <ContentControl Content="{Binding CurrentViewModel}" 
                         Focusable="False"
                         Grid.Row="1"/>
+
+        <TextBlock Grid.Row="1" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" 
+                   Text="faris lalalal"/>
+
+        <local:DialogOverlayView DataContext="{Binding DialogOverlayViewModel}"
+                                 Grid.Row="1"
+                                 Visibility="{Binding DataContext.DialogOverlayIsVisible, 
+                                              RelativeSource={RelativeSource AncestorType=local:AppView}, 
+                                              Converter={StaticResource BoolToVisibility}}"
+                                 />
 
     </Grid>
     

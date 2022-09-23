@@ -3,10 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views"
+             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views" 
+             xmlns:viewModels="clr-namespace:SEFLink.UI.HCI.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewModels:NavigationBarViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="50" d:DesignWidth="500">
+
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <SolidColorBrush x:Key="TitleBar.Background" Color="#2a2e31"/>
+
+        <!--#region Rounded Button Style -->
+        <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="5" 
+                            Opacity="{TemplateBinding Opacity}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--#endregion-->
+
+        <!--#region Transparent Rounded Button Style-->
+        <Style x:Key="TransparentRoundedButton" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
+
+            <!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
+            <Setter Property="BorderThickness" Value="0" />
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Window Control Buttons Style-->
+        <Style x:Key="WindowControlButton" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
+            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+        <!--#endregion-->
+
+        <!--#region X Button Style-->
+        <Style x:Key="CloseButton" BasedOn="{StaticResource WindowControlButtonStyle}" TargetType="{x:Type Button}">
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Button.OrangeRed.Background.MouseOver}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--#endregion-->
+
+    </UserControl.Resources>
+
+    <Grid Height="50">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>       <!-- Margin -->
+            <ColumnDefinition Width="auto"/>    <!-- Food -->
+            <ColumnDefinition Width="auto"/>    <!-- Drinks -->
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>    <!-- Help -->
+            <ColumnDefinition Width="auto"/>    <!-- Languages -->
+            <ColumnDefinition Width="5"/>       <!-- Margin -->
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--#region Background-->
+        <Border Background="{StaticResource TitleBar.Background}" 
+                Grid.ColumnSpan="7"
+                CornerRadius="0"/>
+
+
+        <Button Content="Food" 
+                Grid.Column="1"
+                Focusable="False"
+                Command="{Binding NavigateToFoodCommand}"
+                Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+
+        <Button Content="Drinks"
+                Grid.Column="2"
+                Focusable="False"     
+                Command="{Binding NavigateToDrinksCommand}"
+                Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+
+        <Button Content="Help" 
+                Grid.Column="4"
+                Focusable="False"
+                Command="{Binding NavigateToHelpCommand}"
+                Visibility="{Binding HelpIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+
+        <Button Content="Languages" 
+                Grid.Column="5"
+                Focusable="False"
+                Command="{Binding NavigateToLanguagesCommand}"
+                Visibility="{Binding LanguagesIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+
     </Grid>
+
 </UserControl>

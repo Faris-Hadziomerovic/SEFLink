@@ -9,6 +9,7 @@ namespace SEFLink.UI.HCI.ViewModels
         #region Fields
 
         private NavigationBarViewModel _navigationBarViewModel;
+        private DialogOverlayViewModel _dialogOverlayViewModel;
 
         private MenuViewModel _menuViewModel;
         private LanguageSettingsViewModel _languageSettingsViewModel;
@@ -16,6 +17,9 @@ namespace SEFLink.UI.HCI.ViewModels
         private object _currentViewModel;
         private IEventAggregator _eventAggregator;
 
+        private bool _dialogOverlayIsVisible;
+
+        // for testing views
         private string _viewTitle;
         private readonly string _menuTitle = "Menu";
         private readonly string _languageTitle = "Language";
@@ -26,6 +30,7 @@ namespace SEFLink.UI.HCI.ViewModels
         #region Constructor
 
         public AppViewModel(NavigationBarViewModel navigationBarViewModel,
+                            DialogOverlayViewModel dialogOverlayViewModel,
                             MenuViewModel menuViewModel,
                             LanguageSettingsViewModel languageSettingsViewModel,
                             IEventAggregator eventAggregator)
@@ -33,6 +38,7 @@ namespace SEFLink.UI.HCI.ViewModels
 
             _eventAggregator = eventAggregator;
             NavigationBarViewModel = navigationBarViewModel;
+            DialogOverlayViewModel = dialogOverlayViewModel;
             MenuViewModel = menuViewModel;
             LanguageSettingsViewModel = languageSettingsViewModel;
 
@@ -40,7 +46,11 @@ namespace SEFLink.UI.HCI.ViewModels
 
             _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnMenuViewSelected);
             _eventAggregator.GetEvent<LanguageViewEvent>().Subscribe(OnLanguageViewSelected);
+
             _eventAggregator.GetEvent<CancelOrderEvent>().Subscribe(OnCancelOrder);
+            _eventAggregator.GetEvent<CheckoutEvent>().Subscribe(OnCheckout);
+
+            _eventAggregator.GetEvent<OverlayClosedEvent>().Subscribe(OnOverlayClosed);
         }
 
         #endregion
@@ -59,6 +69,12 @@ namespace SEFLink.UI.HCI.ViewModels
             get { return _navigationBarViewModel; }
             set { _navigationBarViewModel = value; OnPropertyChanged(); }
         }
+        
+        public DialogOverlayViewModel DialogOverlayViewModel
+        {
+            get { return _dialogOverlayViewModel; }
+            set { _dialogOverlayViewModel = value; OnPropertyChanged(); }
+        }
 
         public MenuViewModel MenuViewModel
         {
@@ -70,6 +86,12 @@ namespace SEFLink.UI.HCI.ViewModels
         {
             get { return _languageSettingsViewModel; }
             set { _languageSettingsViewModel = value; OnPropertyChanged(); }
+        }
+
+        public bool DialogOverlayIsVisible
+        {
+            get { return _dialogOverlayIsVisible; }
+            set { _dialogOverlayIsVisible = value; OnPropertyChanged(); }
         }
 
         public string ViewTitle
@@ -88,6 +110,8 @@ namespace SEFLink.UI.HCI.ViewModels
             CurrentViewModel = MenuViewModel;
 
             ViewTitle = _menuTitle;
+
+            DialogOverlayIsVisible = false;
         }
 
         private void OnMenuViewSelected(MenuViewEventArgs args)
@@ -104,6 +128,17 @@ namespace SEFLink.UI.HCI.ViewModels
 
         private void OnCancelOrder(CancelOrderEventArgs args)
         {
+            DialogOverlayIsVisible = true;
+        }
+
+        private void OnCheckout(CheckoutEventArgs args)
+        {
+            DialogOverlayIsVisible = true;
+        }
+        
+        private void OnOverlayClosed(OverlayClosedEventArgs args)
+        {
+            DialogOverlayIsVisible = false;
         }
 
         #endregion

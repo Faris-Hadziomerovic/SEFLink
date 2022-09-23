@@ -121,6 +121,7 @@
     <Compile Include="Events\PreviousSettingsViewEvent.cs" />
     <Compile Include="Events\WindowStateChangedEvent.cs" />
     <Compile Include="HCI\Data\UndoStack.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\OverlayClosedEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ChangeLanguageEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutEvent.cs" />

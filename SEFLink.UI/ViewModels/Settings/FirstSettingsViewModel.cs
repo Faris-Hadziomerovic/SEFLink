@@ -95,7 +95,6 @@ namespace SEFLink.UI.ViewModels
         #endregion
 
 
-
         #region Other Methods
 
         private void LoadDefaultData()
