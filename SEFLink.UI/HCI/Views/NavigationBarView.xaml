@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:SEFLink.UI.HCI.ViewModels" 
              d:DataContext="{d:DesignInstance Type=viewModels:NavigationBarViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="500">
+             d:DesignHeight="60" d:DesignWidth="500">
 
     <UserControl.Resources>
 
@@ -15,36 +15,54 @@
 
         <SolidColorBrush x:Key="NavigationBar.Background" Color="#2a2e31"/>
 
+        <Style x:Key="LocalTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
 
-        
+
+
         <!--#region Food Button code snippet-->
-        <StackPanel x:Key="FoodButtonContent" Orientation="Horizontal">
+            <Grid Width="140" x:Key="FoodButtonContent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                </Grid.ColumnDefinitions>
 
-            <Image Style="{DynamicResource Navigation.FoodIcon}"/>
 
-            <TextBlock Text="{Binding FoodText}"
-                       VerticalAlignment="Center"                       
-                       FontSize="14"
-                       Margin="10 0 5 0"
-                       FontWeight="DemiBold"
-                       Width="45"/>
+                <Image Style="{DynamicResource Navigation.FoodIcon}"/>
 
-        </StackPanel>
+                <TextBlock Text="{Binding FoodText}"
+                           Style="{StaticResource LocalTextStyle}"
+                           Margin="10 0 5 0"
+                           FontWeight="DemiBold"
+                           Width="45"/>
+
+            </Grid>
         <!--#endregion-->
         
         <!--#region Drinks Button code snippet-->
-        <StackPanel x:Key="DrinksButtonContent" Orientation="Horizontal">
+            <Grid Width="150" x:Key="DrinksButtonContent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                </Grid.ColumnDefinitions>
 
-            <Image Style="{DynamicResource Navigation.DrinksIcon}"/>
 
-            <TextBlock Text="{Binding DrinksText}"
-                       VerticalAlignment="Center"                       
-                       FontSize="14"
-                       Margin="5 0 0 0"
-                       FontWeight="DemiBold"
-                       Width="60"/>
+                <Image Style="{DynamicResource Navigation.DrinksIcon}"/>
 
-        </StackPanel>
+                <TextBlock Text="{Binding DrinksText}"
+                           Style="{StaticResource LocalTextStyle}"
+                           Margin="5 0 0 0"
+                           FontWeight="DemiBold"
+                           Width="60"/>
+
+            </Grid>
         <!--#endregion-->
         
         <!--#region Help Button code snippet-->
@@ -63,13 +81,13 @@
 
         <!--#region Grid definitions-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15"/>       <!-- Margin -->
+                <ColumnDefinition Width="15"/>        <!-- Margin -->
                 <ColumnDefinition Width="auto"/>    <!-- Food -->
                 <ColumnDefinition Width="auto"/>    <!-- Drinks -->
-                <ColumnDefinition/>
+                <ColumnDefinition/>                   <!-- Separator -->
                 <ColumnDefinition Width="auto"/>    <!-- Help -->
                 <ColumnDefinition Width="auto"/>    <!-- Languages -->
-                <ColumnDefinition Width="15"/>       <!-- Margin -->
+                <ColumnDefinition Width="15"/>        <!-- Margin -->
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -81,7 +99,7 @@
         <!--#region Background-->
         
             <Border Background="{StaticResource NavigationBar.Background}" 
-                    Grid.ColumnSpan="7"
+                    Grid.ColumnSpan="10"
                     CornerRadius="0"/>
         
         <!--#endregion-->
@@ -98,6 +116,7 @@
             <Button Command="{Binding NavigateToDrinksCommand}"
                     Content="{StaticResource DrinksButtonContent}" 
                     Grid.Column="2"
+                    Width="150"
                     Focusable="False"
                     Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
                     Style="{DynamicResource NavigationBarButtonStyle}"/>

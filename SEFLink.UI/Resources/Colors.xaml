@@ -115,9 +115,8 @@
     <SolidColorBrush x:Key="Button.White3.Foreground.Normal" Color="#c1c3c6"/>
     <SolidColorBrush x:Key="Button.White3.Foreground.MouseOver" Color="#fff" Opacity="1"/>
     <SolidColorBrush x:Key="Button.White3.BorderBrush.Normal" Color="#c1c3c6"/>
-    
 
-    
+
     <!-- Colored - Base -->
     <SolidColorBrush x:Key="Button.Colored.Background.Normal" Color="#000"/>
    
@@ -142,17 +141,18 @@
     <!--#endregion-->
 
 
-    <!--#region Login View Colors -->
+    <!--#region My Order Colors -->
+
+        <!--#region Menu.Button.Dark -->
+            <SolidColorBrush x:Key="Menu.Button.Dark.Background.Normal" Color="#2a2e31"/>
+            <SolidColorBrush x:Key="Menu.Button.Dark.Background.MouseOver" Color="#3b3f42"/>
+            <SolidColorBrush x:Key="Menu.Button.Dark.Background.Disabled" Color="#2a2e31" Opacity="0.8"/>
+            <SolidColorBrush x:Key="Menu.Button.Dark.Foreground.Normal" Color="#fff"/>
+        <!--#endregion-->
 
     <!--#endregion-->
+    
 
-    <!--#region Settings View Colors -->
-
-    <!--#endregion-->
-
-    <!--#region Dashboard View Colors -->
-
-    <!--#endregion-->
 
 
 </ResourceDictionary>

@@ -16,6 +16,7 @@
     </UserControl.Resources>
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
@@ -37,35 +38,33 @@
         
         <Border Background="White" Grid.RowSpan="2"/>
 
-        <!--#region Global Navigation Bar -->
+        <!--region Global Navigation Bar -->
             <local:NavigationBarView DataContext="{Binding NavigationBarViewModel}"/>
-        <!--#endregion-->
+        <!--endregion-->
 
-
-        <!--#region Navigation Bar Content Title -->
-        <Button Content="{Binding ViewTitle}" 
-                    HorizontalAlignment="Center"
-                    WindowChrome.IsHitTestVisibleInChrome="False" 
-                    Focusable="False"
-                    IsEnabled="False"
-                    Style="{DynamicResource TitleBarNavButtonStyle}"/>
-        <!--#endregion-->
-
-        <ContentControl Content="{Binding CurrentViewModel}" 
+        <!--region Navigation Bar Content Title used for testing -->
+            <Button Content="{Binding ViewTitle}" 
+                        HorizontalAlignment="Center"
+                        WindowChrome.IsHitTestVisibleInChrome="False" 
                         Focusable="False"
-                        Grid.Row="1"/>
+                        IsEnabled="False"
+                        Style="{DynamicResource TitleBarNavButtonStyle}"/>
+        <!--endregion-->
 
-        <TextBlock Grid.Row="1" 
-                   VerticalAlignment="Center" 
-                   HorizontalAlignment="Center" 
-                   Text="faris lalalal"/>
+        <!--region Content -->
+            <ContentControl Content="{Binding CurrentViewModel}" 
+                            Focusable="False"
+                            Grid.Row="1"/>
+        <!--endregion-->
 
-        <local:DialogOverlayView DataContext="{Binding DialogOverlayViewModel}"
-                                 Grid.RowSpan="2"
-                                 Visibility="{Binding DataContext.DialogOverlayIsVisible, 
-                                              RelativeSource={RelativeSource AncestorType=local:AppView}, 
-                                              Converter={StaticResource BoolToVisibility}}"
-                                 />
+        <!--region Dialog Overlay -->
+            <local:DialogOverlayView DataContext="{Binding DialogOverlayViewModel}"
+                                     Grid.RowSpan="2"
+                                     Visibility="{Binding DataContext.DialogOverlayIsVisible, 
+                                                  RelativeSource={RelativeSource AncestorType=local:AppView}, 
+                                                  Converter={StaticResource BoolToVisibility}}"
+                                     />
+        <!--endregion-->
 
     </Grid>
     

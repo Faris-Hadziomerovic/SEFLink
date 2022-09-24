@@ -10,13 +10,13 @@ namespace SEFLink.UI.HCI.ViewModels
     {
         #region Fields
 
-        private string _englishFood = "Food";
-        private string _bosnianFood = "Hrana";
-        private string _germanFood = "Essen";
-        
-        private string _englishDrinks = "Drinks";
-        private string _bosnianDrinks = "Pića";
-        private string _germanDrinks = "Getränke";
+        private readonly string _englishFood = "Food";
+        private readonly string _bosnianFood = "Hrana";
+        private readonly string _germanFood = "Essen";
+                
+        private readonly string _englishDrinks = "Drinks";
+        private readonly string _bosnianDrinks = "Pića";
+        private readonly string _germanDrinks = "Getränke";
 
         private string _foodText;
         private string _drinksText;
@@ -29,7 +29,7 @@ namespace SEFLink.UI.HCI.ViewModels
         private bool _bosnianFlagIsVisible;
         private bool _germanFlagIsVisible;
 
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
 
         public ICommand NavigateToFoodCommand { get; }
         public ICommand NavigateToDrinksCommand { get; }
@@ -117,7 +117,7 @@ namespace SEFLink.UI.HCI.ViewModels
         #endregion
 
 
-        #region Other Methods
+        #region Methods
 
         private void Setup()
         {
@@ -215,6 +215,5 @@ namespace SEFLink.UI.HCI.ViewModels
         }
 
         #endregion
-
     }
 }

@@ -67,6 +67,41 @@
             <Setter Property="Height" Value="80" />
         </Style>
     
+        <Style x:Key="IconStyle90" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="90" />
+            <Setter Property="Height" Value="90" />
+        </Style>
+    
+        <Style x:Key="IconStyle100" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="100" />
+        </Style>
+    
+        <Style x:Key="IconStyle110" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="110" />
+            <Setter Property="Height" Value="110" />
+        </Style>
+    
+        <Style x:Key="IconStyle120" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="120" />
+            <Setter Property="Height" Value="120" />
+        </Style>
+    
+        <Style x:Key="IconStyle130" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="130" />
+            <Setter Property="Height" Value="130" />
+        </Style>
+    
+        <Style x:Key="IconStyle140" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="140" />
+            <Setter Property="Height" Value="140" />
+        </Style>
+    
+        <Style x:Key="IconStyle150" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="150" />
+        </Style>
+    
     <!--#endregion-->
 
 
@@ -144,13 +179,13 @@
         <!--#region Menu View Icons -->
         
             <!--#region Food Icon Style -->                
-                <Style x:Key="Menu.FoodIcon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                <Style x:Key="Menu.FoodIcon" BasedOn="{StaticResource IconStyle120}" TargetType="{x:Type Image}">
                     <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
                 </Style>        
             <!--#endregion-->
         
             <!--#region Drinks Icon Style -->               
-                <Style x:Key="Menu.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                <Style x:Key="Menu.DrinksIcon" BasedOn="{StaticResource IconStyle120}" TargetType="{x:Type Image}">
                     <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
                 </Style>    
             <!--#endregion-->
@@ -162,19 +197,22 @@
             <!--#region Flag Icons -->
                 
                 <!--#region UK Icon Style -->
-                    <Style x:Key="Navigation.Flag-GB-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                    <Style x:Key="Languages.Flag-UK-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                        <Setter Property="Margin" Value="0"/>
                         <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-UK.png"/>
                     </Style>
                 <!--#endregion-->
     
                 <!--#region BH Icon Style -->
-                    <Style x:Key="Navigation.Flag-BH-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                    <Style x:Key="Languages.Flag-BH-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                        <Setter Property="Margin" Value="0"/>
                         <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
                     </Style>
                 <!--#endregion-->
 
                 <!--#region DE Icon Style -->
-                    <Style x:Key="Navigation.Flag-DE-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                    <Style x:Key="Languages.Flag-DE-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                        <Setter Property="Margin" Value="0"/>
                         <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
                     </Style>
                 <!--#endregion-->
