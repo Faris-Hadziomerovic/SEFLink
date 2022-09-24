@@ -50,127 +50,80 @@
         <!--#region Help Button code snippet-->
         <StackPanel x:Key="HelpButtonContent" Orientation="Horizontal">
 
-            <Image Style="{DynamicResource HelpIcon}"/>
+            <Image Style="{DynamicResource Navigation.HelpIcon}"/>
            
         </StackPanel>
         <!--#endregion-->
         
-
-        <!--#region Rounded Button Style -->
-        <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="5" 
-                            Opacity="{TemplateBinding Opacity}" 
-                            BorderBrush="{TemplateBinding BorderBrush}" 
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!--#endregion-->
-
-        <!--#region Transparent Rounded Button Style-->
-        <Style x:Key="TransparentRoundedButton" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
-
-            <!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
-            <Setter Property="BorderThickness" Value="0" />
-
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
-                </Trigger>
-            </Style.Triggers>
-
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Window Control Buttons Style-->
-        <Style x:Key="WindowControlButton" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
-            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-
-            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-            <Setter Property="Focusable" Value="False" />
-        </Style>
-        <!--#endregion-->
-
-        <!--#region X Button Style-->
-        <Style x:Key="CloseButton" BasedOn="{StaticResource WindowControlButtonStyle}" TargetType="{x:Type Button}">
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Button.OrangeRed.Background.MouseOver}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <!--#endregion-->
-
+        
+        
     </UserControl.Resources>
 
     <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15"/>       <!-- Margin -->
-            <ColumnDefinition Width="auto"/>    <!-- Food -->
-            <ColumnDefinition Width="auto"/>    <!-- Drinks -->
-            <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>    <!-- Help -->
-            <ColumnDefinition Width="auto"/>    <!-- Languages -->
-            <ColumnDefinition Width="15"/>       <!-- Margin -->
-        </Grid.ColumnDefinitions>
+        <!--#region Grid definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>       <!-- Margin -->
+                <ColumnDefinition Width="auto"/>    <!-- Food -->
+                <ColumnDefinition Width="auto"/>    <!-- Drinks -->
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>    <!-- Help -->
+                <ColumnDefinition Width="auto"/>    <!-- Languages -->
+                <ColumnDefinition Width="15"/>       <!-- Margin -->
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        <!--#endregion-->
 
+        
         <!--#region Background-->
-        <Border Background="{StaticResource NavigationBar.Background}" 
-                Grid.ColumnSpan="7"
-                CornerRadius="0"/>
+        
+            <Border Background="{StaticResource NavigationBar.Background}" 
+                    Grid.ColumnSpan="7"
+                    CornerRadius="0"/>
+        
+        <!--#endregion-->
 
+        <!--#region Buttons -->
 
-        <Button Command="{Binding NavigateToFoodCommand}"
-                Content="{StaticResource FoodButtonContent}"
-                Grid.Column="1"
-                Focusable="False"
-                Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource NavigationBarButtonStyle}"/>
+            <Button Command="{Binding NavigateToFoodCommand}"
+                    Content="{StaticResource FoodButtonContent}"
+                    Grid.Column="1"
+                    Focusable="False"
+                    Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Style="{DynamicResource NavigationBarButtonStyle}"/>
 
-        <Button Command="{Binding NavigateToDrinksCommand}"
-                Content="{StaticResource DrinksButtonContent}" 
-                Grid.Column="2"
-                Focusable="False"
-                Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource NavigationBarButtonStyle}"/>
+            <Button Command="{Binding NavigateToDrinksCommand}"
+                    Content="{StaticResource DrinksButtonContent}" 
+                    Grid.Column="2"
+                    Focusable="False"
+                    Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Style="{DynamicResource NavigationBarButtonStyle}"/>
 
-        <Button Command="{Binding NavigateToHelpCommand}"
-                Content="{StaticResource HelpButtonContent}" 
-                Grid.Column="4"
-                Focusable="False"                
-                Visibility="{Binding HelpIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource HelpButtonStyle}"/>
+            <Button Command="{Binding NavigateToHelpCommand}"
+                    Content="{StaticResource HelpButtonContent}" 
+                    Grid.Column="4"
+                    Focusable="False"                
+                    Visibility="{Binding HelpIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Style="{DynamicResource HelpButtonStyle}"/>
 
-        <Button Command="{Binding NavigateToLanguagesCommand}"
-                Grid.Column="5"
-                Focusable="False"
-                Padding="0"
-                Visibility="{Binding LanguagesIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource NavigationFlagButtonStyle}">
-            <Grid>
-                <Image Style="{DynamicResource Navigation.Flag-GB-Icon}" Visibility="{Binding EnglishFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
-                <Image Style="{DynamicResource Navigation.Flag-BH-Icon}" Visibility="{Binding BosnianFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
-                <Image Style="{DynamicResource Navigation.Flag-DE-Icon}" Visibility="{Binding GermanFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
-            </Grid>
-        </Button>
+            <Button Command="{Binding NavigateToLanguagesCommand}"
+                    Grid.Column="5"
+                    Focusable="False"
+                    Padding="0"
+                    Visibility="{Binding LanguagesIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Style="{DynamicResource NavigationFlagButtonStyle}">
+                <Grid>
+                    <Image Style="{DynamicResource Navigation.Flag-GB-Icon}" Visibility="{Binding EnglishFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                    <Image Style="{DynamicResource Navigation.Flag-BH-Icon}" Visibility="{Binding BosnianFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                    <Image Style="{DynamicResource Navigation.Flag-DE-Icon}" Visibility="{Binding GermanFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                </Grid>
+            </Button>
 
+        <!--#endregion-->
+        
     </Grid>
 
 </UserControl>

@@ -70,306 +70,336 @@
     <!--#endregion-->
 
 
+    
     <!--#region My Order Icons -->
     
-        <!--#region Food Icon Style -->
-    
+        <!--#region Navigation Icons -->
+
+            <!--#region Food Icon Style -->
             <Style x:Key="Navigation.FoodIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Food.png"/>-->
                 <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
             </Style>
-    
-            <Style x:Key="Menu.FoodIcon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
-                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Food.png"/>-->
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
-            </Style>
-        
-        <!--#endregion-->
-    
-        <!--#region Drinks Icon Style -->
-    
+            <!--#endregion-->
+
+            <!--#region Drinks Icon Style -->
             <Style x:Key="Navigation.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks.png"/>-->
                 <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
             </Style>
+            <!--#endregion-->
     
-            <Style x:Key="Menu.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks.png"/>-->
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
+            <!--#region Help Icon Style -->
+            <Style x:Key="Navigation.HelpIcon" BasedOn="{StaticResource IconStyle30}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Help\Help.png"/>
             </Style>
+            <!--#endregion-->
     
+            <!--#region Flag Icons -->    
+    
+                <!--#region UK Icon Style -->
+                    <Style x:Key="Navigation.Flag-GB-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-UK.png"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-UK-BH.png"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                <!--#endregion-->
+    
+                <!--#region BH Icon Style -->
+                    <Style x:Key="Navigation.Flag-BH-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-BH-DE.png"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                <!--#endregion-->
+
+                <!--#region DE Icon Style -->
+                    <Style x:Key="Navigation.Flag-DE-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-DE-UK.png"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                <!--#endregion-->
+
+            <!--#endregion-->
+
         <!--#endregion-->
 
-        <!--#region Help Icon Style -->
-        <Style x:Key="HelpIcon" BasedOn="{StaticResource IconStyle30}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\HCI\Assets\Icons\Help\Help.png"/>
+        <!--#region Menu View Icons -->
+        
+            <!--#region Food Icon Style -->                
+                <Style x:Key="Menu.FoodIcon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
+                </Style>        
+            <!--#endregion-->
+        
+            <!--#region Drinks Icon Style -->               
+                <Style x:Key="Menu.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
+                </Style>    
+            <!--#endregion-->
+
+        <!--#endregion-->
+        
+        <!--#region Languages View Icons -->
+    
+            <!--#region Flag Icons -->
+                
+                <!--#region UK Icon Style -->
+                    <Style x:Key="Navigation.Flag-GB-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-UK.png"/>
+                    </Style>
+                <!--#endregion-->
+    
+                <!--#region BH Icon Style -->
+                    <Style x:Key="Navigation.Flag-BH-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+                    </Style>
+                <!--#endregion-->
+
+                <!--#region DE Icon Style -->
+                    <Style x:Key="Navigation.Flag-DE-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
+                    </Style>
+                <!--#endregion-->
+    
+            <!--#endregion-->
+
+        <!--#endregion -->
+        
+    <!--#endregion -->
+
+    
+    
+    <!--#region Icons-->
+
+        <!--#region Log-in Icon Style-->
+        <Style x:Key="LoginIcon" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Login\login_icon_1_light.png"/>
         </Style>
         <!--#endregion-->
 
-        <!--#region Navigation Flag Icons Style -->
-            <Style x:Key="Navigation.Flag-GB-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-GB.png"/>
-                
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-GB-BH.png"/>
-                    </Trigger>                
-                </Style.Triggers>
-            </Style>
-    
-            <Style x:Key="Navigation.Flag-BH-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
-                
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-BH-DE.png"/>
-                    </Trigger>                
-                </Style.Triggers>
-            </Style>
-    
-            <Style x:Key="Navigation.Flag-DE-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
-                
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-DE-GB.png"/>
-                    </Trigger>                
-                </Style.Triggers>
-            </Style>
+        <!--#region Mail Icon Style-->
+        <Style x:Key="MailIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Mail\icons8-mail-32.png"/>
+        </Style>
         <!--#endregion-->
 
-        <!--#region Languages View Flag Icons Style -->
-            <Style x:Key="Languages.Flag-GB-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-GB.png"/>
-            </Style>
-    
-            <Style x:Key="Languages.Flag-BH-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
-            </Style>
-    
-            <Style x:Key="Languages.Flag-DE-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
-                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
-            </Style>
+        <!--#region Lock Icon Style-->
+        <Style x:Key="LockIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Lock\icons8-lock-40.png"/>
+        </Style>
         <!--#endregion-->
 
-    <!--#endregion -->
+        <!--#region Key Icon-->
+        <Style x:Key="KeyIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
 
-    <!--#region Icons-->
+            <Setter Property="Source" Value="..\Assets\Icons\Key\icons8-key-2-bold-32.png"/>
+        </Style>
+        <!--#endregion-->
 
-    <!--#region Log-in Icon Style-->
-    <Style x:Key="LoginIcon" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Login\login_icon_1_light.png"/>
-    </Style>
-    <!--#endregion-->
+        <!--#region Right-Arrow Icon-->
+        <Style x:Key="RightArrowIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Right_Arrow\icons8-right-24.png"/>
+        </Style>
+        <!--#endregion-->
 
-    <!--#region Mail Icon Style-->
-    <Style x:Key="MailIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Mail\icons8-mail-32.png"/>
-    </Style>
-    <!--#endregion-->
+        <!--#region Info Icon Style-->
+        <Style x:Key="InfoIcon" BasedOn="{StaticResource IconStyle19}" TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Info\icons8-info-32.png"/>
+        </Style>
+        <!--#endregion-->
 
-    <!--#region Lock Icon Style-->
-    <Style x:Key="LockIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Lock\icons8-lock-40.png"/>
-    </Style>
-    <!--#endregion-->
+        <!--#region HDD Icon Style-->
+        <Style x:Key="HddIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\HDD\icons8-hdd-32.png"/>
+            <Setter Property="Margin" Value="0 0 5 0" />
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+        </Style>
+        <!--#endregion-->
 
-    <!--#region Key Icon-->
-    <Style x:Key="KeyIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <!--#region Upload Icon -->
+        <Style x:Key="UploadIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Upload\icons8-upload-file-32.png"/>
+        </Style>
+        <!--#endregion-->
 
-        <Setter Property="Source" Value="..\Assets\Icons\Key\icons8-key-2-bold-32.png"/>
-    </Style>
-    <!--#endregion-->
+        <!--#region Checkmark Icon -->
+        <Style x:Key="CheckmarkIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Margin" Value="0"/>
 
-    <!--#region Right-Arrow Icon-->
-    <Style x:Key="RightArrowIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Right_Arrow\icons8-right-24.png"/>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region Info Icon Style-->
-    <Style x:Key="InfoIcon" BasedOn="{StaticResource IconStyle19}" TargetType="{x:Type Image}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Info\icons8-info-32.png"/>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region HDD Icon Style-->
-    <Style x:Key="HddIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\HDD\icons8-hdd-32.png"/>
-        <Setter Property="Margin" Value="0 0 5 0" />
-        <Setter Property="Width" Value="18" />
-        <Setter Property="Height" Value="18" />
-    </Style>
-    <!--#endregion-->
-
-    <!--#region Upload Icon -->
-    <Style x:Key="UploadIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Upload\icons8-upload-file-32.png"/>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region Checkmark Icon -->
-    <Style x:Key="CheckmarkIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Margin" Value="0"/>
-
-        <Setter Property="Source" Value="..\Assets\Icons\Checkmark\icons8-done-24.png"/>
-    </Style>
-    <!--#endregion-->
+            <Setter Property="Source" Value="..\Assets\Icons\Checkmark\icons8-done-24.png"/>
+        </Style>
+        <!--#endregion-->
     
-    <!--#region Calendar Icon -->
-    <Style x:Key="CalendarIcon" BasedOn="{StaticResource IconStyle18}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Calendar\icons8-calendar-36.png"/>
-        <Setter Property="Margin" Value="0" />
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Search Icon -->
-    <Style x:Key="SearchIcon" BasedOn="{StaticResource IconStyle18}" TargetType="{x:Type Image}">
-        <Setter Property="IsHitTestVisible" Value="False" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="Margin" Value="0 0 15 0" />
-
-        <Setter Property="Source" Value="..\Assets\Icons\Search\icons8-search-30.png"/>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region Cloud Upload Icons -->
-    <Style x:Key="CloudUploadIcon_White" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Cloud\Upload\White\icons8-upload-to-cloud-32.png"/>
-    </Style>
-
-    <Style x:Key="CloudUploadIcon_Colored" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Cloud\Upload\Colored\icons8-upload-to-cloud-32.png"/>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region Cloud Download Icons -->
-    <Style x:Key="CloudDownloadIcon_White" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Cloud\Download\White\icons8-download-from-cloud-32.png"/>
-    </Style>
-
-    <Style x:Key="CloudDownloadIcon_Colored" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Source" Value="..\Assets\Icons\Cloud\Download\Colored\icons8-download-from-cloud-32.png"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Slider Icon -->
-    <Style x:Key="SliderIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Slider\icons8-adjust-36.png"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Refresh Icon -->
-    <Style x:Key="RefreshIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Refresh\icons8-available-updates-32.png"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Bell Icon -->
-    <Style x:Key="BellIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Bell\icons8-bell-50.png"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Eye Icon -->
-    <Style x:Key="EyeIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Eye\icons8-eye-36.png"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Chevron Icons -->
-    <Style x:Key="ChevronIcon_Dark" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Chevron\Dark\icons8-private-pv2-24.png"/>
-    </Style>
-    
-    <Style x:Key="ChevronIcon_Light" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Chevron\Light\icons8-private-pv2-24.png"/>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region Next & Previous (Arrow) Icons -->        
-    <Style x:Key="ArrowIcon_Streched" BasedOn="{StaticResource IconStyle20}" TargetType="{x:Type Image}">
-        <Setter Property="Stretch" Value="Fill" />
-    </Style>
-    
-    <Style x:Key="NextArrowIcon" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Arrow\Next\icons8-right-32.png"/>
-    </Style>
-
-    <Style x:Key="PreviousArrowIcon" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Arrow\Previous\icons8-left-32.png"/>
-    </Style>
-
-    <Style x:Key="NextArrowIcon_Disabled" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Arrow\Next\icons8-right-disabled-32.png"/>
-    </Style>
-
-    <Style x:Key="PreviousArrowIcon_Disabled" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
-        <Setter Property="Source" Value="..\Assets\Icons\Arrow\Previous\icons8-left-disabled-32.png"/>
-    </Style>
-    <!--#endregion-->
-    
-    <!--#region Document Status Icons -->
-    
-        <!--#region Base -->
-        <Style x:Key="StatusIconStyle" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+        <!--#region Calendar Icon -->
+        <Style x:Key="CalendarIcon" BasedOn="{StaticResource IconStyle18}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Calendar\icons8-calendar-36.png"/>
             <Setter Property="Margin" Value="0" />
         </Style>
         <!--#endregion-->
     
-        <!--#region Saved -->
-        <Style x:Key="SavedStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Saved\1\status-30.png"/>
+        <!--#region Search Icon -->
+        <Style x:Key="SearchIcon" BasedOn="{StaticResource IconStyle18}" TargetType="{x:Type Image}">
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="0 0 15 0" />
+
+            <Setter Property="Source" Value="..\Assets\Icons\Search\icons8-search-30.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Cloud Upload Icons -->
+        <Style x:Key="CloudUploadIcon_White" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Cloud\Upload\White\icons8-upload-to-cloud-32.png"/>
         </Style>
 
-        <Style x:Key="SavedStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Saved\1\status-mouseover-30.png"/>
+        <Style x:Key="CloudUploadIcon_Colored" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Cloud\Upload\Colored\icons8-upload-to-cloud-32.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Cloud Download Icons -->
+        <Style x:Key="CloudDownloadIcon_White" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Cloud\Download\White\icons8-download-from-cloud-32.png"/>
+        </Style>
+
+        <Style x:Key="CloudDownloadIcon_Colored" BasedOn="{StaticResource IconStyle17}" TargetType="{x:Type Image}">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Source" Value="..\Assets\Icons\Cloud\Download\Colored\icons8-download-from-cloud-32.png"/>
         </Style>
         <!--#endregion-->
     
-        <!--#region Pending -->
-        <Style x:Key="PendingStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Pending\status-48.png"/>
-        </Style>
-
-        <Style x:Key="PendingStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Pending\status-mouseover-48.png"/>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Error -->
-        <Style x:Key="ErrorStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Error\status-48.png"/>
-        </Style>
-
-        <Style x:Key="ErrorStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Error\status-mouseover-48.png"/>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Archived -->
-        <Style x:Key="ArchivedStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Archived\status-32.png"/>
-        </Style>
-    
-        <Style x:Key="ArchivedStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Icons\Status\Archived\status-mouseover-32.png"/>
+        <!--#region Slider Icon -->
+        <Style x:Key="SliderIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Slider\icons8-adjust-36.png"/>
         </Style>
         <!--#endregion-->
     
+        <!--#region Refresh Icon -->
+        <Style x:Key="RefreshIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Refresh\icons8-available-updates-32.png"/>
+        </Style>
+        <!--#endregion-->
+    
+        <!--#region Bell Icon -->
+        <Style x:Key="BellIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Bell\icons8-bell-50.png"/>
+        </Style>
+        <!--#endregion-->
+    
+        <!--#region Eye Icon -->
+        <Style x:Key="EyeIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Eye\icons8-eye-36.png"/>
+        </Style>
+        <!--#endregion-->
+    
+        <!--#region Chevron Icons -->
+        <Style x:Key="ChevronIcon_Dark" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Chevron\Dark\icons8-private-pv2-24.png"/>
+        </Style>
+    
+        <Style x:Key="ChevronIcon_Light" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Chevron\Light\icons8-private-pv2-24.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Next & Previous (Arrow) Icons -->        
+        <Style x:Key="ArrowIcon_Streched" BasedOn="{StaticResource IconStyle20}" TargetType="{x:Type Image}">
+            <Setter Property="Stretch" Value="Fill" />
+        </Style>
+    
+        <Style x:Key="NextArrowIcon" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Arrow\Next\icons8-right-32.png"/>
+        </Style>
+
+        <Style x:Key="PreviousArrowIcon" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Arrow\Previous\icons8-left-32.png"/>
+        </Style>
+
+        <Style x:Key="NextArrowIcon_Disabled" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Arrow\Next\icons8-right-disabled-32.png"/>
+        </Style>
+
+        <Style x:Key="PreviousArrowIcon_Disabled" BasedOn="{StaticResource ArrowIcon_Streched}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\Assets\Icons\Arrow\Previous\icons8-left-disabled-32.png"/>
+        </Style>
+        <!--#endregion-->
+    
+        <!--#region Document Status Icons -->
+    
+            <!--#region Base -->
+            <Style x:Key="StatusIconStyle" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Margin" Value="0" />
+            </Style>
+            <!--#endregion-->
+    
+            <!--#region Saved -->
+            <Style x:Key="SavedStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Saved\1\status-30.png"/>
+            </Style>
+
+            <Style x:Key="SavedStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Saved\1\status-mouseover-30.png"/>
+            </Style>
+            <!--#endregion-->
+    
+            <!--#region Pending -->
+            <Style x:Key="PendingStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Pending\status-48.png"/>
+            </Style>
+
+            <Style x:Key="PendingStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Pending\status-mouseover-48.png"/>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region Error -->
+            <Style x:Key="ErrorStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Error\status-48.png"/>
+            </Style>
+
+            <Style x:Key="ErrorStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Error\status-mouseover-48.png"/>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region Archived -->
+            <Style x:Key="ArchivedStatusIcon" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Archived\status-32.png"/>
+            </Style>
+    
+            <Style x:Key="ArchivedStatusIcon_MouseOver" BasedOn="{StaticResource StatusIconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\Assets\Icons\Status\Archived\status-mouseover-32.png"/>
+            </Style>
+            <!--#endregion-->
+    
+        <!--#endregion-->
+
     <!--#endregion-->
-
-    <!--#endregion-->
-
-
-
 
 </ResourceDictionary>

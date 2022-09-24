@@ -638,7 +638,7 @@
   <ItemGroup>
     <Resource Include="HCI\Assets\Icons\Flags\Flag-BH.png" />
     <Resource Include="HCI\Assets\Icons\Flags\Flag-DE.png" />
-    <Resource Include="HCI\Assets\Icons\Flags\Flag-GB.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-UK.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HCI\Assets\Icons\Help\Help-Outlined.png" />
@@ -661,8 +661,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-BH-DE.png" />
-    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-DE-GB.png" />
-    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-GB-BH.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-DE-UK.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-UK-BH.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
