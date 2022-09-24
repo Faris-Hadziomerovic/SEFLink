@@ -456,7 +456,7 @@
 
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
         <Setter Property="Margin" Value="2 5"/>
-        <Setter Property="Height" Value="40"/>
+        <Setter Property="Height" Value="50"/>
         <Setter Property="MinWidth" Value="100"/>
 
         <Setter Property="Background" Value="{StaticResource Global.Translucent.Dark2}"/>
@@ -475,7 +475,7 @@
         </Style>
         <!--#endregion-->
     
-        <!--#region Navigation Bar Flag Button Style-->
+        <!--#region Navigation Flag Button Style-->
         <Style x:Key="NavigationFlagButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
@@ -505,6 +505,7 @@
         <Setter Property="Margin" Value="2 5"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Width" Value="40"/>
+        <Setter Property="Cursor" Value="Hand" />
 
         <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Normal}"/>
 

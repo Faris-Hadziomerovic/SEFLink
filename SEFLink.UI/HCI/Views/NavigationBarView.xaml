@@ -20,11 +20,12 @@
         <!--#region Food Button code snippet-->
         <StackPanel x:Key="FoodButtonContent" Orientation="Horizontal">
 
-            <Image Style="{DynamicResource FoodIcon}"/>
+            <Image Style="{DynamicResource Navigation.FoodIcon}"/>
 
             <TextBlock Text="{Binding FoodText}"
                        VerticalAlignment="Center"                       
-                       FontSize="10"
+                       FontSize="14"
+                       Margin="10 0 5 0"
                        FontWeight="DemiBold"
                        Width="45"/>
 
@@ -34,13 +35,14 @@
         <!--#region Drinks Button code snippet-->
         <StackPanel x:Key="DrinksButtonContent" Orientation="Horizontal">
 
-            <Image Style="{DynamicResource DrinksIcon}"/>
+            <Image Style="{DynamicResource Navigation.DrinksIcon}"/>
 
             <TextBlock Text="{Binding DrinksText}"
                        VerticalAlignment="Center"                       
-                       FontSize="10"
+                       FontSize="14"
+                       Margin="5 0 0 0"
                        FontWeight="DemiBold"
-                       Width="45"/>
+                       Width="60"/>
 
         </StackPanel>
         <!--#endregion-->
@@ -53,13 +55,6 @@
         </StackPanel>
         <!--#endregion-->
         
-        <!--#region Languages Button code snippet-->
-        <StackPanel x:Key="LanguagesButtonContent" Orientation="Horizontal">
-
-            <Image Style="{DynamicResource Flag-GB-Icon}"/>
-
-        </StackPanel>
-        <!--#endregion-->
 
         <!--#region Rounded Button Style -->
         <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
@@ -120,16 +115,16 @@
 
     </UserControl.Resources>
 
-    <Grid Height="60">
+    <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5"/>       <!-- Margin -->
+            <ColumnDefinition Width="15"/>       <!-- Margin -->
             <ColumnDefinition Width="auto"/>    <!-- Food -->
             <ColumnDefinition Width="auto"/>    <!-- Drinks -->
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>    <!-- Help -->
             <ColumnDefinition Width="auto"/>    <!-- Languages -->
-            <ColumnDefinition Width="5"/>       <!-- Margin -->
+            <ColumnDefinition Width="15"/>       <!-- Margin -->
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -170,9 +165,9 @@
                 Visibility="{Binding LanguagesIsVisible, Converter={StaticResource BoolToVisibility}}"
                 Style="{DynamicResource NavigationFlagButtonStyle}">
             <Grid>
-                <Image Style="{DynamicResource Flag-GB-Icon}" Visibility="{Binding EnglishFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
-                <Image Style="{DynamicResource Flag-BH-Icon}" Visibility="{Binding BosnianFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
-                <Image Style="{DynamicResource Flag-DE-Icon}" Visibility="{Binding GermanFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                <Image Style="{DynamicResource Navigation.Flag-GB-Icon}" Visibility="{Binding EnglishFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                <Image Style="{DynamicResource Navigation.Flag-BH-Icon}" Visibility="{Binding BosnianFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                <Image Style="{DynamicResource Navigation.Flag-DE-Icon}" Visibility="{Binding GermanFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
             </Grid>
         </Button>
 

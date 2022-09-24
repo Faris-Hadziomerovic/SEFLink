@@ -38,6 +38,11 @@
         <Setter Property="Height" Value="30" />
     </Style>
     
+    <Style x:Key="IconStyle35" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+        <Setter Property="Width" Value="35" />
+        <Setter Property="Height" Value="35" />
+    </Style>
+    
     <Style x:Key="IconStyle40" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
         <Setter Property="Width" Value="40" />
         <Setter Property="Height" Value="40" />
@@ -47,43 +52,81 @@
         <Setter Property="Width" Value="50" />
         <Setter Property="Height" Value="50" />
     </Style>
+    
+    <Style x:Key="IconStyle60" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+        <Setter Property="Width" Value="60" />
+        <Setter Property="Height" Value="60" />
+    </Style>
     <!--#endregion-->
 
 
     <!--#region My Order Icons -->
     
         <!--#region Food Icon Style -->
-        <Style x:Key="FoodIcon" BasedOn="{StaticResource IconStyle30}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+        <Style x:Key="Navigation.FoodIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+            <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Food.png"/>-->
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
         </Style>
         <!--#endregion-->
     
         <!--#region Drinks Icon Style -->
-        <Style x:Key="DrinksIcon" BasedOn="{StaticResource IconStyle30}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+        <Style x:Key="Navigation.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+            <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks.png"/>-->
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
         </Style>
         <!--#endregion-->
 
         <!--#region Help Icon Style -->
         <Style x:Key="HelpIcon" BasedOn="{StaticResource IconStyle30}" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Help\Help.png"/>
         </Style>
         <!--#endregion-->
 
-        <!--#region Flag Icons Style -->
-            <Style x:Key="Flag-GB-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+        <!--#region Navigation Flag Icons Style -->
+            <Style x:Key="Navigation.Flag-GB-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
                 <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-GB.png"/>
+                
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-GB-BH.png"/>
+                    </Trigger>                
+                </Style.Triggers>
             </Style>
     
-            <Style x:Key="Flag-BH-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+            <Style x:Key="Navigation.Flag-BH-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
                 <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+                
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-BH-DE.png"/>
+                    </Trigger>                
+                </Style.Triggers>
             </Style>
     
-            <Style x:Key="Flag-DE-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+            <Style x:Key="Navigation.Flag-DE-Icon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
                 <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
+                
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-Split-DE-GB.png"/>
+                    </Trigger>                
+                </Style.Triggers>
             </Style>
         <!--#endregion-->
 
+        <!--#region Languages View Flag Icons Style -->
+            <Style x:Key="Languages.Flag-GB-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-GB.png"/>
+            </Style>
+    
+            <Style x:Key="Languages.Flag-BH-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-BH.png"/>
+            </Style>
+    
+            <Style x:Key="Languages.Flag-DE-Icon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Flags\Flag-DE.png"/>
+            </Style>
+        <!--#endregion-->
 
     <!--#endregion -->
 

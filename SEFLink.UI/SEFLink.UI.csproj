@@ -633,15 +633,36 @@
     <Resource Include="Assets\Icons\Search\icons8-search-42.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HCI\Assets\Icons\Drinks\" />
-    <Folder Include="HCI\Assets\Icons\Food\" />
-    <Folder Include="HCI\Assets\Icons\Help\" />
     <Folder Include="HCI\Assets\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HCI\Assets\Icons\Flags\Flag-BH.png" />
     <Resource Include="HCI\Assets\Icons\Flags\Flag-DE.png" />
     <Resource Include="HCI\Assets\Icons\Flags\Flag-GB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Help\Help-Outlined.png" />
+    <Resource Include="HCI\Assets\Icons\Help\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Drinks\Drinks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Food\Food.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Food\Pizza-3d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Drinks\Coffee-3d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Drinks\Drinks-3d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-BH-DE.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-DE-GB.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-Split-GB-BH.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
