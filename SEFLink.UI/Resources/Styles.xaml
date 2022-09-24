@@ -492,7 +492,6 @@
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
                 </Trigger>
-
             </Style.Triggers>
 
         </Style>

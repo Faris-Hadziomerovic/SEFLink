@@ -3,77 +3,101 @@
 
 
     <!--#region Image to Icon Style-->
-    <Style x:Key="IconStyle" TargetType="{x:Type Image}">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+    
+        <Style x:Key="IconStyle" TargetType="{x:Type Image}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5 0" />
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="15" />
+        </Style>
 
+        <Style x:Key="IconStyle17" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="17" />
+            <Setter Property="Height" Value="17" />
+        </Style>
 
-        <Setter Property="Margin" Value="5 0" />
-        <Setter Property="Width" Value="15" />
-        <Setter Property="Height" Value="15" />
-    </Style>
+        <Style x:Key="IconStyle18" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="18" />
+            <Setter Property="Height" Value="18" />
+        </Style>
 
-    <Style x:Key="IconStyle17" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="17" />
-        <Setter Property="Height" Value="17" />
-    </Style>
-
-    <Style x:Key="IconStyle18" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="18" />
-        <Setter Property="Height" Value="18" />
-    </Style>
-
-    <Style x:Key="IconStyle19" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="19" />
-        <Setter Property="Height" Value="19" />
-    </Style>
+        <Style x:Key="IconStyle19" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="19" />
+            <Setter Property="Height" Value="19" />
+        </Style>
     
-    <Style x:Key="IconStyle20" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="20" />
-        <Setter Property="Height" Value="20" />
-    </Style>
+        <Style x:Key="IconStyle20" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="20" />
+            <Setter Property="Height" Value="20" />
+        </Style>
     
-    <Style x:Key="IconStyle30" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="30" />
-        <Setter Property="Height" Value="30" />
-    </Style>
+        <Style x:Key="IconStyle30" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+        </Style>
     
-    <Style x:Key="IconStyle35" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="35" />
-        <Setter Property="Height" Value="35" />
-    </Style>
+        <Style x:Key="IconStyle35" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="35" />
+            <Setter Property="Height" Value="35" />
+        </Style>
     
-    <Style x:Key="IconStyle40" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="40" />
-        <Setter Property="Height" Value="40" />
-    </Style>
+        <Style x:Key="IconStyle40" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="40" />
+        </Style>
     
-    <Style x:Key="IconStyle50" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="50" />
-        <Setter Property="Height" Value="50" />
-    </Style>
+        <Style x:Key="IconStyle50" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="50" />
+            <Setter Property="Height" Value="50" />
+        </Style>
     
-    <Style x:Key="IconStyle60" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
-        <Setter Property="Width" Value="60" />
-        <Setter Property="Height" Value="60" />
-    </Style>
+        <Style x:Key="IconStyle60" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="60" />
+        </Style>
+    
+        <Style x:Key="IconStyle70" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="70" />
+            <Setter Property="Height" Value="70" />
+        </Style>
+    
+        <Style x:Key="IconStyle80" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Height" Value="80" />
+        </Style>
+    
     <!--#endregion-->
 
 
     <!--#region My Order Icons -->
     
         <!--#region Food Icon Style -->
-        <Style x:Key="Navigation.FoodIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-            <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Food.png"/>-->
-            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
-        </Style>
+    
+            <Style x:Key="Navigation.FoodIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Food.png"/>-->
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
+            </Style>
+    
+            <Style x:Key="Menu.FoodIcon" BasedOn="{StaticResource IconStyle60}" TargetType="{x:Type Image}">
+                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Food.png"/>-->
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Pizza-3d.png"/>
+            </Style>
+        
         <!--#endregion-->
     
         <!--#region Drinks Icon Style -->
-        <Style x:Key="Navigation.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
-            <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks.png"/>-->
-            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
-        </Style>
+    
+            <Style x:Key="Navigation.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks.png"/>-->
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
+            </Style>
+    
+            <Style x:Key="Menu.DrinksIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                <!--<Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks.png"/>-->
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
+            </Style>
+    
         <!--#endregion-->
 
         <!--#region Help Icon Style -->

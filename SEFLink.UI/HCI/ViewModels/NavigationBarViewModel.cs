@@ -177,20 +177,10 @@ namespace SEFLink.UI.HCI.ViewModels
             _eventAggregator.GetEvent<FoodViewEvent>().Publish(new FoodViewEventArgs());
         }
 
-        private bool CanExecute_NavigateToFood()
-        {
-            return true;
-        }
-
         private void Execute_NavigateToDrinks()
         {
             _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
             _eventAggregator.GetEvent<DrinksViewEvent>().Publish(new DrinksViewEventArgs());
-        }
-
-        private bool CanExecute_NavigateToDrinks()
-        {
-            return true;
         }
 
         private void Execute_NavigateToHelp()
@@ -199,14 +189,24 @@ namespace SEFLink.UI.HCI.ViewModels
             _eventAggregator.GetEvent<HelpViewEvent>().Publish(new HelpViewEventArgs());
         }
 
-        private bool CanExecute_NavigateToHelp()
+        private void Execute_NavigateToLanguages()
+        {
+            _eventAggregator.GetEvent<LanguageViewEvent>().Publish(new LanguageViewEventArgs());
+        }
+
+        private bool CanExecute_NavigateToFood()
         {
             return true;
         }
 
-        private void Execute_NavigateToLanguages()
+        private bool CanExecute_NavigateToDrinks()
         {
-            _eventAggregator.GetEvent<LanguageViewEvent>().Publish(new LanguageViewEventArgs());
+            return true;
+        }
+
+        private bool CanExecute_NavigateToHelp()
+        {
+            return true;
         }
 
         private bool CanExecute_NavigateToLanguages()
