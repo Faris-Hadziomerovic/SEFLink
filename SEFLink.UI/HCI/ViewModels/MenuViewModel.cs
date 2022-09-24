@@ -42,22 +42,23 @@ namespace SEFLink.UI.HCI.ViewModels
             _eventAggregator = eventAggregator;
             SidebarViewModel = sidebarViewModel;
 
-            PaymentOptionsViewModel = paymentOptionsViewModel;
-            PaymentCashViewModel = paymentCashViewModel;
-            PaymentCreditCardViewModel = paymentCreditCardViewModel;
-
             FoodViewModel = foodViewModel;
             FoodDrinkViewModel = foodDrinkViewModel;
             DrinksViewModel = drinksViewModel;
 
-
+            PaymentOptionsViewModel = paymentOptionsViewModel;
+            PaymentCashViewModel = paymentCashViewModel;
+            PaymentCreditCardViewModel = paymentCreditCardViewModel;
 
             Setup();
 
-            _eventAggregator.GetEvent<DrinksViewEvent>().Subscribe(OnDrinksViewSelected);
-            _eventAggregator.GetEvent<FoodViewEvent>().Subscribe(OnFoodViewSelected);
             _eventAggregator.GetEvent<FoodDrinkViewEvent>().Subscribe(OnStartViewSelected);
+            _eventAggregator.GetEvent<FoodViewEvent>().Subscribe(OnFoodViewSelected);
+            _eventAggregator.GetEvent<DrinksViewEvent>().Subscribe(OnDrinksViewSelected);
+
             _eventAggregator.GetEvent<PaymentOptionsViewEvent>().Subscribe(OnPaymentOptionsViewSelected);
+            _eventAggregator.GetEvent<PaymentCashViewEvent>().Subscribe(OnPaymentCashViewSelected);
+            _eventAggregator.GetEvent<PaymentCreditCardViewEvent>().Subscribe(OnPaymentCreditCardViewSelected);
         }
 
         #endregion
@@ -75,24 +76,6 @@ namespace SEFLink.UI.HCI.ViewModels
         {
             get { return _sidebarViewModel; }
             set { _sidebarViewModel = value; OnPropertyChanged(); }
-        }
-
-        public PaymentOptionsViewModel PaymentOptionsViewModel
-        {
-            get { return _paymentOptionsViewModel; }
-            set { _paymentOptionsViewModel = value; OnPropertyChanged(); }
-        }
-
-        public PaymentCashViewModel PaymentCashViewModel
-        {
-            get { return _paymentCashViewModel; }
-            set { _paymentCashViewModel = value; OnPropertyChanged(); }
-        }
-
-        public PaymentCreditCardViewModel PaymentCreditCardViewModel
-        {
-            get { return _paymentCreditCardViewModel; }
-            set { _paymentCreditCardViewModel = value; OnPropertyChanged(); }
         }
 
         public FoodDrinkViewModel FoodDrinkViewModel
@@ -113,14 +96,37 @@ namespace SEFLink.UI.HCI.ViewModels
             set { _drinksViewModel = value; OnPropertyChanged(); }
         }
 
+        public PaymentOptionsViewModel PaymentOptionsViewModel
+        {
+            get { return _paymentOptionsViewModel; }
+            set { _paymentOptionsViewModel = value; OnPropertyChanged(); }
+        }
+
+        public PaymentCashViewModel PaymentCashViewModel
+        {
+            get { return _paymentCashViewModel; }
+            set { _paymentCashViewModel = value; OnPropertyChanged(); }
+        }
+
+        public PaymentCreditCardViewModel PaymentCreditCardViewModel
+        {
+            get { return _paymentCreditCardViewModel; }
+            set { _paymentCreditCardViewModel = value; OnPropertyChanged(); }
+        }
 
         #endregion
 
 
-        #region Other Methods
+        #region Methods
 
         private void Setup()
         {
+            OnStartViewSelected();
+        }
+
+        private void OnStartViewSelected(FoodDrinkViewEventArgs args = null)
+        {
+            CurrentViewModel = FoodDrinkViewModel;
         }
 
         private void OnDrinksViewSelected(DrinksViewEventArgs args)
@@ -133,14 +139,19 @@ namespace SEFLink.UI.HCI.ViewModels
             CurrentViewModel = FoodViewModel;
         }
 
-        private void OnStartViewSelected(FoodDrinkViewEventArgs args)
-        {
-            CurrentViewModel = FoodDrinkViewModel;
-        }
-
         private void OnPaymentOptionsViewSelected(PaymentOptionsViewEventArgs args)
         {
             CurrentViewModel = PaymentOptionsViewModel;
+        }
+        
+        private void OnPaymentCashViewSelected(PaymentCashViewEventArgs args)
+        {
+            CurrentViewModel = PaymentCashViewModel;
+        }
+
+        private void OnPaymentCreditCardViewSelected(PaymentCreditCardViewEventArgs args)
+        {
+            CurrentViewModel = PaymentCreditCardViewModel;
         }
 
         #endregion

@@ -6,7 +6,82 @@
              xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Menu"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!--#region Food Button code snippet-->
+            <Grid x:Key="FoodButtonContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+
+
+                <Image Style="{DynamicResource Menu.FoodIcon}"/>
+
+                <TextBlock Text="Food"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+            </Grid>
+        <!--#endregion-->
+
+        <!--#region Drinks Button code snippet-->
+            <Grid x:Key="DrinksButtonContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+
+
+                <Image Style="{DynamicResource Menu.DrinksIcon}"/>
+
+                <TextBlock Text="Drinks"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+            </Grid>
+        <!--#endregion-->
+        
+    </UserControl.Resources>
+    
     <Grid>
+        
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>       <!-- Content View -->
+                <ColumnDefinition Width="auto"/>    <!-- Sidebar View -->
+            </Grid.ColumnDefinitions>
+        
+        <!--region Content-->
+            <Grid Grid.Column="0">
             
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>       <!-- Margin -->
+                    <ColumnDefinition Width="auto"/>    <!-- Food Button -->
+                    <ColumnDefinition Width="50"/>      <!-- Separator -->
+                    <ColumnDefinition Width="auto"/>    <!-- Drinks Button -->
+                    <ColumnDefinition Width="*"/>       <!-- Margin -->
+                </Grid.ColumnDefinitions>
+
+
+                <Button Style="{DynamicResource MenuButtonStyle}"
+                    Grid.Column="1"
+                    Content="{StaticResource FoodButtonContent}"/>
+
+                <Button Style="{DynamicResource MenuButtonStyle}"
+                    Grid.Column="3"
+                    Content="{StaticResource DrinksButtonContent}"/>
+
+            </Grid>
+        <!--endregion-->
+        
+        
     </Grid>
 </UserControl>

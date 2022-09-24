@@ -94,7 +94,6 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
         <!--#endregion-->
-
         
         <!--#region Background-->
         
@@ -116,7 +115,6 @@
             <Button Command="{Binding NavigateToDrinksCommand}"
                     Content="{StaticResource DrinksButtonContent}" 
                     Grid.Column="2"
-                    Width="150"
                     Focusable="False"
                     Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
                     Style="{DynamicResource NavigationBarButtonStyle}"/>
@@ -131,7 +129,6 @@
             <Button Command="{Binding NavigateToLanguagesCommand}"
                     Grid.Column="5"
                     Focusable="False"
-                    Padding="0"
                     Visibility="{Binding LanguagesIsVisible, Converter={StaticResource BoolToVisibility}}"
                     Style="{DynamicResource NavigationFlagButtonStyle}">
                 <Grid>
