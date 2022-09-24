@@ -17,7 +17,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -61,7 +61,7 @@
                    Text="faris lalalal"/>
 
         <local:DialogOverlayView DataContext="{Binding DialogOverlayViewModel}"
-                                 Grid.Row="1"
+                                 Grid.RowSpan="2"
                                  Visibility="{Binding DataContext.DialogOverlayIsVisible, 
                                               RelativeSource={RelativeSource AncestorType=local:AppView}, 
                                               Converter={StaticResource BoolToVisibility}}"

@@ -86,6 +86,11 @@
     <SolidColorBrush x:Key="Button.Purple.Background.Normal" Color="#8c00f5"/>
     <SolidColorBrush x:Key="Button.Purple.Background.MouseOver" Color="#a0f" Opacity="1"/>
     <SolidColorBrush x:Key="Button.Purple.Background.Disabled" Color="#85f" Opacity="0.8"/>
+    
+    <!-- Green -->
+    <SolidColorBrush x:Key="Button.Green.Background.Normal" Color="#3fb722"/>
+    <SolidColorBrush x:Key="Button.Green.Background.MouseOver" Color="#6bde4e" Opacity="1"/>
+    <SolidColorBrush x:Key="Button.Green.Background.Disabled" Color="#c7c7c7" Opacity="0.8"/>
 
     <!-- Gray -->
     <SolidColorBrush x:Key="Button.Gray.Background.Normal" Color="#edeeef"/>

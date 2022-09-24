@@ -144,7 +144,7 @@
     <Compile Include="HCI\Events\DialogOverlayEvents\RemoveItemEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\AddItemEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentOptionsViewEvent.cs" />
-    <Compile Include="HCI\Model\OrderItem.cs" />
+    <Compile Include="HCI\Models\OrderItem.cs" />
     <Compile Include="HCI\AppViewModel.cs" />
     <Compile Include="HCI\ViewModels\DialogOverlayViewModel.cs" />
     <Compile Include="HCI\ViewModels\LanguageSettingsViewModel.cs" />
@@ -632,6 +632,16 @@
     <Resource Include="Assets\Icons\Search\icons8-search-30.png" />
     <Resource Include="Assets\Icons\Search\icons8-search-42.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="HCI\Assets\Icons\Drinks\" />
+    <Folder Include="HCI\Assets\Icons\Food\" />
+    <Folder Include="HCI\Assets\Icons\Help\" />
+    <Folder Include="HCI\Assets\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-BH.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-DE.png" />
+    <Resource Include="HCI\Assets\Icons\Flags\Flag-GB.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

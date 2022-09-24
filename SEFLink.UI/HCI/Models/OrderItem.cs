@@ -1,4 +1,4 @@
-﻿namespace SEFLink.UI.HCI.Model
+﻿namespace SEFLink.UI.HCI.Models
 {
     public class OrderItem
     {

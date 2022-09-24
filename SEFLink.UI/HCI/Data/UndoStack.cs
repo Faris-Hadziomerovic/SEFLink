@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 using SEFLink.UI.HCI.Events;
-using SEFLink.UI.HCI.Model;
+using SEFLink.UI.HCI.Models;
 using System.Collections.Generic;
 
 namespace SEFLink.UI.HCI.Data

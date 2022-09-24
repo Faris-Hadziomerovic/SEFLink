@@ -35,11 +35,10 @@ namespace SEFLink.UI.HCI.ViewModels
                             LanguageSettingsViewModel languageSettingsViewModel,
                             IEventAggregator eventAggregator)
         {
-
             _eventAggregator = eventAggregator;
+            MenuViewModel = menuViewModel;
             NavigationBarViewModel = navigationBarViewModel;
             DialogOverlayViewModel = dialogOverlayViewModel;
-            MenuViewModel = menuViewModel;
             LanguageSettingsViewModel = languageSettingsViewModel;
 
             Setup();

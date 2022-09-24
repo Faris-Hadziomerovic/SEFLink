@@ -13,7 +13,53 @@
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
 
-        <SolidColorBrush x:Key="TitleBar.Background" Color="#2a2e31"/>
+        <SolidColorBrush x:Key="NavigationBar.Background" Color="#2a2e31"/>
+
+
+        
+        <!--#region Food Button code snippet-->
+        <StackPanel x:Key="FoodButtonContent" Orientation="Horizontal">
+
+            <Image Style="{DynamicResource FoodIcon}"/>
+
+            <TextBlock Text="{Binding FoodText}"
+                       VerticalAlignment="Center"                       
+                       FontSize="10"
+                       FontWeight="DemiBold"
+                       Width="45"/>
+
+        </StackPanel>
+        <!--#endregion-->
+        
+        <!--#region Drinks Button code snippet-->
+        <StackPanel x:Key="DrinksButtonContent" Orientation="Horizontal">
+
+            <Image Style="{DynamicResource DrinksIcon}"/>
+
+            <TextBlock Text="{Binding DrinksText}"
+                       VerticalAlignment="Center"                       
+                       FontSize="10"
+                       FontWeight="DemiBold"
+                       Width="45"/>
+
+        </StackPanel>
+        <!--#endregion-->
+        
+        <!--#region Help Button code snippet-->
+        <StackPanel x:Key="HelpButtonContent" Orientation="Horizontal">
+
+            <Image Style="{DynamicResource HelpIcon}"/>
+           
+        </StackPanel>
+        <!--#endregion-->
+        
+        <!--#region Languages Button code snippet-->
+        <StackPanel x:Key="LanguagesButtonContent" Orientation="Horizontal">
+
+            <Image Style="{DynamicResource Flag-GB-Icon}"/>
+
+        </StackPanel>
+        <!--#endregion-->
 
         <!--#region Rounded Button Style -->
         <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
@@ -74,7 +120,7 @@
 
     </UserControl.Resources>
 
-    <Grid Height="50">
+    <Grid Height="60">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>       <!-- Margin -->
@@ -91,38 +137,44 @@
         </Grid.RowDefinitions>
 
         <!--#region Background-->
-        <Border Background="{StaticResource TitleBar.Background}" 
+        <Border Background="{StaticResource NavigationBar.Background}" 
                 Grid.ColumnSpan="7"
                 CornerRadius="0"/>
 
 
-        <Button Content="Food" 
+        <Button Command="{Binding NavigateToFoodCommand}"
+                Content="{StaticResource FoodButtonContent}"
                 Grid.Column="1"
                 Focusable="False"
-                Command="{Binding NavigateToFoodCommand}"
                 Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+                Style="{DynamicResource NavigationBarButtonStyle}"/>
 
-        <Button Content="Drinks"
+        <Button Command="{Binding NavigateToDrinksCommand}"
+                Content="{StaticResource DrinksButtonContent}" 
                 Grid.Column="2"
-                Focusable="False"     
-                Command="{Binding NavigateToDrinksCommand}"
-                Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource TitleBarNavButtonStyle}"/>
-
-        <Button Content="Help" 
-                Grid.Column="4"
                 Focusable="False"
-                Command="{Binding NavigateToHelpCommand}"
-                Visibility="{Binding HelpIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+                Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Style="{DynamicResource NavigationBarButtonStyle}"/>
 
-        <Button Content="Languages" 
+        <Button Command="{Binding NavigateToHelpCommand}"
+                Content="{StaticResource HelpButtonContent}" 
+                Grid.Column="4"
+                Focusable="False"                
+                Visibility="{Binding HelpIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Style="{DynamicResource HelpButtonStyle}"/>
+
+        <Button Command="{Binding NavigateToLanguagesCommand}"
                 Grid.Column="5"
                 Focusable="False"
-                Command="{Binding NavigateToLanguagesCommand}"
+                Padding="0"
                 Visibility="{Binding LanguagesIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Style="{DynamicResource TitleBarNavButtonStyle}"/>
+                Style="{DynamicResource NavigationFlagButtonStyle}">
+            <Grid>
+                <Image Style="{DynamicResource Flag-GB-Icon}" Visibility="{Binding EnglishFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                <Image Style="{DynamicResource Flag-BH-Icon}" Visibility="{Binding BosnianFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+                <Image Style="{DynamicResource Flag-DE-Icon}" Visibility="{Binding GermanFlagIsVisible, Converter={StaticResource BoolToVisibility}}"/>
+            </Grid>
+        </Button>
 
     </Grid>
 
