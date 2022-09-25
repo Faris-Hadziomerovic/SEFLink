@@ -3,10 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views"
+             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views" 
+             xmlns:menu="clr-namespace:SEFLink.UI.HCI.ViewModels.Menu" 
+             d:DataContext="{d:DesignInstance Type=menu:SidebarViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="250">
-    <Grid>
+
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        
+        <!--#region Checkout Button code snippet-->
+        <Grid x:Key="xxx">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
             
-    </Grid>
+            <TextBlock Text="{Binding CheckoutText}"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+        </Grid>
+        <!--#endregion-->
+
+    </UserControl.Resources>
+    
+     <!--#region Sidebar Menu -->
+            <Grid Background="{StaticResource Global.LightGray2}">
+
+                <!--#region Grid Definitions -->                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>           <!-- Title -->
+                    <RowDefinition Height="*"/>             <!-- Orders List -->
+                    <RowDefinition Height="auto"/>          <!-- Checkout and sub-total -->
+                </Grid.RowDefinitions>
+                <!--#endregion-->
+                                                
+
+                <!--#region Checkout Button -->
+                <Button Command="{Binding CheckoutCommand}" 
+                        Content="Checkout" 
+                        Grid.Row="3" 
+                        Margin="10"
+                        Height="35"
+                        Cursor="Hand"
+                        Style="{DynamicResource CheckoutButtonStyle}"/>
+                <!--#endregion-->
+
+            </Grid>
+            <!--#endregion-->
 </UserControl>

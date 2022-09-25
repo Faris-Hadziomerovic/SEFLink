@@ -27,7 +27,7 @@ namespace SEFLink.UI.Startup
             builder.RegisterType<HCI.ViewModels.NavigationBarViewModel>().AsSelf();
 
             // Menu base level views models
-            builder.RegisterType<HCI.ViewModels.SidebarViewModel>().AsSelf();
+            builder.RegisterType<HCI.ViewModels.Menu.SidebarViewModel>().AsSelf();
 
             // Menu payment views models
             builder.RegisterType<HCI.ViewModels.Payment.PaymentOptionsViewModel>().AsSelf();

@@ -62,7 +62,7 @@
 
         <Grid.Resources>
 
-            <DataTemplate DataType="{x:Type viewModels:SidebarViewModel}">
+            <DataTemplate DataType="{x:Type menuViewModels:SidebarViewModel}">
                 <local:SidebarView/>
             </DataTemplate>
             
@@ -105,12 +105,13 @@
                             Grid.Column="0"/>
         <!--endregion-->
         
-        <!--region Content -->
+        <!--region Sidebar -->
 
             <Border Background="{StaticResource Button.White.Background.Disabled}" 
                     Grid.Column="1"/>
         
-            <local:SidebarView Grid.Column="1"/>
+            <local:SidebarView DataContext="{Binding SidebarViewModel}" 
+                               Grid.Column="1"/>
         
         <!--endregion-->
 
