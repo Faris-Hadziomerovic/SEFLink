@@ -105,7 +105,7 @@ namespace SEFLink.UI.HCI.ViewModels
 
             public bool SpriteIsVisible
             {
-                get { return SpriteIsVisible; }
+                get { return _spriteIsVisible; }
                 set { _spriteIsVisible = value; OnPropertyChanged(); }
             }
 

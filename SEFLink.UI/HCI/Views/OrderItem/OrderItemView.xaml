@@ -11,7 +11,6 @@
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
         
-
         <!--#region Description Label Text Style-->
         <Style x:Key="DescriptionTextStyle" TargetType="{x:Type TextBlock}">
 
@@ -36,7 +35,7 @@
         </Style>
         <!--endregion-->
 
-        <!--region Price Text Style-->
+        <!--region Remove Item Button Content -->
         <Image x:Key="RemoveItemButtonContent" 
                Width="15"
                Height="15"
@@ -81,8 +80,40 @@
                     Height="40"
                     Width="45"
                     Grid.Column="3"/>
-        
-            
+
+            <!-- region Drink Images -->
+            <Image Style="{DynamicResource Drinks.CafeLatte}"
+                   Visibility="{Binding CafeLatteIsVisible, 
+                                Converter={StaticResource BoolToVisibility}}"
+                   Grid.Column="3"/>
+
+            <Image Style="{DynamicResource Drinks.Cappuccino}"
+                   Visibility="{Binding CappuccinoIsVisible, 
+                                Converter={StaticResource BoolToVisibility}}"
+                   Grid.Column="3"/>
+
+            <Image Style="{DynamicResource Drinks.HotChocolate}"
+                   Visibility="{Binding HotChocolateIsVisible, 
+                                Converter={StaticResource BoolToVisibility}}"
+                   Grid.Column="3"/>
+
+            <Image Style="{DynamicResource Drinks.Cola}"
+                   Visibility="{Binding ColaIsVisible, 
+                                Converter={StaticResource BoolToVisibility}}"
+                   Grid.Column="3"/>
+
+            <Image Style="{DynamicResource Drinks.Fanta}"
+                   Visibility="{Binding FantaIsVisible, 
+                                Converter={StaticResource BoolToVisibility}}"
+                   Grid.Column="3"/>
+
+            <Image Style="{DynamicResource Drinks.Sprite}"
+                   Visibility="{Binding SpriteIsVisible, 
+                                Converter={StaticResource BoolToVisibility}}"
+                   Grid.Column="3"/>
+            <!-- endregion -->
+
+            <!-- region Food Images -->
             <Image Style="{DynamicResource Food.Hamburger}"
                    Visibility="{Binding HamburgerIsVisible, 
                                 Converter={StaticResource BoolToVisibility}}"
@@ -113,6 +144,8 @@
                                 Converter={StaticResource BoolToVisibility}}"
                    Grid.Column="3"/>
 
+            <!-- endregion -->
+            
         </Grid>
         <!-- endregion -->
 
