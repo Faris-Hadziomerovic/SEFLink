@@ -180,7 +180,8 @@ namespace SEFLink.UI.HCI.ViewModels
         private void Execute_NavigateToHelp()
         {
             _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
-            _eventAggregator.GetEvent<HelpViewEvent>().Publish(new HelpViewEventArgs());
+            //_eventAggregator.GetEvent<HelpViewEvent>().Publish(new HelpViewEventArgs());
+            _eventAggregator.GetEvent<PaymentOptionsViewEvent>().Publish(new PaymentOptionsViewEventArgs());
         }
 
         private void Execute_NavigateToLanguages()

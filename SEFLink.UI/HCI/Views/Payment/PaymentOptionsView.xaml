@@ -3,10 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Payment"
+             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Payment" 
+             xmlns:payment="clr-namespace:SEFLink.UI.HCI.ViewModels.Payment" 
+             d:DataContext="{d:DesignInstance Type=payment:PaymentOptionsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!--#region Cash Button code snippet-->
+        <Grid x:Key="CashButtonContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+
+
+                <Image Style="{DynamicResource Menu.CashIcon}"/>
+
+                <TextBlock Text="{Binding CashText}"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+            </Grid>
+        <!--#endregion-->
+
+        <!--#region Credit Card Button code snippet-->
+        <Grid x:Key="CreditCardButtonContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+
+
+                <Image Style="{DynamicResource Menu.CreditCardIcon}"/>
+
+                <TextBlock Text="{Binding CreditCardText}"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+            </Grid>
+        <!--#endregion-->
+        
+    </UserControl.Resources>
+    
     <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>   <!-- Content View -->
+        </Grid.ColumnDefinitions>
+
+        <!--region Content-->
+            <Grid Grid.Column="0">
             
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>       <!-- Margin -->
+                    <ColumnDefinition Width="auto"/>    <!-- Cash Button -->
+                    <ColumnDefinition Width="50"/>      <!-- Separator -->
+                    <ColumnDefinition Width="auto"/>    <!-- Credit Card Button -->
+                    <ColumnDefinition Width="*"/>       <!-- Margin -->
+                </Grid.ColumnDefinitions>
+
+
+                <Button Command="{Binding NavigateToCashCommand}" 
+                        Style="{DynamicResource MenuButtonStyle}"
+                        Grid.Column="1"
+                        Visibility="{Binding CashIsVisible, Converter={StaticResource BoolToVisibility}}"
+                        Content="{StaticResource CashButtonContent}"/>
+
+                <Button Command="{Binding NavigateToCreditCardCommand}" 
+                        Style="{DynamicResource MenuButtonStyle}"
+                        Grid.Column="3"
+                        Visibility="{Binding CreditCardIsVisible, Converter={StaticResource BoolToVisibility}}"
+                        Content="{StaticResource CreditCardButtonContent}"/>
+
+            </Grid>
+        <!--endregion-->
+        
+        
     </Grid>
 </UserControl>

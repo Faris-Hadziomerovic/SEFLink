@@ -189,6 +189,18 @@
                     <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Drinks-3d.png"/>
                 </Style>    
             <!--#endregion-->
+    
+            <!--#region Cash Icon Style -->                
+                <Style x:Key="Menu.CashIcon" BasedOn="{StaticResource IconStyle120}" TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="..\HCI\Assets\Icons\Payment\cash-01.png"/>
+                </Style>        
+            <!--#endregion-->
+        
+            <!--#region Credit Card Icon Style -->               
+                <Style x:Key="Menu.CreditCardIcon" BasedOn="{StaticResource IconStyle120}" TargetType="{x:Type Image}">
+                    <Setter Property="Source" Value="..\HCI\Assets\Icons\Payment\cc-02.png"/>
+                </Style>    
+            <!--#endregion-->
 
         <!--#endregion-->
         
