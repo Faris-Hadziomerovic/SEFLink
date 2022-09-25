@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Menu"
+             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Menu" 
+             xmlns:menu="clr-namespace:SEFLink.UI.HCI.ViewModels.Menu" 
+             d:DataContext="{d:DesignInstance Type=menu:FoodDrinkViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <UserControl.Resources>
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
@@ -20,7 +23,7 @@
 
                 <Image Style="{DynamicResource Menu.FoodIcon}"/>
 
-                <TextBlock Text="Food"
+                <TextBlock Text="{Binding FoodText}"
                            Grid.Row="1"
                            VerticalAlignment="Center"                       
                            HorizontalAlignment="Center"
@@ -40,7 +43,7 @@
 
                 <Image Style="{DynamicResource Menu.DrinksIcon}"/>
 
-                <TextBlock Text="Drinks"
+                <TextBlock Text="{Binding DrinksText}"
                            Grid.Row="1"
                            VerticalAlignment="Center"                       
                            HorizontalAlignment="Center"
@@ -71,13 +74,17 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Style="{DynamicResource MenuButtonStyle}"
-                    Grid.Column="1"
-                    Content="{StaticResource FoodButtonContent}"/>
+                <Button Command="{Binding NavigateToFoodCommand}" 
+                        Style="{DynamicResource MenuButtonStyle}"
+                        Grid.Column="1"
+                        Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
+                        Content="{StaticResource FoodButtonContent}"/>
 
-                <Button Style="{DynamicResource MenuButtonStyle}"
-                    Grid.Column="3"
-                    Content="{StaticResource DrinksButtonContent}"/>
+                <Button Command="{Binding NavigateToDrinksCommand}" 
+                        Style="{DynamicResource MenuButtonStyle}"
+                        Grid.Column="3"
+                        Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
+                        Content="{StaticResource DrinksButtonContent}"/>
 
             </Grid>
         <!--endregion-->

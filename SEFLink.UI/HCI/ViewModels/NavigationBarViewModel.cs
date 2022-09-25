@@ -2,21 +2,15 @@
 using Prism.Commands;
 using Prism.Events;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Constants;
 using SEFLink.UI.HCI.Events;
+using static SEFLink.UI.HCI.Constants.LanguageConstants;
 
 namespace SEFLink.UI.HCI.ViewModels
 {
     public class NavigationBarViewModel : Observable
     {
         #region Fields
-
-        private readonly string _englishFood = "Food";
-        private readonly string _bosnianFood = "Hrana";
-        private readonly string _germanFood = "Essen";
-                
-        private readonly string _englishDrinks = "Drinks";
-        private readonly string _bosnianDrinks = "Pića";
-        private readonly string _germanDrinks = "Getränke";
 
         private string _foodText;
         private string _drinksText;
@@ -52,7 +46,7 @@ namespace SEFLink.UI.HCI.ViewModels
             NavigateToLanguagesCommand = new DelegateCommand(Execute_NavigateToLanguages, CanExecute_NavigateToLanguages);
             NavigateToHelpCommand = new DelegateCommand(Execute_NavigateToHelp, CanExecute_NavigateToHelp);
 
-            _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageSelected);
+            _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
 
         #endregion
@@ -129,7 +123,7 @@ namespace SEFLink.UI.HCI.ViewModels
             OnEnglishSelected();
         }
 
-        private void OnLanguageSelected(ChangeLanguageEventArgs args)
+        private void OnLanguageChanged(ChangeLanguageEventArgs args)
         {
             if (args.Language == "English")
                 OnEnglishSelected();
@@ -147,8 +141,8 @@ namespace SEFLink.UI.HCI.ViewModels
             BosnianFlagIsVisible = false;
             GermanFlagIsVisible = false;
 
-            FoodText = _englishFood;
-            DrinksText = _englishDrinks;
+            FoodText = English.Food;
+            DrinksText = English.Drinks;
         }
         
         private void OnBosnianSelected()
@@ -157,8 +151,8 @@ namespace SEFLink.UI.HCI.ViewModels
             BosnianFlagIsVisible = true;
             GermanFlagIsVisible = false;
 
-            FoodText = _bosnianFood;
-            DrinksText = _bosnianDrinks;
+            FoodText = Bosnian.Food;
+            DrinksText = Bosnian.Drinks;
         }
 
         private void OnGermanSelected()
@@ -167,8 +161,8 @@ namespace SEFLink.UI.HCI.ViewModels
             BosnianFlagIsVisible = false;
             GermanFlagIsVisible = true;
 
-            FoodText = _germanFood;
-            DrinksText = _germanDrinks;
+            FoodText = German.Food;
+            DrinksText = German.Drinks;
         }
 
         private void Execute_NavigateToFood()

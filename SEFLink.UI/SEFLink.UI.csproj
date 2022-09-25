@@ -120,6 +120,7 @@
     <Compile Include="Events\NotificationsClickedEvent.cs" />
     <Compile Include="Events\PreviousSettingsViewEvent.cs" />
     <Compile Include="Events\WindowStateChangedEvent.cs" />
+    <Compile Include="HCI\Constants\LanguageConstants.cs" />
     <Compile Include="HCI\Data\UndoStack.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\OverlayClosedEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ChangeLanguageEvent.cs" />
@@ -190,6 +191,9 @@
     </Compile>
     <Compile Include="HCI\Views\Payment\PaymentOptionsView.xaml.cs">
       <DependentUpon>PaymentOptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\SidebarView.xaml.cs">
+      <DependentUpon>SidebarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\Sidebar\SidebarView.xaml.cs">
       <DependentUpon>SidebarView.xaml</DependentUpon>
@@ -276,6 +280,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HCI\Views\Payment\PaymentOptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\SidebarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

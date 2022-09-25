@@ -3,10 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Menu"
+             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.Menu" 
+             xmlns:menu="clr-namespace:SEFLink.UI.HCI.ViewModels.Menu" 
+             d:DataContext="{d:DesignInstance Type=menu:FoodViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!--#region Food Button code snippet-->
+            <Grid x:Key="FoodButtonContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+
+
+                <Image Style="{DynamicResource Menu.FoodIcon}"/>
+
+                <TextBlock Text="{Binding FoodText}"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+            </Grid>
+        <!--#endregion-->
+
+        <!--#region Drinks Button code snippet-->
+            <Grid x:Key="DrinksButtonContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+
+
+                <Image Style="{DynamicResource Menu.DrinksIcon}"/>
+
+                <TextBlock Text="{Binding DrinksText}"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"                       
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="DemiBold"/>
+
+            </Grid>
+        <!--#endregion-->
+        
+    </UserControl.Resources>
+    
+     <!--region Content-->
+            <Grid Grid.Column="0">
             
-    </Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>       <!-- Margin -->
+                    <ColumnDefinition Width="auto"/>   
+                    <ColumnDefinition Width="*"/>       <!-- Margin -->
+                </Grid.ColumnDefinitions>
+
+
+                <Button Command="{Binding NavigateToFoodCommand}" 
+                        Style="{DynamicResource MenuButtonStyle}"
+                        Grid.Column="1"
+                        Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
+                        Content="{StaticResource FoodButtonContent}"/>
+                
+            </Grid>
+        <!--endregion-->
+        
 </UserControl>

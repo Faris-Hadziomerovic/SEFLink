@@ -4,6 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SEFLink.UI.HCI.Views"
+             xmlns:viewModels="clr-namespace:SEFLink.UI.HCI.ViewModels" 
+             xmlns:menuViewModels="clr-namespace:SEFLink.UI.HCI.ViewModels.Menu" 
+             xmlns:menuViews="clr-namespace:SEFLink.UI.HCI.Views.Menu" 
+             xmlns:paymentViewModels="clr-namespace:SEFLink.UI.HCI.ViewModels.Payment" 
+             xmlns:paymentViews="clr-namespace:SEFLink.UI.HCI.Views.Payment" 
+             d:DataContext="{d:DesignInstance Type=viewModels:MenuViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -53,35 +59,61 @@
     </UserControl.Resources>
     
     <Grid>
-        
-        <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>       <!-- Content View -->
-                <ColumnDefinition Width="auto"/>    <!-- Sidebar View -->
-            </Grid.ColumnDefinitions>
-        
-        <!--region Content-->
-            <Grid Grid.Column="0">
+
+        <Grid.Resources>
+
+            <DataTemplate DataType="{x:Type viewModels:SidebarViewModel}">
+                <local:SidebarView/>
+            </DataTemplate>
             
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                    <ColumnDefinition Width="auto"/>    <!-- Food Button -->
-                    <ColumnDefinition Width="50"/>      <!-- Separator -->
-                    <ColumnDefinition Width="auto"/>    <!-- Drinks Button -->
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                </Grid.ColumnDefinitions>
+            <DataTemplate DataType="{x:Type menuViewModels:FoodDrinkViewModel}">
+                <menuViews:FoodDrinkView/>
+            </DataTemplate>
 
+            <DataTemplate DataType="{x:Type menuViewModels:FoodViewModel}">
+                <menuViews:FoodView/>
+            </DataTemplate>
 
-                <Button Style="{DynamicResource MenuButtonStyle}"
-                    Grid.Column="1"
-                    Content="{StaticResource FoodButtonContent}"/>
+            <DataTemplate DataType="{x:Type menuViewModels:DrinksViewModel}">
+                <menuViews:DrinksView/>
+            </DataTemplate>
 
-                <Button Style="{DynamicResource MenuButtonStyle}"
-                    Grid.Column="3"
-                    Content="{StaticResource DrinksButtonContent}"/>
+            <DataTemplate DataType="{x:Type paymentViewModels:PaymentOptionsViewModel}">
+                <paymentViews:PaymentOptionsView/>
+            </DataTemplate>
 
-            </Grid>
+            <DataTemplate DataType="{x:Type paymentViewModels:PaymentCashViewModel}">
+                <paymentViews:PaymentCashView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type paymentViewModels:PaymentCreditCardViewModel}">
+                <paymentViews:PaymentCreditCardView/>
+            </DataTemplate>
+
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>       <!-- Content View -->
+            <ColumnDefinition Width="250"/>    <!-- Sidebar View -->
+        </Grid.ColumnDefinitions>
+
+       
+
+        <!--region Content -->
+            <ContentControl Content="{Binding CurrentViewModel}" 
+                            Focusable="False"
+                            Grid.Column="0"/>
         <!--endregion-->
         
+        <!--region Content -->
+
+            <Border Background="{StaticResource Button.White.Background.Disabled}" 
+                    Grid.Column="1"/>
         
+            <local:SidebarView Grid.Column="1"/>
+        
+        <!--endregion-->
+
+
     </Grid>
 </UserControl>
