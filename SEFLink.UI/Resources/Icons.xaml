@@ -108,7 +108,99 @@
     
     <!--#region My Order Icons -->
     
-        <!--#region Navigation Icons -->
+        <!--#region Remove Item Icon Style -->
+            <Style x:Key="Other.RemoveIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Remove\RemoveItem.png"/>
+            </Style>
+        <!--#endregion-->
+    
+        <!--#region Back Icon Style -->
+            <Style x:Key="Other.BackIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Back\Back-Button-S.png"/>
+            </Style>
+        <!--#endregion-->
+
+    <!--#region Food Icons -->
+
+        <!--#region Pizza 1 Icon Style -->
+        <Style x:Key="Food.Pizza.1" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\pizza01.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Pizza 2 Icon Style -->
+        <Style x:Key="Food.Pizza.2" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\pizza02.png"/>
+        </Style>
+        <!--#endregion-->
+    
+        <!--#region Pizza 3 Icon Style -->
+        <Style x:Key="Food.Pizza.3" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\pizza03.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Hamburger Icon Style -->
+        <Style x:Key="Food.Hamburger" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Hamburger.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region French fries Icon Style -->
+        <Style x:Key="Food.Fries" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\French-fries.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Chicken tenders Icon Style -->
+        <Style x:Key="Food.Chicken" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Food\Chicken-tenders.png"/>
+        </Style>
+        <!--#endregion-->
+
+    <!--#endregion-->
+
+    <!--#region Drinks Icons -->
+
+        <!--#region Cappuccino Icon Style -->
+        <Style x:Key="Drinks.Cappuccino" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Cappuccino.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Cafe Latte Icon Style -->
+        <Style x:Key="Drinks.CafeLatte" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Cafe-Latte.png"/>
+        </Style>
+        <!--#endregion-->
+    
+        <!--#region Hot Chocolate Icon Style -->
+        <Style x:Key="Drinks.HotChocolate" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Hot-Chocolate.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Cola Icon Style -->
+        <Style x:Key="Drinks.Cola" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\cola.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Sprite Icon Style -->
+        <Style x:Key="Drinks.Sprite" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\sprite.png"/>
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Fanta Icon Style -->
+        <Style x:Key="Drinks.Fanta" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\fanta.png"/>
+        </Style>
+        <!--#endregion-->
+
+    <!--#endregion-->
+
+    <!--#region Navigation Icons -->
 
             <!--#region Food Icon Style -->
             <Style x:Key="Navigation.FoodIcon" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">

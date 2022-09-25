@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Windows.Input;
+using Prism.Commands;
+using Prism.Events;
 using SEFLink.Model;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Events;
 
 namespace SEFLink.UI.HCI.ViewModels
 {
@@ -10,17 +14,33 @@ namespace SEFLink.UI.HCI.ViewModels
 
         private int _id;
 
-        private bool _isSelected;
-
-        private string _name;
+        private string _description;
         private string _price;
-        private string _type;
+        private string _image;
 
-        private DocStatus _status;
+        #region Image Flags 
+            
+            private bool _colaIsVisible;
+            private bool _spriteIsVisible;
+            private bool _fantaIsVisible;
 
-        private string _date;
-        private string _tooltipDateTime;
-        private string _tooltipText;
+            private bool _cafeLatteIsVisible;
+            private bool _cappuccinoIsVisible;
+            private bool _hotChocolateIsVisible;
+
+            private bool _pizza1IsVisible;
+            private bool _pizza2IsVisible;
+            private bool _pizza3IsVisible;
+
+            private bool _hamburgerIsVisible;
+            private bool _chickenIsVisible;
+            private bool _friesIsVisible;
+            
+        #endregion
+
+        private IEventAggregator _eventAggregator;
+
+        public ICommand RemoveItemCommand { get; }
 
         #endregion
 
@@ -28,44 +48,21 @@ namespace SEFLink.UI.HCI.ViewModels
 
         #region Constructor
 
-        public OrderItemViewModel(int id, string endpoint, string number, string type, DateTime dateTime, DocStatus status)
+        public OrderItemViewModel(IEventAggregator eventAggregator, int id, string image, string description, decimal price)
         {
+            _eventAggregator = eventAggregator;
+
             Id = id;
-            IsSelected = false;
+            Image = image;
+            Description = description;
+            Price = $"{price}";
 
-            Endpoint = endpoint;
-            Number = number;
-            Type = type;
+            Setup();
 
-            Date = dateTime.ToString("dd.MM.yyyy");
-            TooltipDateTime = dateTime.ToString("dd/MM/yyyy   H:mm");
+            RemoveItemCommand = new DelegateCommand(Execute_RemoveItem, CanExecute_RemoveItem);
 
-            Status = status;
-
-            switch (Status)
-            {
-                case DocStatus.Saved:
-                    TooltipText = "Poslano na SEF.";
-                    break;
-
-                case DocStatus.Pending:
-                    TooltipText = "Slanje na SEF u toku.";
-                    break;
-
-                case DocStatus.Error:
-                    TooltipText = "Greška! Nije poslano na SEF.";
-                    break;
-
-                case DocStatus.Archived:
-                    TooltipText = "Arhivirano.";
-                    break;
-
-                default:
-                    TooltipText = "Error";
-                    break;
-            }
-
-        }
+            _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
+        }        
 
         #endregion
 
@@ -79,61 +76,193 @@ namespace SEFLink.UI.HCI.ViewModels
             private set => _id = value;
         }
 
-        public bool IsSelected
+        public string Description
         {
-            get => _isSelected;
-            set
+            get { return _description; }
+            set { _description = value; OnPropertyChanged(); }
+        }
+
+        public string Price
+        {
+            get { return _price; }
+            set { _price = value; OnPropertyChanged(); }
+        }
+
+        public string Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+
+
+        #region Image Flags 
+
+            public bool ColaIsVisible
             {
-                _isSelected = value;
-                OnPropertyChanged();
+                get { return _colaIsVisible; }
+                set { _colaIsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool SpriteIsVisible
+            {
+                get { return SpriteIsVisible; }
+                set { _spriteIsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool FantaIsVisible
+            {
+                get { return _fantaIsVisible; }
+                set { _fantaIsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool CafeLatteIsVisible
+            {
+                get { return _cafeLatteIsVisible; }
+                set { _cafeLatteIsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool CappuccinoIsVisible
+            {
+                get { return _cappuccinoIsVisible; }
+                set { _cappuccinoIsVisible = value; OnPropertyChanged(); }
+            }        
+
+            public bool HotChocolateIsVisible
+            {
+                get { return _hotChocolateIsVisible; }
+                set { _hotChocolateIsVisible = value; OnPropertyChanged(); }
+            }
+
+
+            public bool Pizza1IsVisible
+            {
+                get { return _pizza1IsVisible; }
+                set { _pizza1IsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool Pizza2IsVisible
+            {
+                get { return _pizza2IsVisible; }
+                set { _pizza2IsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool Pizza3IsVisible
+            {
+                get { return _pizza3IsVisible; }
+                set { _pizza3IsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool HamburgerIsVisible
+            {
+                get { return _hamburgerIsVisible; }
+                set { _hamburgerIsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool ChickenIsVisible
+            {
+                get { return _chickenIsVisible; }
+                set { _chickenIsVisible = value; OnPropertyChanged(); }
+            }
+
+            public bool FriesIsVisible
+            {
+                get { return _friesIsVisible; }
+                set { _friesIsVisible = value; OnPropertyChanged(); }
+            }
+
+        #endregion
+
+        #endregion
+
+
+
+        #region Methods
+
+        private void Setup()
+        {
+            ColaIsVisible = false;
+            SpriteIsVisible = false;
+            FantaIsVisible = false;
+
+            CafeLatteIsVisible = false;
+            CappuccinoIsVisible = false;
+            HotChocolateIsVisible = false;
+
+            Pizza1IsVisible = false;
+            Pizza2IsVisible = false;
+            Pizza3IsVisible = false;
+
+            HamburgerIsVisible = false;
+            ChickenIsVisible = false;
+            FriesIsVisible = false;
+
+            switch (Image)
+            {
+                case "Hamburger":
+                    HamburgerIsVisible = true;
+                    break;
+
+                case "Chicken":
+                    ChickenIsVisible = true;
+                    break;
+
+                case "Fries":
+                    FriesIsVisible = true;
+                    break;
+
+                case "Pizza1":
+                    Pizza1IsVisible = true;
+                    break;
+
+                case "Pizza2":
+                    Pizza2IsVisible = true;
+                    break;
+
+                case "Pizza3":
+                    Pizza3IsVisible = true;
+                    break;
+
+                case "Cola":
+                    ColaIsVisible = true;
+                    break;
+                    
+                case "Sprite":
+                    SpriteIsVisible = true;
+                    break;
+
+                case "Fanta":
+                    FantaIsVisible = true;
+                    break;
+                    
+                case "CafeLatte":
+                    CafeLatteIsVisible = true;
+                    break;
+                    
+                case "Cappuccino":
+                    CappuccinoIsVisible = true;
+                    break;
+
+                case "HotChocolate":
+                    HotChocolateIsVisible = true;
+                    break;                
+
+                default:
+                    HamburgerIsVisible = true;
+                    break;
             }
         }
 
-        public DocStatus Status
+        private void OnLanguageChanged(ChangeLanguageEventArgs args)
         {
-            get => _status;
-            set
-            {
-                _status = value;
-                OnPropertyChanged();
-            }
+            
         }
 
-        public string Endpoint
+        private void Execute_RemoveItem()
         {
-            get => _name;
-            set => _name = value;
+            _eventAggregator.GetEvent<RemoveItemEvent>().Publish(new RemoveItemEventArgs { Id = _id });
         }
 
-        public string Number
-        {
-            get => _price;
-            set => _price = value;
-        }
-
-        public string Type
-        {
-            get => _type;
-            set => _type = value;
-        }        
-
-        public string Date
-        {
-            get => _date;
-            set => _date = value;
-        }
-
-        public string TooltipDateTime
-        {
-            get => _tooltipDateTime;
-            set => _tooltipDateTime = value;
-        }
-
-        public string TooltipText
-        {
-            get => _tooltipText;
-            set => _tooltipText = value;
-        }
+        private bool CanExecute_RemoveItem() => true;
 
         #endregion
     }

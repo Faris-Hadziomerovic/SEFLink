@@ -183,6 +183,9 @@
     <Compile Include="HCI\Views\NavigationBarView.xaml.cs">
       <DependentUpon>NavigationBarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HCI\Views\OrderItem\OrderItemView.xaml.cs">
+      <DependentUpon>OrderItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HCI\Views\Payment\PaymentCashView.xaml.cs">
       <DependentUpon>PaymentCashView.xaml</DependentUpon>
     </Compile>
@@ -268,6 +271,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HCI\Views\NavigationBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\OrderItem\OrderItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -679,6 +686,29 @@
     <Resource Include="HCI\Assets\Icons\Payment\cc-01.png" />
     <Resource Include="HCI\Assets\Icons\Payment\cc-02.png" />
     <Resource Include="HCI\Assets\Icons\Payment\cc-03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Back\Back-Button-S.png" />
+    <Resource Include="HCI\Assets\Icons\Back\Back-Button-XL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Remove\RemoveItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Drinks\Cafe-Latte.png" />
+    <Resource Include="HCI\Assets\Icons\Drinks\Cappuccino.png" />
+    <Resource Include="HCI\Assets\Icons\Drinks\cola.png" />
+    <Resource Include="HCI\Assets\Icons\Drinks\fanta.png" />
+    <Resource Include="HCI\Assets\Icons\Drinks\Hot-Chocolate.png" />
+    <Resource Include="HCI\Assets\Icons\Drinks\sprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Food\Chicken-tenders.png" />
+    <Resource Include="HCI\Assets\Icons\Food\French-fries.png" />
+    <Resource Include="HCI\Assets\Icons\Food\Hamburger.png" />
+    <Resource Include="HCI\Assets\Icons\Food\pizza01.png" />
+    <Resource Include="HCI\Assets\Icons\Food\pizza02.png" />
+    <Resource Include="HCI\Assets\Icons\Food\pizza03.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

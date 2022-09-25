@@ -4,5 +4,8 @@ namespace SEFLink.UI.HCI.Events
 {
     public class RemoveItemEvent : PubSubEvent<RemoveItemEventArgs> { }
 
-    public class RemoveItemEventArgs { }
+    public class RemoveItemEventArgs
+    {
+        public int Id { get; set; }
+    }
 }

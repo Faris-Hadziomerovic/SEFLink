@@ -14,6 +14,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private string _titleText;
         private string _checkoutText;
         private string _subTotalText;
+        private string _price;
 
         private bool _checkoutIsVisible;
         private bool _cancelIsVisible;
@@ -50,6 +51,12 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
 
 
         #region Properties
+        
+        public string Price
+        {
+            get { return _price; }
+            set { _price = value; OnPropertyChanged(); }
+        }
 
         public string TitleText
         {
@@ -95,6 +102,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private void Setup()
         {
             TitleText = "";
+            Price = $"{0.00M}";
             CheckoutIsVisible = true;
             CancelIsVisible = true;
             UndoIsVisible = true;

@@ -1,958 +1,940 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-
-    <!--#region Base Component Styles -->
-
-        <!--#region Button Related Styles -->
-
-            <!--#region Rounded Button Style -->
-            <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" 
-                                    CornerRadius="5" 
-                                    Opacity="{TemplateBinding Opacity}" 
-                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <!--#endregion-->
-
-            <!--#region Circular Button Style -->
-            <Style x:Key="CircularButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border Background="{TemplateBinding Background}" 
-                                    CornerRadius="100" 
-                                    Opacity="{TemplateBinding Opacity}" 
-                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <!--#endregion-->
-
-            <!--#region Transparent Rounded Button Style-->
-            <Style x:Key="TransparentRoundedButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
-
-                <!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
-                <Setter Property="BorderThickness" Value="0" />
-
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
-                    </Trigger>
-                </Style.Triggers>
-
-            </Style>
-            <!--#endregion-->
-            
-            <!--#region Transparent Circular Button Style-->
-            <Style x:Key="TransparentCircularButtonStyle" BasedOn="{StaticResource CircularButtonStyle}" TargetType="{x:Type Button}">
-
-                <!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
-                <Setter Property="BorderThickness" Value="0" />
-
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
-                    </Trigger>
-                    
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
-                    </Trigger>
-                </Style.Triggers>
-
-            </Style>
-            <!--#endregion-->
-
-            <!--#region Window Control Buttons Style-->
-            <Style x:Key="WindowControlButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
-                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-
-                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                <Setter Property="Focusable" Value="False" />
-            </Style>
-            <!--#endregion-->
-
-            <!--#region X Button Style-->
-            <Style x:Key="CloseButtonStyle" BasedOn="{StaticResource WindowControlButtonStyle}" TargetType="{x:Type Button}">
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.OrangeRed.Background.MouseOver}"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <!--#endregion-->
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+	<!--#region Base Component Styles -->
+
+		<!--#region Button Related Styles -->
+
+			<!--#region Rounded Button Style -->
+			<Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type Button}">
+							<Border Background="{TemplateBinding Background}" 
+									CornerRadius="5" 
+									Opacity="{TemplateBinding Opacity}" 
+									BorderBrush="{TemplateBinding BorderBrush}" 
+									BorderThickness="{TemplateBinding BorderThickness}">
+								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<!--#endregion-->
+
+			<!--#region Circular Button Style -->
+			<Style x:Key="CircularButtonStyle" TargetType="{x:Type Button}">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type Button}">
+							<Border Background="{TemplateBinding Background}" 
+									CornerRadius="100" 
+									Opacity="{TemplateBinding Opacity}" 
+									BorderBrush="{TemplateBinding BorderBrush}" 
+									BorderThickness="{TemplateBinding BorderThickness}">
+								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<!--#endregion-->
+
+			<!--#region Transparent Rounded Button Style-->
+			<Style x:Key="TransparentRoundedButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
+
+				<!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
+				<Setter Property="BorderThickness" Value="0" />
+
+				<Setter Property="Background" Value="Transparent"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
+					</Trigger>
+				</Style.Triggers>
+
+			</Style>
+			<!--#endregion-->
+			
+			<!--#region Transparent Circular Button Style-->
+			<Style x:Key="TransparentCircularButtonStyle" BasedOn="{StaticResource CircularButtonStyle}" TargetType="{x:Type Button}">
+
+				<!--<Setter Property="FocusVisualStyle" Value="{x:Null}" />-->
+				<Setter Property="BorderThickness" Value="0" />
+
+				<Setter Property="Background" Value="Transparent"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.Transparent.Foreground.Normal}"/>
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
+					</Trigger>
+					
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
+					</Trigger>
+				</Style.Triggers>
+
+			</Style>
+			<!--#endregion-->
+
+			<!--#region Window Control Buttons Style-->
+			<Style x:Key="WindowControlButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
+				<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+
+				<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+				<Setter Property="Focusable" Value="False" />
+			</Style>
+			<!--#endregion-->
+
+			<!--#region X Button Style-->
+			<Style x:Key="CloseButtonStyle" BasedOn="{StaticResource WindowControlButtonStyle}" TargetType="{x:Type Button}">
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.OrangeRed.Background.MouseOver}"/>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Navigation Button Style-->
-            <Style x:Key="TitleBarNavButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
+			<!--#region Navigation Button Style-->
+			<Style x:Key="TitleBarNavButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
 
-                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-                <Setter Property="Margin" Value="2 5"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="MinWidth" Value="100"/>
-            </Style>
-            <!--#endregion-->
+				<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+				<Setter Property="Margin" Value="2 5"/>
+				<Setter Property="Height" Value="25"/>
+				<Setter Property="MinWidth" Value="100"/>
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Colored Button Style-->
-            <Style x:Key="ColoredButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
+			<!--#region Colored Button Style-->
+			<Style x:Key="ColoredButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="{x:Type Button}">
 
-                <Setter Property="Background" Value="{StaticResource Button.Colored.Background.Normal}"/>
-                <Setter Property="Foreground" Value="{StaticResource Button.Colored.Foreground.Normal}"/>
+				<Setter Property="Background" Value="{StaticResource Button.Colored.Background.Normal}"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.Colored.Foreground.Normal}"/>
 
 
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="Margin" Value="0 15"/>
-                <Setter Property="Cursor" Value="Hand" />
+				<Setter Property="BorderThickness" Value="0" />
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="Margin" Value="0 15"/>
+				<Setter Property="Cursor" Value="Hand" />
 
-            </Style>
-            <!--#endregion-->
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Blue Button Style-->
-            <Style x:Key="BlueButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+			<!--#region Blue Button Style-->
+			<Style x:Key="BlueButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
-                <Setter Property="Background" Value="{StaticResource Button.Blue.Background.Normal}"/>
-                <Setter Property="Height" Value="35"/>
+				<Setter Property="Background" Value="{StaticResource Button.Blue.Background.Normal}"/>
+				<Setter Property="Height" Value="35"/>
 
 
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.Blue.Background.MouseOver}"/>
-                    </Trigger>
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.Blue.Background.MouseOver}"/>
+					</Trigger>
 
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.Blue.Background.Disabled}"/>
-                    </Trigger>
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Blue.Background.Disabled}"/>
+					</Trigger>
 
-                </Style.Triggers>
+				</Style.Triggers>
 
-            </Style>
-            <!--#endregion-->
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Purple Button Style-->
-            <Style x:Key="PurpleButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+			<!--#region Purple Button Style-->
+			<Style x:Key="PurpleButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
-                <Setter Property="Background" Value="{StaticResource Button.Purple.Background.Normal}"/>
-                <Setter Property="Height" Value="30"/>
+				<Setter Property="Background" Value="{StaticResource Button.Purple.Background.Normal}"/>
+				<Setter Property="Height" Value="30"/>
 
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.Purple.Background.MouseOver}"/>
-                    </Trigger>
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.Purple.Background.MouseOver}"/>
+					</Trigger>
 
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.Purple.Background.Disabled}"/>
-                    </Trigger>
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Purple.Background.Disabled}"/>
+					</Trigger>
 
-                </Style.Triggers>
+				</Style.Triggers>
 
-            </Style>
-            <!--#endregion-->
-    
-            <!--#region Green Button Style-->
-            <Style x:Key="GreenButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+			</Style>
+			<!--#endregion-->
+	
+			<!--#region Green Button Style-->
+			<Style x:Key="GreenButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
-                <Setter Property="Background" Value="{StaticResource Button.Green.Background.Normal}"/>
-                <Setter Property="Height" Value="30"/>
+				<Setter Property="Background" Value="{StaticResource Button.Green.Background.Normal}"/>
+				<Setter Property="Height" Value="30"/>
 
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.Green.Background.MouseOver}"/>
-                    </Trigger>
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.Green.Background.MouseOver}"/>
+					</Trigger>
 
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.Green.Background.Disabled}"/>
-                    </Trigger>
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Green.Background.Disabled}"/>
+					</Trigger>
 
-                </Style.Triggers>
+				</Style.Triggers>
 
-            </Style>
-            <!--#endregion-->
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Gray Button - Style-->
-            <Style x:Key="GrayButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+			<!--#region Gray Button - Style-->
+			<Style x:Key="GrayButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
-                <Setter Property="Background" Value="{StaticResource Button.Gray.Background.Normal}"/>
-                <Setter Property="Foreground" Value="{StaticResource Button.Gray.Foreground.Normal}"/>
+				<Setter Property="Background" Value="{StaticResource Button.Gray.Background.Normal}"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.Gray.Foreground.Normal}"/>
 
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.Gray.Background.MouseOver}"/>
-                    </Trigger>
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.Gray.Background.MouseOver}"/>
+					</Trigger>
 
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.Gray.Background.Disabled}"/>
-                    </Trigger>
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Gray.Background.Disabled}"/>
+					</Trigger>
 
-                </Style.Triggers>
+				</Style.Triggers>
 
-            </Style>
-            <!--#endregion-->
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Gray Button - Disabled: transparent Style-->
-            <Style x:Key="GrayButtonStyle2" BasedOn="{StaticResource GrayButtonStyle}" TargetType="{x:Type Button}">
-
-                <Style.Triggers>
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.Gray2.Background.Disabled}"/>
-                    </Trigger>
-
-                </Style.Triggers>
-
-            </Style>
-            <!--#endregion-->
-
-            <!--#region White Button Style-->
-            <Style x:Key="WhiteButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
-
-                <Setter Property="Background" Value="{StaticResource Button.White.Background.Normal}"/>
-                <Setter Property="Foreground" Value="{StaticResource Button.White.Foreground.Normal}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource Button.White.BorderBrush.Normal}" />
-                <Setter Property="BorderThickness" Value="1" />
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.White.Background.MouseOver}"/>
-                    </Trigger>
-
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Button.White.Background.Disabled}"/>
-                    </Trigger>
-
-                </Style.Triggers>
-
-            </Style>
-            <!--#endregion-->
-
-            <!--#region White Button - No Border Style -->
-            <Style x:Key="WhiteButtonStyle2" BasedOn="{StaticResource WhiteButtonStyle}" TargetType="{x:Type Button}">
-                <Setter Property="BorderThickness" Value="0" />
-            </Style>
-            <!--#endregion-->
-
-            <!--#region White Button - Light Foreground Style-->
-            <Style x:Key="WhiteButtonStyle3" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
-
-                <Setter Property="Background" Value="{StaticResource Button.White3.Background.Normal}"/>
-                <Setter Property="Foreground" Value="{StaticResource Button.White3.Foreground.Normal}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource Button.White3.BorderBrush.Normal}" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="FontWeight" Value="Normal" />
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Button.White3.Background.MouseOver}"/>
-                        <Setter Property="Foreground" Value="{StaticResource Button.White3.Foreground.MouseOver}"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <!--#endregion-->
-
-        <!--#endregion-->
-
-        <!--#region TextBox Related Styles-->
-
-            <!--#region Rounded TextBox Style-->
-            <Style x:Key="RoundedTextBoxStyle" TargetType="{x:Type TextBox}">
-
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="Padding" Value="10 0"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="BorderBrush" Value="LightGray"/>
-
-                <Style.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Style.Resources>
-
-            </Style>
-            <!--#endregion-->
-    
-            <!--#region Rounded TextBox - No Border - Style-->
-            <Style x:Key="RoundedTextBoxStyle2" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
-                <Setter Property="BorderThickness" Value="0" />
-            </Style>
-            <!--#endregion-->
-
-            <!--#region Label for TextBox Style-->
-            <Style x:Key="TextBoxLabelStyle" TargetType="{x:Type Label}">
-                <Setter Property="Foreground" Value="#8c00f5" />
-                <Setter Property="Background" Value="{StaticResource Global.Background}" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="VerticalAlignment" Value="Top" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="FontSize" Value="8" />
-                <Setter Property="Padding" Value="0" />
-                <Setter Property="Margin" Value="8 7" />
-                <Setter Property="Width" Value="90" />
-                <Setter Property="Height" Value="15" />
-            </Style>
-            <!--#endregion-->
-
-            <!--#region TextBlock Placeholder Style-->
-            <Style x:Key="TextBoxPlaceholderText" TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="{StaticResource Font.DarkGray2}"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="IsHitTestVisible" Value="False"/>
-                <Setter Property="Margin" Value="12 0"/>
-                <Setter Property="Visibility" Value="Collapsed"/>
-                <Setter Property="FontSize" Value="9"/>
-            </Style>
-            <!--#endregion-->
-    
-            <!--#region TextBlock Placeholder Style 2 -->
-            <Style x:Key="TextBoxPlaceholderText2" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
-                <Setter Property="Margin" Value="17 0"/>
-                <Setter Property="FontSize" Value="10"/>
-            </Style>
-            <!--#endregion-->
-
-            <!--#region Settings TextBox Style-->
-            <Style x:Key="SettingsTextBoxStyle" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
-                <Setter Property="MaxWidth" Value="400" />
-                <Setter Property="Margin" Value="0 10"/>
-                <Setter Property="FontSize" Value="9"/>
-                <Setter Property="Background" Value="Transparent" />
-            </Style>
-            <!--#endregion-->
-
-            <!--#region Dashboard TextBox Style-->
-            <Style x:Key="DashboardTransparentTextBoxStyle" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
-                <Setter Property="FontSize" Value="10"/>
-                <Setter Property="Foreground" Value="{StaticResource Font.LightGray1}"/>
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="Padding" Value="10 0 0 0"/>
-                <Setter Property="BorderThickness" Value="0" />
-
-                <Setter Property="Background" Value="{StaticResource Global.Translucent.Light1}"/>
-
-            </Style>
-            <!--#endregion-->
-
-        <!--#endregion-->
-
-        <!--#region ComboBoxes -->
-
-            <Style x:Key="CustomComboBoxStyle_Gray" BasedOn="{StaticResource CustomComboBox_Base}" TargetType="{x:Type ComboBox}">
-
-                <Setter Property="Background" Value="#f5f6f6" />
-
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="BorderBrush" Value="#333" />
-                <!-- Arrow color is binded to this -->
-
-            </Style>
-
-            <Style x:Key="CustomComboBoxStyle_Transparent" BasedOn="{StaticResource CustomComboBox_Base}" TargetType="{x:Type ComboBox}">
-
-                <Setter Property="Background" Value="{StaticResource Global.Translucent.Light1}" />
-                <Setter Property="Foreground" Value="White" />
-
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="BorderBrush" Value="White" />
-                <!-- Arrow color is binded to this -->
-        
-            </Style>
-
-        <!--#endregion-->
-
-        <!--#region RadioButton Style -->
-        <Style TargetType="{x:Type RadioButton}">
-        
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Margin" Value="5" />
-
-
-            <Setter Property="BorderThickness" Value="1.2" />
-            <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Border.Normal}" />
-
-            <Setter Property="Template" Value="{StaticResource CustomRadioButtonTemplate}" />
-
-        </Style>
-        <!--#endregion-->
-
-        <!--#region CheckBox Style -->
-        <Style TargetType="{x:Type CheckBox}">
-        
-            <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="Margin" Value="0 10" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-
-            <Setter Property="BorderThickness" Value="1.5" />
-            <Setter Property="BorderBrush" Value="{StaticResource CheckBox.Border.Normal}" />
-
-            <Setter Property="Template" Value="{StaticResource CustomCheckBoxTemplate}" />
-
-        </Style>
-        <!--#endregion-->
-
-        <!--#region DatePicker Style -->
-        <Style x:Key="CustomDatePickerStyle" BasedOn="{StaticResource CustomDatePickerTemplate}" TargetType="{x:Type DatePicker}">
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Foreground" Value="{StaticResource Font.LightGray1}"/>
-            <Setter Property="Background" Value="{StaticResource Global.Translucent.Light1}"/>
-            <Setter Property="Padding" Value="5 0 5 0"/>
-            <Setter Property="Height" Value="30" />
-
-        </Style>
-        <!--#endregion-->
-
-    <!--#endregion-->
-
-    <!--#region My Order Styles -->
-
-        <!--#region Checkout Button Style-->
-        <Style x:Key="CheckoutButtonStyle" BasedOn="{StaticResource GreenButtonStyle}" TargetType="{x:Type Button}">
-
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="15" 
-                                Opacity="{TemplateBinding Opacity}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-
-        </Style>
-        <!--#endregion-->
-    
-        <!--#region Menu Button Style-->
-        <Style x:Key="MenuButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
-
-            <Setter Property="Height" Value="180"/>
-            <Setter Property="Width" Value="180"/>
-            
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-
-            <Setter Property="Background" Value="{DynamicResource Menu.Button.Dark.Background.Normal}"/>
-            <Setter Property="Foreground" Value="{DynamicResource Menu.Button.Dark.Foreground.Normal}"/>
-            
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="15" 
-                                Opacity="{TemplateBinding Opacity}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource Menu.Button.Dark.Background.MouseOver}"/>
-                </Trigger>
-
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="{DynamicResource Menu.Button.Dark.Background.Disabled}"/>
-                </Trigger>
-            </Style.Triggers>
-
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Navigation Bar Button Style-->
-        <Style x:Key="NavigationBarButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
-
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-        <Setter Property="Margin" Value="2 5"/>
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="MinWidth" Value="100"/>
-
-        <Setter Property="Background" Value="{StaticResource Global.Translucent.Dark2}"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Global.Translucent.Light2}"/>
-                </Trigger>
-
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
-                </Trigger>
-
-            </Style.Triggers>
-
-        </Style>
-        <!--#endregion-->
-    
-        <!--#region Navigation Flag Button Style-->
-        <Style x:Key="NavigationFlagButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
-
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-        <Setter Property="Margin" Value="2 5"/>
-        <Setter Property="Height" Value="40"/>
-
-        <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Normal}"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
-                </Trigger>
-
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
-                </Trigger>
-            </Style.Triggers>
-
-        </Style>
-        <!--#endregion-->
-    
-        <!--#region Help Button Style-->
-        <Style x:Key="HelpButtonStyle" BasedOn="{StaticResource TransparentCircularButtonStyle}" TargetType="{x:Type Button}">
-
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-        <Setter Property="Margin" Value="2 5"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Width" Value="40"/>
-        <Setter Property="Cursor" Value="Hand" />
-
-        <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Normal}"/>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
-                </Trigger>
-
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
-                </Trigger>
-
-            </Style.Triggers>
-
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Languages View Flag Button Style-->
-        <Style x:Key="LanguagesViewFlagButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
-
-            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Height" Value="auto"/>
-
-            <Setter Property="Background" Value="{StaticResource Menu.Button.Dark.Background.Normal}"/>
-
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="{StaticResource Menu.Button.Dark.Background.MouseOver}"/>
-                    </Trigger>
-
-                    <Trigger Property="IsEnabled" Value="False">
-                        <Setter Property="Background" Value="{StaticResource Menu.Button.Dark.Background.Disabled}"/>
-                    </Trigger>
-
-            </Style.Triggers>
-
-        </Style>
-        <!--#endregion-->
-
-    <!--#endregion-->
-    
-    <!--#region SEFLink Styles -->
-    
-    <!--#region Login View -->
-
-        <!--#region Login View Background - Image Style-->
-        <Style x:Key="LoginViewBackgroundImageStyle" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Images\Backgrounds\LoginViewBackgroungImage.png"/>
-        </Style>
-        <!--#endregion-->
-    
-        <!--#region Login Window Background - Border Style-->
-        <Style x:Key="LoginViewBackgroundBorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <VisualBrush>
-                        <VisualBrush.Visual>
-                            <Grid ClipToBounds="True">
-                                <Image Style="{StaticResource LoginViewBackgroundImageStyle}">
-                                    <Image.Effect>
-                                        <BlurEffect Radius="0"/>
-                                    </Image.Effect>
-                                </Image>
-                            </Grid>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-        
-        <!--#region SEFLink Icon & Logo - Image Style-->
-        <Style x:Key="LoginViewLogoStyle" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Images\Logos\Logo-and-icon-original-300.png"/>
-            <Setter Property="Height" Value="45" />
-        </Style>
-        <!--#endregion-->
-    
-    <!--#endregion-->
-
-    <!--#region Settings View -->
-    
-        <!--#region SEFLink Icon & Logo - Image Style-->
-        <Style x:Key="SettingsViewLogoStyle" TargetType="{x:Type Image}">
-            <Setter Property="Source" Value="..\Assets\Images\Logos\SEFLink-logo-200.png"/>
-            <Setter Property="Height" Value="45" />
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Other Format Button Style & Snippet -->
-        <Style x:Key="OtherFormatButtonStyle" BasedOn="{StaticResource WhiteButtonStyle}" TargetType="{x:Type Button}">
-
-            <Setter Property="Height" Value="40" />
-
-            <Setter Property="ContentTemplate" >
-                <Setter.Value>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-
-                            <TextBlock Text="Drugi format"
-                                   FontSize="10"
-                                   FontWeight="DemiBold"
-                                   Padding="10 0 0 0"/>
-
-                            <Image Style="{StaticResource UploadIcon}"/>
-
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Choose Folder Button Style & Code Snippet-->
-        <Style x:Key="ChooseFolderButtonStyle" BasedOn="{StaticResource PurpleButtonStyle}" TargetType="{x:Type Button}">
-            <Setter Property="ContentTemplate" >
-                <Setter.Value>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-
-                            <Image Style="{StaticResource HddIcon}"/>
-
-                            <TextBlock Text="Izaberi"
-                                           VerticalAlignment="Center"
-                                           FontSize="10"/>
-
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-    
-        <!--#region Border Box-Style -->
-        <Style x:Key="BorderBoxStyle" TargetType="{x:Type Border}">
-            <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="BorderBrush" Value="LightGray" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="Background" Value="{StaticResource Global.Background}" />
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Margin" Value="0 10" />
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Progress Bar - Border Styles-->
-        <Style x:Key="ProgressBarBubbleBorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="CornerRadius" Value="25" />
-            <Setter Property="Width" Value="30" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="HorizontalAlignment"  Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-
-        <Style x:Key="ProgressBar_CurrentBubble" BasedOn="{StaticResource ProgressBarBubbleBorderStyle}" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{StaticResource Global.Purple}" />
-            <Setter Property="BorderThickness" Value="1" />
-        </Style>
-
-        <Style x:Key="ProgressBar_Bubble" BasedOn="{StaticResource ProgressBarBubbleBorderStyle}" TargetType="{x:Type Border}">
-            <Setter Property="Background" Value="{StaticResource Global.LightGray1}"/>
-        </Style>
-
-        <Style x:Key="ProgressBarConnectorStyle" TargetType="{x:Type Border}">
-            <Setter Property="Height" Value="1" />
-            <Setter Property="Margin"  Value="5"/>
-            <Setter Property="Background" Value="{StaticResource Global.LightGray1}" />
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Progress Bar - Text Styles-->
-        <Style x:Key="ProgressBarBubbleTextStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="HorizontalAlignment"  Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-
-        <Style x:Key="ProgressBar_CurrentBubbleText" BasedOn="{StaticResource ProgressBarBubbleTextStyle}" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{StaticResource Font.Purple}" />
-        </Style>
-
-        <Style x:Key="ProgressBar_BubbleText" BasedOn="{StaticResource ProgressBarBubbleTextStyle}" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{StaticResource Font.Gray2}"/>
-        </Style>
-
-        <Style x:Key="ProgressBar_CurrentUnderText" BasedOn="{StaticResource ProgressBar_CurrentBubbleText}" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="8" />
-        </Style>
-
-        <Style x:Key="ProgressBar_UnderText" BasedOn="{StaticResource ProgressBar_BubbleText}" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontSize" Value="8" />
-        </Style>
-        <!--#endregion-->
-
-    <!--#endregion-->
-
-    <!--#region Dashboard View -->
+			<!--#region Gray Button - Disabled: transparent Style-->
+			<Style x:Key="GrayButtonStyle2" BasedOn="{StaticResource GrayButtonStyle}" TargetType="{x:Type Button}">
+
+				<Style.Triggers>
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Gray2.Background.Disabled}"/>
+					</Trigger>
+
+				</Style.Triggers>
+
+			</Style>
+			<!--#endregion-->
+
+			<!--#region White Button Style-->
+			<Style x:Key="WhiteButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+				<Setter Property="Background" Value="{StaticResource Button.White.Background.Normal}"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.White.Foreground.Normal}"/>
+				<Setter Property="BorderBrush" Value="{StaticResource Button.White.BorderBrush.Normal}" />
+				<Setter Property="BorderThickness" Value="1" />
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.White.Background.MouseOver}"/>
+					</Trigger>
+
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.White.Background.Disabled}"/>
+					</Trigger>
+
+				</Style.Triggers>
+
+			</Style>
+			<!--#endregion-->
+
+			<!--#region White Button - No Border Style -->
+			<Style x:Key="WhiteButtonStyle2" BasedOn="{StaticResource WhiteButtonStyle}" TargetType="{x:Type Button}">
+				<Setter Property="BorderThickness" Value="0" />
+			</Style>
+			<!--#endregion-->
+
+			<!--#region White Button - Light Foreground Style-->
+			<Style x:Key="WhiteButtonStyle3" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+				<Setter Property="Background" Value="{StaticResource Button.White3.Background.Normal}"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.White3.Foreground.Normal}"/>
+				<Setter Property="BorderBrush" Value="{StaticResource Button.White3.BorderBrush.Normal}" />
+				<Setter Property="BorderThickness" Value="1" />
+				<Setter Property="FontWeight" Value="Normal" />
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Button.White3.Background.MouseOver}"/>
+						<Setter Property="Foreground" Value="{StaticResource Button.White3.Foreground.MouseOver}"/>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<!--#endregion-->
+
+		<!--#endregion-->
+
+		<!--#region TextBox Related Styles-->
+
+			<!--#region Rounded TextBox Style-->
+			<Style x:Key="RoundedTextBoxStyle" TargetType="{x:Type TextBox}">
+
+				<Setter Property="HorizontalAlignment" Value="Stretch" />
+				<Setter Property="Height" Value="30"/>
+				<Setter Property="Padding" Value="10 0"/>
+				<Setter Property="VerticalContentAlignment" Value="Center"/>
+				<Setter Property="BorderBrush" Value="LightGray"/>
+
+				<Style.Resources>
+					<Style TargetType="Border">
+						<Setter Property="CornerRadius" Value="5"/>
+					</Style>
+				</Style.Resources>
+
+			</Style>
+			<!--#endregion-->
+	
+			<!--#region Rounded TextBox - No Border - Style-->
+			<Style x:Key="RoundedTextBoxStyle2" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
+				<Setter Property="BorderThickness" Value="0" />
+			</Style>
+			<!--#endregion-->
+
+			<!--#region Label for TextBox Style-->
+			<Style x:Key="TextBoxLabelStyle" TargetType="{x:Type Label}">
+				<Setter Property="Foreground" Value="#8c00f5" />
+				<Setter Property="Background" Value="{StaticResource Global.Background}" />
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="VerticalContentAlignment" Value="Center" />
+				<Setter Property="HorizontalContentAlignment" Value="Center" />
+				<Setter Property="VerticalAlignment" Value="Top" />
+				<Setter Property="HorizontalAlignment" Value="Left" />
+				<Setter Property="FontSize" Value="8" />
+				<Setter Property="Padding" Value="0" />
+				<Setter Property="Margin" Value="8 7" />
+				<Setter Property="Width" Value="90" />
+				<Setter Property="Height" Value="15" />
+			</Style>
+			<!--#endregion-->
+
+			<!--#region TextBlock Placeholder Style-->
+			<Style x:Key="TextBoxPlaceholderText" TargetType="{x:Type TextBlock}">
+				<Setter Property="Foreground" Value="{StaticResource Font.DarkGray2}"/>
+				<Setter Property="VerticalAlignment" Value="Center"/>
+				<Setter Property="HorizontalAlignment" Value="Left"/>
+				<Setter Property="IsHitTestVisible" Value="False"/>
+				<Setter Property="Margin" Value="12 0"/>
+				<Setter Property="Visibility" Value="Collapsed"/>
+				<Setter Property="FontSize" Value="9"/>
+			</Style>
+			<!--#endregion-->
+	
+			<!--#region TextBlock Placeholder Style 2 -->
+			<Style x:Key="TextBoxPlaceholderText2" BasedOn="{StaticResource TextBoxPlaceholderText}" TargetType="{x:Type TextBlock}">
+				<Setter Property="Margin" Value="17 0"/>
+				<Setter Property="FontSize" Value="10"/>
+			</Style>
+			<!--#endregion-->
+
+			<!--#region Settings TextBox Style-->
+			<Style x:Key="SettingsTextBoxStyle" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
+				<Setter Property="MaxWidth" Value="400" />
+				<Setter Property="Margin" Value="0 10"/>
+				<Setter Property="FontSize" Value="9"/>
+				<Setter Property="Background" Value="Transparent" />
+			</Style>
+			<!--#endregion-->
+
+			<!--#region Dashboard TextBox Style-->
+			<Style x:Key="DashboardTransparentTextBoxStyle" BasedOn="{StaticResource RoundedTextBoxStyle}" TargetType="{x:Type TextBox}">
+				<Setter Property="FontSize" Value="10"/>
+				<Setter Property="Foreground" Value="{StaticResource Font.LightGray1}"/>
+				<Setter Property="Margin" Value="5"/>
+				<Setter Property="Padding" Value="10 0 0 0"/>
+				<Setter Property="BorderThickness" Value="0" />
+
+				<Setter Property="Background" Value="{StaticResource Global.Translucent.Light1}"/>
+
+			</Style>
+			<!--#endregion-->
+
+		<!--#endregion-->
+
+		<!--#region ComboBoxes -->
+
+			<Style x:Key="CustomComboBoxStyle_Gray" BasedOn="{StaticResource CustomComboBox_Base}" TargetType="{x:Type ComboBox}">
+
+				<Setter Property="Background" Value="#f5f6f6" />
+
+				<Setter Property="BorderThickness" Value="0" />
+				<Setter Property="BorderBrush" Value="#333" />
+				<!-- Arrow color is binded to this -->
+
+			</Style>
+
+			<Style x:Key="CustomComboBoxStyle_Transparent" BasedOn="{StaticResource CustomComboBox_Base}" TargetType="{x:Type ComboBox}">
+
+				<Setter Property="Background" Value="{StaticResource Global.Translucent.Light1}" />
+				<Setter Property="Foreground" Value="White" />
+
+				<Setter Property="BorderThickness" Value="0" />
+				<Setter Property="BorderBrush" Value="White" />
+				<!-- Arrow color is binded to this -->
+		
+			</Style>
+
+		<!--#endregion-->
+
+		<!--#region RadioButton Style -->
+		<Style TargetType="{x:Type RadioButton}">
+		
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Margin" Value="5" />
+
+
+			<Setter Property="BorderThickness" Value="1.2" />
+			<Setter Property="BorderBrush" Value="{StaticResource RadioButton.Border.Normal}" />
+
+			<Setter Property="Template" Value="{StaticResource CustomRadioButtonTemplate}" />
+
+		</Style>
+		<!--#endregion-->
+
+		<!--#region CheckBox Style -->
+		<Style TargetType="{x:Type CheckBox}">
+		
+			<Setter Property="FontWeight" Value="DemiBold" />
+			<Setter Property="FontSize" Value="10" />
+			<Setter Property="Margin" Value="0 10" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+
+			<Setter Property="BorderThickness" Value="1.5" />
+			<Setter Property="BorderBrush" Value="{StaticResource CheckBox.Border.Normal}" />
+
+			<Setter Property="Template" Value="{StaticResource CustomCheckBoxTemplate}" />
+
+		</Style>
+		<!--#endregion-->
+
+		<!--#region DatePicker Style -->
+		<Style x:Key="CustomDatePickerStyle" BasedOn="{StaticResource CustomDatePickerTemplate}" TargetType="{x:Type DatePicker}">
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="Foreground" Value="{StaticResource Font.LightGray1}"/>
+			<Setter Property="Background" Value="{StaticResource Global.Translucent.Light1}"/>
+			<Setter Property="Padding" Value="5 0 5 0"/>
+			<Setter Property="Height" Value="30" />
+
+		</Style>
+		<!--#endregion-->
+
+	<!--#endregion-->
+
+	<!--#region My Order Styles -->
+
+		
+	
+		<!--region Sidebar Styles -->
+			
+		<!--endregion-->
+	
+		<!--#region Menu Button Style-->
+		<Style x:Key="MenuButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+			<Setter Property="Height" Value="180"/>
+			<Setter Property="Width" Value="180"/>
+			
+			<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+			<Setter Property="Background" Value="{DynamicResource Menu.Button.Dark.Background.Normal}"/>
+			<Setter Property="Foreground" Value="{DynamicResource Menu.Button.Dark.Foreground.Normal}"/>
+			
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border Background="{TemplateBinding Background}" 
+								CornerRadius="15" 
+								Opacity="{TemplateBinding Opacity}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="{DynamicResource Menu.Button.Dark.Background.MouseOver}"/>
+				</Trigger>
+
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="{DynamicResource Menu.Button.Dark.Background.Disabled}"/>
+				</Trigger>
+			</Style.Triggers>
+
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Navigation Bar Button Style-->
+		<Style x:Key="NavigationBarButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+		<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+		<Setter Property="Margin" Value="2 5"/>
+		<Setter Property="Height" Value="50"/>
+		<Setter Property="MinWidth" Value="100"/>
+
+		<Setter Property="Background" Value="{StaticResource Global.Translucent.Dark2}"/>
+
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="{StaticResource Global.Translucent.Light2}"/>
+				</Trigger>
+
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
+				</Trigger>
+
+			</Style.Triggers>
+
+		</Style>
+		<!--#endregion-->
+	
+		<!--#region Navigation Flag Button Style-->
+		<Style x:Key="NavigationFlagButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+		<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+		<Setter Property="Margin" Value="2 5"/>
+		<Setter Property="Height" Value="40"/>
+
+		<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Normal}"/>
+
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
+				</Trigger>
+
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
+				</Trigger>
+			</Style.Triggers>
+
+		</Style>
+		<!--#endregion-->
+	
+		<!--#region Help Button Style-->
+		<Style x:Key="HelpButtonStyle" BasedOn="{StaticResource TransparentCircularButtonStyle}" TargetType="{x:Type Button}">
+
+		<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+		<Setter Property="Margin" Value="2 5"/>
+		<Setter Property="Height" Value="40"/>
+		<Setter Property="Width" Value="40"/>
+		<Setter Property="Cursor" Value="Hand" />
+
+		<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Normal}"/>
+
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.MouseOver}"/>
+				</Trigger>
+
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="{StaticResource Button.Transparent.Background.Disabled}"/>
+				</Trigger>
+
+			</Style.Triggers>
+
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Languages View Flag Button Style-->
+		<Style x:Key="LanguagesViewFlagButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+			<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+			<Setter Property="Margin" Value="0"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="Height" Value="auto"/>
+
+			<Setter Property="Background" Value="{StaticResource Menu.Button.Dark.Background.Normal}"/>
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Background" Value="{StaticResource Menu.Button.Dark.Background.MouseOver}"/>
+					</Trigger>
+
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Menu.Button.Dark.Background.Disabled}"/>
+					</Trigger>
+
+			</Style.Triggers>
+
+		</Style>
+		<!--#endregion-->
+
+	<!--#endregion-->
+	
+	<!--#region SEFLink Styles -->
+	
+	<!--#region Login View -->
+
+		<!--#region Login View Background - Image Style-->
+		<Style x:Key="LoginViewBackgroundImageStyle" TargetType="{x:Type Image}">
+			<Setter Property="Source" Value="..\Assets\Images\Backgrounds\LoginViewBackgroungImage.png"/>
+		</Style>
+		<!--#endregion-->
+	
+		<!--#region Login Window Background - Border Style-->
+		<Style x:Key="LoginViewBackgroundBorderStyle" TargetType="{x:Type Border}">
+			<Setter Property="Background">
+				<Setter.Value>
+					<VisualBrush>
+						<VisualBrush.Visual>
+							<Grid ClipToBounds="True">
+								<Image Style="{StaticResource LoginViewBackgroundImageStyle}">
+									<Image.Effect>
+										<BlurEffect Radius="0"/>
+									</Image.Effect>
+								</Image>
+							</Grid>
+						</VisualBrush.Visual>
+					</VisualBrush>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!--#endregion-->
+		
+		<!--#region SEFLink Icon & Logo - Image Style-->
+		<Style x:Key="LoginViewLogoStyle" TargetType="{x:Type Image}">
+			<Setter Property="Source" Value="..\Assets\Images\Logos\Logo-and-icon-original-300.png"/>
+			<Setter Property="Height" Value="45" />
+		</Style>
+		<!--#endregion-->
+	
+	<!--#endregion-->
+
+	<!--#region Settings View -->
+	
+		<!--#region SEFLink Icon & Logo - Image Style-->
+		<Style x:Key="SettingsViewLogoStyle" TargetType="{x:Type Image}">
+			<Setter Property="Source" Value="..\Assets\Images\Logos\SEFLink-logo-200.png"/>
+			<Setter Property="Height" Value="45" />
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Other Format Button Style & Snippet -->
+		<Style x:Key="OtherFormatButtonStyle" BasedOn="{StaticResource WhiteButtonStyle}" TargetType="{x:Type Button}">
+
+			<Setter Property="Height" Value="40" />
+
+			<Setter Property="ContentTemplate" >
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+
+							<TextBlock Text="Drugi format"
+								   FontSize="10"
+								   FontWeight="DemiBold"
+								   Padding="10 0 0 0"/>
+
+							<Image Style="{StaticResource UploadIcon}"/>
+
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Choose Folder Button Style & Code Snippet-->
+		<Style x:Key="ChooseFolderButtonStyle" BasedOn="{StaticResource PurpleButtonStyle}" TargetType="{x:Type Button}">
+			<Setter Property="ContentTemplate" >
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+
+							<Image Style="{StaticResource HddIcon}"/>
+
+							<TextBlock Text="Izaberi"
+										   VerticalAlignment="Center"
+										   FontSize="10"/>
+
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!--#endregion-->
+	
+		<!--#region Border Box-Style -->
+		<Style x:Key="BorderBoxStyle" TargetType="{x:Type Border}">
+			<Setter Property="CornerRadius" Value="5" />
+			<Setter Property="BorderBrush" Value="LightGray" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="Background" Value="{StaticResource Global.Background}" />
+			<Setter Property="Padding" Value="10" />
+			<Setter Property="Margin" Value="0 10" />
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Progress Bar - Border Styles-->
+		<Style x:Key="ProgressBarBubbleBorderStyle" TargetType="{x:Type Border}">
+			<Setter Property="CornerRadius" Value="25" />
+			<Setter Property="Width" Value="30" />
+			<Setter Property="Height" Value="30" />
+			<Setter Property="HorizontalAlignment"  Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style x:Key="ProgressBar_CurrentBubble" BasedOn="{StaticResource ProgressBarBubbleBorderStyle}" TargetType="{x:Type Border}">
+			<Setter Property="BorderBrush" Value="{StaticResource Global.Purple}" />
+			<Setter Property="BorderThickness" Value="1" />
+		</Style>
+
+		<Style x:Key="ProgressBar_Bubble" BasedOn="{StaticResource ProgressBarBubbleBorderStyle}" TargetType="{x:Type Border}">
+			<Setter Property="Background" Value="{StaticResource Global.LightGray1}"/>
+		</Style>
+
+		<Style x:Key="ProgressBarConnectorStyle" TargetType="{x:Type Border}">
+			<Setter Property="Height" Value="1" />
+			<Setter Property="Margin"  Value="5"/>
+			<Setter Property="Background" Value="{StaticResource Global.LightGray1}" />
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Progress Bar - Text Styles-->
+		<Style x:Key="ProgressBarBubbleTextStyle" TargetType="{x:Type TextBlock}">
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="HorizontalAlignment"  Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
+
+		<Style x:Key="ProgressBar_CurrentBubbleText" BasedOn="{StaticResource ProgressBarBubbleTextStyle}" TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="{StaticResource Font.Purple}" />
+		</Style>
+
+		<Style x:Key="ProgressBar_BubbleText" BasedOn="{StaticResource ProgressBarBubbleTextStyle}" TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="{StaticResource Font.Gray2}"/>
+		</Style>
+
+		<Style x:Key="ProgressBar_CurrentUnderText" BasedOn="{StaticResource ProgressBar_CurrentBubbleText}" TargetType="{x:Type TextBlock}">
+			<Setter Property="FontSize" Value="8" />
+		</Style>
+
+		<Style x:Key="ProgressBar_UnderText" BasedOn="{StaticResource ProgressBar_BubbleText}" TargetType="{x:Type TextBlock}">
+			<Setter Property="FontSize" Value="8" />
+		</Style>
+		<!--#endregion-->
+
+	<!--#endregion-->
+
+	<!--#region Dashboard View -->
   
-        <!--#region Dashboard Navigation Elements -->
+		<!--#region Dashboard Navigation Elements -->
 
-            <!--#region White Curved Triangles-->
-            <Style x:Key="WhiteCurvedCorner-TopRight" TargetType="{x:Type Image}">
-                <Setter Property="Height" Value="15" />
-                <Setter Property="Margin" Value="0 -0.5 -1 0" />
-                <Setter Property="HorizontalAlignment" Value="Right" />
-                <Setter Property="VerticalAlignment" Value="Top" />
+			<!--#region White Curved Triangles-->
+			<Style x:Key="WhiteCurvedCorner-TopRight" TargetType="{x:Type Image}">
+				<Setter Property="Height" Value="15" />
+				<Setter Property="Margin" Value="0 -0.5 -1 0" />
+				<Setter Property="HorizontalAlignment" Value="Right" />
+				<Setter Property="VerticalAlignment" Value="Top" />
 
-                <Setter Property="Panel.ZIndex" Value="10"/>
+				<Setter Property="Panel.ZIndex" Value="10"/>
 
-                <Setter Property="Source" Value="..\Assets\Images\rounded-corners\white-curved-top-right-30.png"/>
-            </Style>
+				<Setter Property="Source" Value="..\Assets\Images\rounded-corners\white-curved-top-right-30.png"/>
+			</Style>
 
-            <Style x:Key="WhiteCurvedCorner-BottomRight" TargetType="{x:Type Image}">
-                <Setter Property="Height" Value="15" />
-                <Setter Property="Margin" Value="0 0 -1 -0.5" />
-                <Setter Property="HorizontalAlignment" Value="Right" />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
+			<Style x:Key="WhiteCurvedCorner-BottomRight" TargetType="{x:Type Image}">
+				<Setter Property="Height" Value="15" />
+				<Setter Property="Margin" Value="0 0 -1 -0.5" />
+				<Setter Property="HorizontalAlignment" Value="Right" />
+				<Setter Property="VerticalAlignment" Value="Bottom" />
 
-                <Setter Property="Panel.ZIndex" Value="10"/>
+				<Setter Property="Panel.ZIndex" Value="10"/>
 
-                <Setter Property="Source" Value="..\Assets\Images\rounded-corners\white-curved-bottom-right-30.png"/>
-            </Style>
-            <!--#endregion-->
+				<Setter Property="Source" Value="..\Assets\Images\rounded-corners\white-curved-bottom-right-30.png"/>
+			</Style>
+			<!--#endregion-->
 
-            <!--#region Dashboard Navigation Button - TextBlock Style-->
-            <Style x:Key="DashboardButtonTextStyle" TargetType="{x:Type TextBlock}">
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="10"/>
-                <Setter Property="FontWeight" Value="DemiBold" />
-                <Setter Property="Width" Value="100" />
-                <Setter Property="Margin" Value="5 0" />
-            </Style>
-            <!--#endregion-->
+			<!--#region Dashboard Navigation Button - TextBlock Style-->
+			<Style x:Key="DashboardButtonTextStyle" TargetType="{x:Type TextBlock}">
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="FontSize" Value="10"/>
+				<Setter Property="FontWeight" Value="DemiBold" />
+				<Setter Property="Width" Value="100" />
+				<Setter Property="Margin" Value="5 0" />
+			</Style>
+			<!--#endregion-->
 
-        <!--#endregion-->
+		<!--#endregion-->
 
-        <!--#region PageInfo - Font Style -->
-        <Style x:Key="PageInfo_Black" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{StaticResource Font.Black}" />
-            <Setter Property="FontSize" Value="9" />
-            <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
+		<!--#region PageInfo - Font Style -->
+		<Style x:Key="PageInfo_Black" TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="{StaticResource Font.Black}" />
+			<Setter Property="FontSize" Value="9" />
+			<Setter Property="FontWeight" Value="DemiBold" />
+			<Setter Property="VerticalAlignment" Value="Center" />
+		</Style>
 
-        <Style x:Key="PageInfo_LightGray" BasedOn="{StaticResource PageInfo_Black}" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{StaticResource Font.LightGray2}" />
-        </Style>
-        <!--#endregion-->
+		<Style x:Key="PageInfo_LightGray" BasedOn="{StaticResource PageInfo_Black}" TargetType="{x:Type TextBlock}">
+			<Setter Property="Foreground" Value="{StaticResource Font.LightGray2}" />
+		</Style>
+		<!--#endregion-->
 
-    
-        <!--#region Custom TextBlock Style -->
-        <Style x:Key="CustomTextStyle_Normal" TargetType="{x:Type TextBlock}">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="FontSize" Value="10"/>
-            <Setter Property="Width" Value="auto" />
-            <Setter Property="Margin" Value="5 0" />
-            <Setter Property="FontWeight" Value="Normal" />
-            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" />
-        </Style>
-        <!--#endregion-->
+	
+		<!--#region Custom TextBlock Style -->
+		<Style x:Key="CustomTextStyle_Normal" TargetType="{x:Type TextBlock}">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="FontSize" Value="10"/>
+			<Setter Property="Width" Value="auto" />
+			<Setter Property="Margin" Value="5 0" />
+			<Setter Property="FontWeight" Value="Normal" />
+			<Setter Property="TextTrimming" Value="CharacterEllipsis" />
+			<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" />
+		</Style>
+		<!--#endregion-->
 
-        <!--#region Custom TextBlock - DemiBold Style -->
-        <Style x:Key="CustomTextStyle_DemiBold" BasedOn="{StaticResource CustomTextStyle_Normal}" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontWeight" Value="DemiBold" />
-        </Style>
-        <!--#endregion-->
+		<!--#region Custom TextBlock - DemiBold Style -->
+		<Style x:Key="CustomTextStyle_DemiBold" BasedOn="{StaticResource CustomTextStyle_Normal}" TargetType="{x:Type TextBlock}">
+			<Setter Property="FontWeight" Value="DemiBold" />
+		</Style>
+		<!--#endregion-->
 
-        <!--#region Header - TextBlock Style -->
-        <Style x:Key="DocumentsViewHeaderTextStyle" BasedOn="{StaticResource CustomTextStyle_Normal}" TargetType="{x:Type TextBlock}">
-            <Setter Property="FontWeight" Value="Bold" />
-        </Style>
-        <!--#endregion-->
+		<!--#region Header - TextBlock Style -->
+		<Style x:Key="DocumentsViewHeaderTextStyle" BasedOn="{StaticResource CustomTextStyle_Normal}" TargetType="{x:Type TextBlock}">
+			<Setter Property="FontWeight" Value="Bold" />
+		</Style>
+		<!--#endregion-->
 
-    
-        <!--#region DocumentInfo ListView Style -->
-        <Style x:Key="DocumentsInfoListViewStyle" TargetType="ListView">
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Margin" Value="0 10"/>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
-
-
-            <Setter Property="ItemContainerStyle">
-                <Setter.Value>
-                    <Style  TargetType="{x:Type ListViewItem}">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="Padding" Value="0" />
-                        <Setter Property="Margin" Value="0" />
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-
-                    <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background"   Value="{StaticResource Global.LightGray1}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Setter.Value>
-            </Setter>
+	
+		<!--#region DocumentInfo ListView Style -->
+		<Style x:Key="DocumentsInfoListViewStyle" TargetType="ListView">
+			<Setter Property="Padding" Value="0" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="Margin" Value="0 10"/>
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
 
 
-        </Style>
-        <!--#endregion-->
+			<Setter Property="ItemContainerStyle">
+				<Setter.Value>
+					<Style  TargetType="{x:Type ListViewItem}">
+						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+						<Setter Property="BorderThickness" Value="0"/>
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="Margin" Value="0" />
+					<Setter Property="FocusVisualStyle" Value="{x:Null}" />
 
-        <!--#region Next Page Button Style & Snippet -->
-        <Style x:Key="NextPageButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
-
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Width" Value="25" />
-            <Setter Property="Cursor" Value="Hand" />
-
-
-            <Setter Property="ContentTemplate" >
-                <Setter.Value>
-                    <DataTemplate>
-                        <Image x:Name="Icon" Style="{StaticResource NextArrowIcon}"/>
-
-                        <DataTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Style" TargetName="Icon" Value="{StaticResource NextArrowIcon_Disabled}"/>
-                            </Trigger>
-
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Style" TargetName="Icon" Value="{StaticResource NextArrowIcon_Disabled}"/>
-                            </Trigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Previous Page Button Style & Snippet -->
-        <Style x:Key="PreviousPageButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
-
-            <Setter Property="Height" Value="20" />
-            <Setter Property="Width" Value="25" />
-            <Setter Property="Cursor" Value="Hand" />
-
-            <Setter Property="ContentTemplate" >
-                <Setter.Value>
-                    <DataTemplate>
-                        <Image x:Name="Icon" Style="{StaticResource PreviousArrowIcon}"/>
-
-                        <DataTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Style" TargetName="Icon" Value="{StaticResource PreviousArrowIcon_Disabled}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Style" TargetName="Icon" Value="{StaticResource PreviousArrowIcon_Disabled}"/>
-                            </Trigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--#endregion-->
-
-        <!--#region Sort Button Style & Snippet -->
-        <Style x:Key="SortButtonStyle" BasedOn="{StaticResource WhiteButtonStyle2}" TargetType="{x:Type Button}">
-            <Setter Property="ContentTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-
-                            <Image Style="{StaticResource SliderIcon}"/>
-
-                            <TextBlock Style="{StaticResource CustomTextStyle_DemiBold}"
-                                           Text="Sortiraj"/>
-
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-
-        <!--#endregion-->
-
-        <!--#region Refresh Button Style & Snippet -->
-        <Style x:Key="RefreshButtonStyle" BasedOn="{StaticResource WhiteButtonStyle2}" TargetType="{x:Type Button}">
-            <Setter Property="ContentTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-
-                            <Image Style="{StaticResource RefreshIcon}"/>
-
-                            <TextBlock Style="{StaticResource CustomTextStyle_DemiBold}"
-                                           Text="Osvježi statuse"/>
-
-                        </StackPanel>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-        <!--#endregion-->
-
-    
+					<Style.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background"   Value="{StaticResource Global.LightGray1}"/>
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Setter.Value>
+			</Setter>
 
 
-    <!--#endregion-->
-    
-    <!--#endregion-->
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Next Page Button Style & Snippet -->
+		<Style x:Key="NextPageButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
+
+			<Setter Property="Height" Value="20" />
+			<Setter Property="Width" Value="25" />
+			<Setter Property="Cursor" Value="Hand" />
+
+
+			<Setter Property="ContentTemplate" >
+				<Setter.Value>
+					<DataTemplate>
+						<Image x:Name="Icon" Style="{StaticResource NextArrowIcon}"/>
+
+						<DataTemplate.Triggers>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Style" TargetName="Icon" Value="{StaticResource NextArrowIcon_Disabled}"/>
+							</Trigger>
+
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Style" TargetName="Icon" Value="{StaticResource NextArrowIcon_Disabled}"/>
+							</Trigger>
+						</DataTemplate.Triggers>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Previous Page Button Style & Snippet -->
+		<Style x:Key="PreviousPageButtonStyle" BasedOn="{StaticResource TransparentRoundedButtonStyle}" TargetType="{x:Type Button}">
+
+			<Setter Property="Height" Value="20" />
+			<Setter Property="Width" Value="25" />
+			<Setter Property="Cursor" Value="Hand" />
+
+			<Setter Property="ContentTemplate" >
+				<Setter.Value>
+					<DataTemplate>
+						<Image x:Name="Icon" Style="{StaticResource PreviousArrowIcon}"/>
+
+						<DataTemplate.Triggers>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Style" TargetName="Icon" Value="{StaticResource PreviousArrowIcon_Disabled}"/>
+							</Trigger>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Style" TargetName="Icon" Value="{StaticResource PreviousArrowIcon_Disabled}"/>
+							</Trigger>
+						</DataTemplate.Triggers>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!--#endregion-->
+
+		<!--#region Sort Button Style & Snippet -->
+		<Style x:Key="SortButtonStyle" BasedOn="{StaticResource WhiteButtonStyle2}" TargetType="{x:Type Button}">
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+
+							<Image Style="{StaticResource SliderIcon}"/>
+
+							<TextBlock Style="{StaticResource CustomTextStyle_DemiBold}"
+										   Text="Sortiraj"/>
+
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+
+		</Style>
+
+		<!--#endregion-->
+
+		<!--#region Refresh Button Style & Snippet -->
+		<Style x:Key="RefreshButtonStyle" BasedOn="{StaticResource WhiteButtonStyle2}" TargetType="{x:Type Button}">
+			<Setter Property="ContentTemplate">
+				<Setter.Value>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+
+							<Image Style="{StaticResource RefreshIcon}"/>
+
+							<TextBlock Style="{StaticResource CustomTextStyle_DemiBold}"
+										   Text="Osvježi statuse"/>
+
+						</StackPanel>
+					</DataTemplate>
+				</Setter.Value>
+			</Setter>
+
+		</Style>
+		<!--#endregion-->
+
+	
+
+
+	<!--#endregion-->
+	
+	<!--#endregion-->
 
 </ResourceDictionary>
 

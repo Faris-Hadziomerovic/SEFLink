@@ -52,7 +52,7 @@
         <!--endregion-->
 
         <!--region Content -->
-            <ContentControl Content="{Binding CurrentViewModel}" 
+        <ContentControl Content="{Binding CurrentViewModel}" 
                             Focusable="False"
                             Grid.Row="1"/>
         <!--endregion-->
@@ -61,6 +61,7 @@
             <local:DialogOverlayView DataContext="{Binding DialogOverlayViewModel}"
                                      Grid.RowSpan="2"
                                      Visibility="{Binding DataContext.DialogOverlayIsVisible, 
+                                                  FallbackValue=hidden,
                                                   RelativeSource={RelativeSource AncestorType=local:AppView}, 
                                                   Converter={StaticResource BoolToVisibility}}"
                                      />

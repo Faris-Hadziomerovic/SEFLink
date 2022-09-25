@@ -100,19 +100,14 @@
        
 
         <!--region Content -->
-            <ContentControl Content="{Binding CurrentViewModel}" 
-                            Focusable="False"
-                            Grid.Column="0"/>
+        <ContentControl Content="{Binding CurrentViewModel}" 
+                        Focusable="False"
+                        Grid.Column="0"/>
         <!--endregion-->
         
         <!--region Sidebar -->
-
-            <Border Background="{StaticResource Button.White.Background.Disabled}" 
-                    Grid.Column="1"/>
-        
-            <local:SidebarView DataContext="{Binding SidebarViewModel}" 
-                               Grid.Column="1"/>
-        
+        <local:SidebarView DataContext="{Binding SidebarViewModel}" 
+                           Grid.Column="1"/>
         <!--endregion-->
 
 

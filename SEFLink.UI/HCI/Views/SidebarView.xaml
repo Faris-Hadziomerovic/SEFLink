@@ -12,48 +12,249 @@
     <UserControl.Resources>
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!--#region Order Items ListView Style -->
+        <Style x:Key="OrderItemsListViewStyle" TargetType="{x:Type ListView}">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+
+
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style  TargetType="{x:Type ListViewItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background"   Value="{StaticResource Global.LightGray1}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+
+        </Style>
+        <!--#endregion-->
+
+        <!--region Checkout Button Style -->
+        <Style x:Key="CheckoutButtonStyle" BasedOn="{StaticResource GreenButtonStyle}" TargetType="{x:Type Button}">
+
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="ContentStringFormat" Value="Center" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+								CornerRadius="25" 
+								Opacity="{TemplateBinding Opacity}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <!--endregion-->
+
+        <!--region Sub-Total Border Style-->
+        <Style x:Key="SubTotalBorderStyle" TargetType="{x:Type Border}">
+
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderThickness" Value="0 1" />
+            <Setter Property="BorderBrush" Value="#ababab" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Sub-Total Label Text Style-->
+        <Style x:Key="SubTotalTextStyle" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="Foreground" Value="#ababab" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+
+        </Style>
+        <!--#endregion-->
+
+        <!--#region Sub-Total Price Text Style-->
+        <Style x:Key="PriceTextStyle" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+
+        </Style>
+        <!--#endregion-->
         
+        <!--#region Your Order Title Text Style-->
+        <Style x:Key="TitleTextStyle" TargetType="{x:Type TextBlock}">
+
+            <Setter Property="FontSize" Value="25" />
+            
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Foreground" Value="Black" />
+            
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+
+        </Style>
+        <!--#endregion-->
+
         <!--#region Checkout Button code snippet-->
-        <Grid x:Key="xxx">
+        <Grid x:Key="CheckoutButtonContent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            
-            <TextBlock Text="{Binding CheckoutText}"
-                           Grid.Row="1"
-                           VerticalAlignment="Center"                       
-                           HorizontalAlignment="Center"
-                           FontSize="16"
-                           FontWeight="DemiBold"/>
+
+            <ItemsControl ItemsSource="{Binding CheckoutText, FallbackValue=Checkout}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
         </Grid>
         <!--#endregion-->
 
     </UserControl.Resources>
     
-     <!--#region Sidebar Menu -->
-            <Grid Background="{StaticResource Global.LightGray2}">
+    <Grid>
 
-                <!--#region Grid Definitions -->                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="150"/>           <!-- Title -->
-                    <RowDefinition Height="*"/>             <!-- Orders List -->
-                    <RowDefinition Height="auto"/>          <!-- Checkout and sub-total -->
-                </Grid.RowDefinitions>
-                <!--#endregion-->
+        <!--region Grid Definitions -->                
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>           <!-- Your Order Title -->
+            <RowDefinition Height="*"/>             <!-- Orders List -->
+            <RowDefinition Height="auto"/>             <!-- Orders List -->
+            <RowDefinition Height="auto"/>          <!-- Checkout and sub-total -->
+        </Grid.RowDefinitions>
+        <!--endregion-->
                                                 
+        <Border Background="#ededed" Grid.RowSpan="5" />
 
-                <!--#region Checkout Button -->
-                <Button Command="{Binding CheckoutCommand}" 
-                        Content="Checkout" 
-                        Grid.Row="3" 
-                        Margin="10"
-                        Height="35"
-                        Cursor="Hand"
-                        Style="{DynamicResource CheckoutButtonStyle}"/>
-                <!--#endregion-->
+        
+        <!--#region Your Order Title -->
+        <Grid Grid.Row="0">
+            
+            <!--region Grid Definitions -->                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>             <!-- Margin -->
+                <RowDefinition Height="auto"/>          <!-- Title -->
+                <RowDefinition Height="10"/>            <!-- Separator -->
+                <RowDefinition Height="auto"/>          <!-- Border -->
+                <RowDefinition Height="*"/>             <!-- Margin -->
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>           <!-- Margin -->
+                <ColumnDefinition Width="20*"/>         <!-- Content -->
+                <ColumnDefinition Width="*"/>           <!-- Margin -->
+            </Grid.ColumnDefinitions>
+            <!--endregion-->
 
-            </Grid>
+            <TextBlock Style="{DynamicResource TitleTextStyle}"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding TitleText, FallbackValue=Your Order}"/>
+
+            <Border Background="#ababab" 
+                    Grid.Row="4" 
+                    Grid.Column="1" 
+                    Height="1" />
+
+        </Grid>
+        <!--#endregion-->
+
+        <Grid Grid.Row="1">
+            
+            <!--region Grid Definitions -->                            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>           <!-- Margin -->
+                <ColumnDefinition Width="20*"/>         <!-- Content -->
+                <ColumnDefinition Width="*"/>           <!-- Margin -->
+            </Grid.ColumnDefinitions>
+            <!--endregion-->
+
+            <!-- #region Documents ListView -->
+            <!--<ListView ItemsSource="{Binding ShownDocuments}" 
+                  Style="{DynamicResource DocumentsInfoListViewStyle}"
+                  Grid.Row="2">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <dashboardViews:DocumentInfoView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+
+            </ListView>-->
             <!--#endregion-->
+
+        </Grid>        
+        
+        <!--#region Sub-Total -->
+        <Grid Grid.Row="2">
+            
+            <!--region Grid Definitions -->                
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>           <!-- Margin -->
+                <ColumnDefinition Width="100"/>           <!-- Title -->
+                <ColumnDefinition Width="*"/>             <!-- Separator -->
+                <ColumnDefinition Width="auto"/>          <!-- Price -->
+                <ColumnDefinition Width="50"/>          <!-- Currency -->
+            </Grid.ColumnDefinitions>
+            <!--endregion-->
+
+            <Border Style="{DynamicResource SubTotalBorderStyle}" Grid.ColumnSpan="5" />
+
+            <TextBlock Style="{DynamicResource SubTotalTextStyle}"
+                        Grid.Column="1"
+                        Text="{Binding SubTotalText, FallbackValue=SUB-TOTAL}"/>
+            
+            <TextBlock Style="{DynamicResource PriceTextStyle}"
+                        Grid.Column="3"
+                        Text="{Binding Price, FallbackValue=0.00}"/>
+            
+            <TextBlock Style="{DynamicResource PriceTextStyle}"
+                        Grid.Column="4"
+                        Text="  KM"/>
+        </Grid>
+        <!--#endregion-->
+                
+        <!--#region Checkout Button -->
+        <Button Command="{Binding CheckoutCommand}" 
+                Content="{StaticResource CheckoutButtonContent}" 
+                Grid.Row="3" 
+                Style="{StaticResource CheckoutButtonStyle}"/>
+        <!--#endregion-->
+
+    </Grid>
 </UserControl>
