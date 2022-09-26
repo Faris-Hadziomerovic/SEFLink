@@ -109,12 +109,12 @@ namespace SEFLink.UI.HCI.ViewModels
 
 		private void Setup()
 		{
-			Question = "Confirm order?";
-			ConfirmButtonText = "Confirm";
+			OnEnglishSelected();
+
+			Question = _confirmQuestion;
+
 			ConfirmDialogIsVisible = true;
 			RemoveDialogIsVisible = false;
-
-			OnEnglishSelected();
 		}
 		
 		private void OnCheckout(CheckoutEventArgs args)
@@ -168,8 +168,8 @@ namespace SEFLink.UI.HCI.ViewModels
 			RemoveButtonText = English.Remove;
 			ConfirmButtonText = English.Confirm;
 
-			_removeQuestion = English.ConfirmQuestion;
-			_confirmQuestion = English.RemoveQuestion;
+			_confirmQuestion = English.ConfirmQuestion;
+			_removeQuestion = English.RemoveQuestion;
 			_cancelQuestion = English.CancelOrderQuestion;			
 		}
 
@@ -179,8 +179,8 @@ namespace SEFLink.UI.HCI.ViewModels
 			RemoveButtonText = Bosnian.Remove;
 			ConfirmButtonText = Bosnian.Confirm;
 
-			_removeQuestion = Bosnian.ConfirmQuestion;
-			_confirmQuestion = Bosnian.RemoveQuestion;
+			_removeQuestion = Bosnian.RemoveQuestion;
+			_confirmQuestion = Bosnian.ConfirmQuestion;
 			_cancelQuestion = Bosnian.CancelOrderQuestion;
 		}
 
@@ -190,8 +190,8 @@ namespace SEFLink.UI.HCI.ViewModels
 			RemoveButtonText = German.Remove;
 			ConfirmButtonText = German.Confirm;
 
-			_removeQuestion = German.ConfirmQuestion;
-			_confirmQuestion = German.RemoveQuestion;
+			_removeQuestion = German.RemoveQuestion;
+			_confirmQuestion = German.Confirm;
 			_cancelQuestion = German.CancelOrderQuestion;
 		}
 
