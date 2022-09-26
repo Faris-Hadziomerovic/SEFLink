@@ -116,6 +116,58 @@
         <!--#endregion-->
         
         <!--#region Cancel Button code snippet-->
+        <Grid x:Key="CancelOrderButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=No}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+
+        <Grid x:Key="CancelCancelButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=No}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+
         <Grid x:Key="CancelRemoveButtonContent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -197,12 +249,97 @@
         </Grid>
         <!--#endregion-->
 
+
+        <!--#region Cancel order Button code snippet-->
+        <Grid x:Key="CancelButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=Cancel Order}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+        <!--#endregion-->
+
     </UserControl.Resources>
 
     <Grid>
         <Border Background="Black" Opacity="0.5"/>
 
 
+        <!--#region Cancel order dialog content-->
+        <Grid Visibility="{Binding CancelOrderDialogIsVisible, Converter={StaticResource BoolToVisibility}}"
+              Width="500" 
+              Height="250">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Border Background="#eee" 
+                    Grid.RowSpan="5"
+                    CornerRadius="30"/>
+
+            <TextBlock Text="{Binding Question, FallbackValue=Remove Order Item?}"
+                       FontSize="30"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       FontWeight="DemiBold"
+                       Foreground="Black"/>
+
+            <Grid Grid.Row="3">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource RemoveButtonStyle}"
+                        Content="{StaticResource CancelOrderButtonContent}"
+                        Command="{Binding CancelOrderCommand}"
+                        Width="150"
+                        Height="50"
+                        Grid.Column="3">
+                    
+                </Button>
+
+                <Button Style="{StaticResource CancelButtonStyle}"                        
+                        Content="{StaticResource CancelCancelButtonContent}"
+                        Command="{Binding CancelCommand}"
+                        Width="150"
+                        Height="50"
+                        Grid.Column="1">
+                    
+                </Button>
+
+            </Grid>
+
+        </Grid>
+        <!--#endregion-->
 
         <!--#region Remove dialog content-->
         <Grid Visibility="{Binding RemoveDialogIsVisible, Converter={StaticResource BoolToVisibility}}"

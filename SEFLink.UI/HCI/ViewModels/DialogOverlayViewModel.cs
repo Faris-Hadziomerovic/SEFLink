@@ -1,21 +1,14 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using SEFLink.UI.Events;
-using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
-using SEFLink.UI.HCI.Helpers;
 using SEFLink.UI.HCI.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using static SEFLink.UI.HCI.Constants.LanguageConstants;
 
 namespace SEFLink.UI.HCI.ViewModels
 {
-	public class DialogOverlayViewModel : Observable
+    public class DialogOverlayViewModel : Observable
 	{
 		#region Fields
 
@@ -31,11 +24,13 @@ namespace SEFLink.UI.HCI.ViewModels
 
 		private bool _confirmDialogIsVisible;
 		private bool _removeDialogIsVisible;
+		private bool _cancelOrderDialogIsVisible;
 
 		private readonly IEventAggregator _eventAggregator;
 
 		public ICommand ConfirmCommand { get; }
 		public ICommand CancelCommand { get; }
+		public ICommand CancelOrderCommand { get; }
 		public ICommand RemoveCommand { get; }
 
 		private OrderItem _orderItem;
@@ -53,12 +48,14 @@ namespace SEFLink.UI.HCI.ViewModels
 
 			ConfirmCommand = new DelegateCommand(Execute_Confirm);
 			CancelCommand = new DelegateCommand(Execute_Cancel);
+			CancelOrderCommand = new DelegateCommand(Execute_CancelOrder);
 			RemoveCommand = new DelegateCommand(Execute_Remove);
 
 			_eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
 
 			_eventAggregator.GetEvent<RemoveItemEvent>().Subscribe(OnRemoveItem);
 			_eventAggregator.GetEvent<CheckoutEvent>().Subscribe(OnCheckout);
+			_eventAggregator.GetEvent<CancelOrderEvent>().Subscribe(OnCancelOrder);
 		}
 
 		#endregion
@@ -102,6 +99,12 @@ namespace SEFLink.UI.HCI.ViewModels
 			set { _removeDialogIsVisible = value; OnPropertyChanged(); }
 		}
 		
+		public bool CancelOrderDialogIsVisible
+		{
+			get { return _cancelOrderDialogIsVisible; }
+			set { _cancelOrderDialogIsVisible = value; OnPropertyChanged(); }
+		}
+		
 		#endregion
 
 
@@ -115,6 +118,7 @@ namespace SEFLink.UI.HCI.ViewModels
 
 			ConfirmDialogIsVisible = true;
 			RemoveDialogIsVisible = false;
+			CancelOrderDialogIsVisible = false;
 		}
 		
 		private void OnCheckout(CheckoutEventArgs args)
@@ -123,11 +127,12 @@ namespace SEFLink.UI.HCI.ViewModels
 
 			ConfirmDialogIsVisible = true;
 			RemoveDialogIsVisible = false;
+			CancelOrderDialogIsVisible = false;
 
 			_eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
 		}
 
-		private void OnRemoveItem(RemoveItemEventArgs args)
+        private void OnRemoveItem(RemoveItemEventArgs args)
 		{
 			_orderItem = args.OrderItem;			
 
@@ -135,8 +140,9 @@ namespace SEFLink.UI.HCI.ViewModels
 
 			ConfirmDialogIsVisible = false;
 			RemoveDialogIsVisible = true;
+			CancelOrderDialogIsVisible = false;
 
-			_eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
+            _eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
 		}
 		
 		private void OnCancelOrder(CancelOrderEventArgs args)
@@ -144,11 +150,13 @@ namespace SEFLink.UI.HCI.ViewModels
 			Question = _cancelQuestion;
 
 			ConfirmDialogIsVisible = false;
-			RemoveDialogIsVisible = true;
-			//CancelOrderDialogIsVisible = true;
+			RemoveDialogIsVisible = false;
+            CancelOrderDialogIsVisible = true;
 
-			_eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
+            _eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
 		}
+
+
 
 		private void OnLanguageChanged(ChangeLanguageEventArgs args)
 		{
@@ -179,8 +187,8 @@ namespace SEFLink.UI.HCI.ViewModels
 			RemoveButtonText = Bosnian.Remove;
 			ConfirmButtonText = Bosnian.Confirm;
 
-			_removeQuestion = Bosnian.RemoveQuestion;
 			_confirmQuestion = Bosnian.ConfirmQuestion;
+			_removeQuestion = Bosnian.RemoveQuestion;
 			_cancelQuestion = Bosnian.CancelOrderQuestion;
 		}
 
@@ -190,10 +198,12 @@ namespace SEFLink.UI.HCI.ViewModels
 			RemoveButtonText = German.Remove;
 			ConfirmButtonText = German.Confirm;
 
+			_confirmQuestion = German.ConfirmQuestion;
 			_removeQuestion = German.RemoveQuestion;
-			_confirmQuestion = German.Confirm;
 			_cancelQuestion = German.CancelOrderQuestion;
 		}
+
+
 
 		private void Execute_Confirm()
 		{
