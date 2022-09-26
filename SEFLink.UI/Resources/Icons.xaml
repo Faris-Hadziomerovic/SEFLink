@@ -120,6 +120,12 @@
             </Style>
         <!--#endregion-->
 
+        <!--#region Undo Icon Style -->
+            <Style x:Key="Other.UndoIcon" BasedOn="{StaticResource IconStyle}" TargetType="{x:Type Image}">
+                <Setter Property="Source" Value="..\HCI\Assets\Icons\Undo\Undo.png"/>
+            </Style>
+        <!--#endregion-->
+
     <!--#region Food Icons -->
 
         <!--#region Pizza 1 Icon Style -->
@@ -163,19 +169,19 @@
     <!--#region Drinks Icons -->
 
         <!--#region Cappuccino Icon Style -->
-        <Style x:Key="Drinks.Cappuccino" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+        <Style x:Key="Drinks.Cappuccino" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
             <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Cappuccino.png"/>
         </Style>
         <!--#endregion-->
 
         <!--#region Cafe Latte Icon Style -->
-        <Style x:Key="Drinks.CafeLatte" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+        <Style x:Key="Drinks.CafeLatte" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
             <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Cafe-Latte.png"/>
         </Style>
         <!--#endregion-->
     
         <!--#region Hot Chocolate Icon Style -->
-        <Style x:Key="Drinks.HotChocolate" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+        <Style x:Key="Drinks.HotChocolate" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
             <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\Hot-Chocolate.png"/>
         </Style>
         <!--#endregion-->
@@ -187,13 +193,13 @@
         <!--#endregion-->
 
         <!--#region Sprite Icon Style -->
-        <Style x:Key="Drinks.Sprite" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+        <Style x:Key="Drinks.Sprite" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
             <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\sprite.png"/>
         </Style>
         <!--#endregion-->
 
         <!--#region Fanta Icon Style -->
-        <Style x:Key="Drinks.Fanta" BasedOn="{StaticResource IconStyle40}" TargetType="{x:Type Image}">
+        <Style x:Key="Drinks.Fanta" BasedOn="{StaticResource IconStyle50}" TargetType="{x:Type Image}">
             <Setter Property="Source" Value="..\HCI\Assets\Icons\Drinks\fanta.png"/>
         </Style>
         <!--#endregion-->

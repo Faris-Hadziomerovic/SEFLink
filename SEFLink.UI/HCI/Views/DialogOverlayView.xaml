@@ -3,13 +3,321 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views"
+             xmlns:local="clr-namespace:SEFLink.UI.HCI.Views" 
+             xmlns:viewmodels="clr-namespace:SEFLink.UI.HCI.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:DialogOverlayViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+
+
+    <UserControl.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!--region Confirm Button Style -->
+        <Style x:Key="ConfirmButtonStyle" BasedOn="{StaticResource GreenButtonStyle}" TargetType="{x:Type Button}">
+
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="ContentStringFormat" Value="Center" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+								CornerRadius="25" 
+								Opacity="{TemplateBinding Opacity}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <!--endregion-->
+        
+        <!--region Remove Button Style -->
+        <Style x:Key="RemoveButtonStyle" BasedOn="{StaticResource RedButtonStyle}" TargetType="{x:Type Button}">
+
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+								CornerRadius="25" 
+								Opacity="{TemplateBinding Opacity}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <!--endregion-->
+        
+        <!--region Cancel Button Style -->
+        <Style x:Key="CancelButtonStyle" BasedOn="{StaticResource GrayCancelButtonStyle}" TargetType="{x:Type Button}">
+
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+								CornerRadius="25" 
+								Opacity="{TemplateBinding Opacity}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <!--endregion-->
+
+        <!--#region Confirm Button code snippet-->
+        <Grid x:Key="ConfirmButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding ConfirmButtonText, FallbackValue=Confirm}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+        <!--#endregion-->
+        
+        <!--#region Cancel Button code snippet-->
+        <Grid x:Key="CancelRemoveButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=Cancel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+        
+        <Grid x:Key="CancelConfirmButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=Cancel}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+        <!--#endregion-->
+        
+        <!--#region Remove Button code snippet-->
+        <Grid x:Key="RemoveButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding RemoveButtonText, FallbackValue=Remove}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+        <!--#endregion-->
+
+    </UserControl.Resources>
+
     <Grid>
         <Border Background="Black" Opacity="0.5"/>
+
+
+
+        <!--#region Remove dialog content-->
+        <Grid Visibility="{Binding RemoveDialogIsVisible, Converter={StaticResource BoolToVisibility}}"
+              Width="500" 
+              Height="250">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Border Background="#eee" 
+                    Grid.RowSpan="5"
+                    CornerRadius="30"/>
+
+            <TextBlock Text="{Binding Question, FallbackValue=Remove Order Item?}"
+                       FontSize="30"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       FontWeight="DemiBold"
+                       Foreground="Black"/>
+
+            <Grid Grid.Row="3">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource RemoveButtonStyle}"
+                        Content="{StaticResource RemoveButtonContent}"
+                        Command="{Binding RemoveCommand}"
+                        Width="150"
+                        Height="50"
+                        Grid.Column="3">
+                    
+                </Button>
+
+                <Button Style="{StaticResource CancelButtonStyle}"                        
+                        Content="{StaticResource CancelRemoveButtonContent}"
+                        Command="{Binding CancelCommand}"
+                        Width="150"
+                        Height="50"
+                        Grid.Column="1">
+                    
+                </Button>
+
+            </Grid>
+
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Confirm dialog content-->
+        <Grid Visibility="{Binding ConfirmDialogIsVisible, Converter={StaticResource BoolToVisibility}}"
+              Width="500" 
+              Height="250">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Border Background="#eee" 
+                    Grid.RowSpan="5"
+                    CornerRadius="30"/>
+
+            <TextBlock Text="{Binding Question, FallbackValue=Confirm checkout?}"
+                       FontSize="30"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       FontWeight="DemiBold"
+                       Foreground="Black"/>
+
+            <Grid Grid.Row="3">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{StaticResource ConfirmButtonStyle}"
+                        Content="{StaticResource ConfirmButtonContent}"
+                        Command="{Binding ConfirmCommand}"
+                        Width="150"
+                        Height="50"
+                        Grid.Column="3">
+                    
+                </Button>
+
+                <Button Style="{StaticResource CancelButtonStyle}"                        
+                        Content="{StaticResource CancelConfirmButtonContent}"
+                        Command="{Binding CancelCommand}"
+                        Width="150"
+                        Height="50"
+                        Grid.Column="1">
+                    
+                </Button>
+
+            </Grid>
+
+        </Grid>
+        <!--#endregion-->
+        
     </Grid>
     
 </UserControl>

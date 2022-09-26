@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SEFLink.UI.HCI.Views" 
-             xmlns:menu="clr-namespace:SEFLink.UI.HCI.ViewModels.Menu" 
+             xmlns:menu="clr-namespace:SEFLink.UI.HCI.ViewModels.Menu" xmlns:orderItem="clr-namespace:SEFLink.UI.HCI.Views.OrderItem"
              d:DataContext="{d:DesignInstance Type=menu:SidebarViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="250">
@@ -16,10 +16,12 @@
         <!--#region Order Items ListView Style -->
         <Style x:Key="OrderItemsListViewStyle" TargetType="{x:Type ListView}">
             <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Margin" Value="0 10"/>
+            <Setter Property="Margin" Value="5 0"/>
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
 
 
             <Setter Property="ItemContainerStyle">
@@ -28,12 +30,12 @@
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="Padding" Value="0" />
-                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Margin" Value="0 3" />
                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
 
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background"   Value="{StaticResource Global.LightGray1}"/>
+                                <Setter Property="Background" Value="Transparent"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -145,6 +147,14 @@
         </Grid>
         <!--#endregion-->
 
+        <!--region Remove Item Button Content -->
+        <Image x:Key="UndoButtonContent" 
+               Width="15"
+               Height="15"
+               Margin="0"
+               Style="{DynamicResource Other.UndoIcon}" />
+        <!--endregion-->
+
     </UserControl.Resources>
     
     <Grid>
@@ -180,6 +190,7 @@
             </Grid.ColumnDefinitions>
             <!--endregion-->
 
+
             <TextBlock Style="{DynamicResource TitleTextStyle}"
                        Grid.Row="1"
                        Grid.Column="1"
@@ -193,29 +204,35 @@
         </Grid>
         <!--#endregion-->
 
+        <!--#region Undo Button -->
+        <Button Content="{StaticResource UndoButtonContent}"                
+                Command="{Binding UndoCommand}" 
+                Visibility="{Binding UndoIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Focusable="False"
+                Height="20"
+                Width="20"
+                Style="{DynamicResource HelpButtonStyle}"
+                BorderThickness="0"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="10"
+                Grid.Row="0"/>
+        <!--#endregion-->
+
         <Grid Grid.Row="1">
             
-            <!--region Grid Definitions -->                            
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>           <!-- Margin -->
-                <ColumnDefinition Width="20*"/>         <!-- Content -->
-                <ColumnDefinition Width="*"/>           <!-- Margin -->
-            </Grid.ColumnDefinitions>
-            <!--endregion-->
-
             <!-- #region Documents ListView -->
-            <!--<ListView ItemsSource="{Binding ShownDocuments}" 
-                  Style="{DynamicResource DocumentsInfoListViewStyle}"
-                  Grid.Row="2">
+            <ListView ItemsSource="{Binding OrderItems}" 
+                      Style="{StaticResource OrderItemsListViewStyle}">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <dashboardViews:DocumentInfoView DataContext="{Binding}"/>
+                        <orderItem:OrderItemView DataContext="{Binding}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
 
 
-            </ListView>-->
+            </ListView>
             <!--#endregion-->
 
         </Grid>        

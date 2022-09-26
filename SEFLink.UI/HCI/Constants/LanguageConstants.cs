@@ -13,6 +13,14 @@ namespace SEFLink.UI.HCI.Constants
             public const string YourOrder = "Your Order";
             public const string SubTotal = "SUB-TOTAL";
             public const string Checkout = "Checkout";
+
+            public const string Confirm = "Confirm";
+            public const string Remove = "Remove";
+            public const string Cancel = "Cancel";
+
+            public const string ConfirmQuestion = "Confirm Order?";
+            public const string RemoveQuestion = "Remove Order Item?";
+            public const string CancelOrderQuestion = "Cancel whole order?";
         }
         
         public static class Bosnian
@@ -25,6 +33,14 @@ namespace SEFLink.UI.HCI.Constants
             public const string YourOrder = "Vaša narudžba";
             public const string SubTotal = "UKUPNO";
             public const string Checkout = "Završi";
+
+            public const string Confirm = "Potvrdi";
+            public const string Remove = "Ukloni";
+            public const string Cancel = "Prekini";
+
+            public const string ConfirmQuestion = "Potvrdi narudžbu?";
+            public const string RemoveQuestion = "Ukloni odabranu stavku?";
+            public const string CancelOrderQuestion = "Prekini narudžbu?";
         }
         
         public static class German
@@ -37,6 +53,14 @@ namespace SEFLink.UI.HCI.Constants
             public const string YourOrder = "Deine Bestellung";
             public const string SubTotal = "GESAMT";
             public const string Checkout = "Abschließen";
+
+            public const string Confirm = "Confirm";
+            public const string Remove = "Remove";
+            public const string Cancel = "Cancel";
+
+            public const string ConfirmQuestion = "Confirm Order?";
+            public const string RemoveQuestion = "Remove Order Item?";
+            public const string CancelOrderQuestion = "Cancel whole order?";
         }
     }
 }

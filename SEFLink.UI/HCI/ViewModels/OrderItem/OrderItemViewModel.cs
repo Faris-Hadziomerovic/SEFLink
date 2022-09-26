@@ -15,27 +15,28 @@ namespace SEFLink.UI.HCI.ViewModels
         private int _id;
 
         private string _description;
-        private string _price;
+        private decimal _price;
+        private string _priceText;
         private string _image;
 
         #region Image Flags 
-            
-            private bool _colaIsVisible;
-            private bool _spriteIsVisible;
-            private bool _fantaIsVisible;
 
-            private bool _cafeLatteIsVisible;
-            private bool _cappuccinoIsVisible;
-            private bool _hotChocolateIsVisible;
+        private bool _colaIsVisible;
+        private bool _spriteIsVisible;
+        private bool _fantaIsVisible;
 
-            private bool _pizza1IsVisible;
-            private bool _pizza2IsVisible;
-            private bool _pizza3IsVisible;
+        private bool _cafeLatteIsVisible;
+        private bool _cappuccinoIsVisible;
+        private bool _hotChocolateIsVisible;
 
-            private bool _hamburgerIsVisible;
-            private bool _chickenIsVisible;
-            private bool _friesIsVisible;
-            
+        private bool _pizza1IsVisible;
+        private bool _pizza2IsVisible;
+        private bool _pizza3IsVisible;
+
+        private bool _hamburgerIsVisible;
+        private bool _chickenIsVisible;
+        private bool _friesIsVisible;
+
         #endregion
 
         private IEventAggregator _eventAggregator;
@@ -55,14 +56,15 @@ namespace SEFLink.UI.HCI.ViewModels
             Id = id;
             Image = image;
             Description = description;
-            Price = $"{price}";
+            Price = price;
+            PriceText = $"{price}";
 
             Setup();
 
             RemoveItemCommand = new DelegateCommand(Execute_RemoveItem, CanExecute_RemoveItem);
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
-        }        
+        }
 
         #endregion
 
@@ -82,10 +84,16 @@ namespace SEFLink.UI.HCI.ViewModels
             set { _description = value; OnPropertyChanged(); }
         }
 
-        public string Price
+        public decimal Price
         {
             get { return _price; }
             set { _price = value; OnPropertyChanged(); }
+        }
+
+        public string PriceText
+        {
+            get { return _priceText; }
+            set { _priceText = value; OnPropertyChanged(); }
         }
 
         public string Image
@@ -97,78 +105,78 @@ namespace SEFLink.UI.HCI.ViewModels
 
         #region Image Flags 
 
-            public bool ColaIsVisible
-            {
-                get { return _colaIsVisible; }
-                set { _colaIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool ColaIsVisible
+        {
+            get { return _colaIsVisible; }
+            set { _colaIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool SpriteIsVisible
-            {
-                get { return _spriteIsVisible; }
-                set { _spriteIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool SpriteIsVisible
+        {
+            get { return _spriteIsVisible; }
+            set { _spriteIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool FantaIsVisible
-            {
-                get { return _fantaIsVisible; }
-                set { _fantaIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool FantaIsVisible
+        {
+            get { return _fantaIsVisible; }
+            set { _fantaIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool CafeLatteIsVisible
-            {
-                get { return _cafeLatteIsVisible; }
-                set { _cafeLatteIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool CafeLatteIsVisible
+        {
+            get { return _cafeLatteIsVisible; }
+            set { _cafeLatteIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool CappuccinoIsVisible
-            {
-                get { return _cappuccinoIsVisible; }
-                set { _cappuccinoIsVisible = value; OnPropertyChanged(); }
-            }        
+        public bool CappuccinoIsVisible
+        {
+            get { return _cappuccinoIsVisible; }
+            set { _cappuccinoIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool HotChocolateIsVisible
-            {
-                get { return _hotChocolateIsVisible; }
-                set { _hotChocolateIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool HotChocolateIsVisible
+        {
+            get { return _hotChocolateIsVisible; }
+            set { _hotChocolateIsVisible = value; OnPropertyChanged(); }
+        }
 
 
-            public bool Pizza1IsVisible
-            {
-                get { return _pizza1IsVisible; }
-                set { _pizza1IsVisible = value; OnPropertyChanged(); }
-            }
+        public bool Pizza1IsVisible
+        {
+            get { return _pizza1IsVisible; }
+            set { _pizza1IsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool Pizza2IsVisible
-            {
-                get { return _pizza2IsVisible; }
-                set { _pizza2IsVisible = value; OnPropertyChanged(); }
-            }
+        public bool Pizza2IsVisible
+        {
+            get { return _pizza2IsVisible; }
+            set { _pizza2IsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool Pizza3IsVisible
-            {
-                get { return _pizza3IsVisible; }
-                set { _pizza3IsVisible = value; OnPropertyChanged(); }
-            }
+        public bool Pizza3IsVisible
+        {
+            get { return _pizza3IsVisible; }
+            set { _pizza3IsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool HamburgerIsVisible
-            {
-                get { return _hamburgerIsVisible; }
-                set { _hamburgerIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool HamburgerIsVisible
+        {
+            get { return _hamburgerIsVisible; }
+            set { _hamburgerIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool ChickenIsVisible
-            {
-                get { return _chickenIsVisible; }
-                set { _chickenIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool ChickenIsVisible
+        {
+            get { return _chickenIsVisible; }
+            set { _chickenIsVisible = value; OnPropertyChanged(); }
+        }
 
-            public bool FriesIsVisible
-            {
-                get { return _friesIsVisible; }
-                set { _friesIsVisible = value; OnPropertyChanged(); }
-            }
+        public bool FriesIsVisible
+        {
+            get { return _friesIsVisible; }
+            set { _friesIsVisible = value; OnPropertyChanged(); }
+        }
 
         #endregion
 
@@ -225,7 +233,7 @@ namespace SEFLink.UI.HCI.ViewModels
                 case "Cola":
                     ColaIsVisible = true;
                     break;
-                    
+
                 case "Sprite":
                     SpriteIsVisible = true;
                     break;
@@ -233,18 +241,18 @@ namespace SEFLink.UI.HCI.ViewModels
                 case "Fanta":
                     FantaIsVisible = true;
                     break;
-                    
+
                 case "CafeLatte":
                     CafeLatteIsVisible = true;
                     break;
-                    
+
                 case "Cappuccino":
                     CappuccinoIsVisible = true;
                     break;
 
                 case "HotChocolate":
                     HotChocolateIsVisible = true;
-                    break;                
+                    break;
 
                 default:
                     HamburgerIsVisible = true;
@@ -254,12 +262,36 @@ namespace SEFLink.UI.HCI.ViewModels
 
         private void OnLanguageChanged(ChangeLanguageEventArgs args)
         {
-            
+
         }
 
         private void Execute_RemoveItem()
         {
-            _eventAggregator.GetEvent<RemoveItemEvent>().Publish(new RemoveItemEventArgs { Id = _id });
+            _eventAggregator.GetEvent<RemoveItemEvent>().Publish(new RemoveItemEventArgs
+            {
+                Id = _id,
+                OrderItem = new Models.OrderItem
+                {
+                    Id = Id,
+                    Description = Description,
+                    Name = Description,
+                    Image = Image,
+                    Price = Price
+                }
+            });
+
+            //_eventAggregator.GetEvent<RemoveItemConfirmedEvent>().Publish(new RemoveItemConfirmedEventArgs
+            //{
+            //    Id = _id,
+            //    OrderItem = new Models.OrderItem
+            //    {
+            //        Id = Id,
+            //        Description = Description,
+            //        Name = Description,
+            //        Image = Image,
+            //        Price = Price
+            //    }
+            //});
         }
 
         private bool CanExecute_RemoveItem() => true;

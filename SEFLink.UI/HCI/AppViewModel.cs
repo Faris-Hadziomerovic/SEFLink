@@ -1,5 +1,6 @@
 ﻿using Prism.Events;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
 
 namespace SEFLink.UI.HCI.ViewModels
@@ -35,6 +36,7 @@ namespace SEFLink.UI.HCI.ViewModels
                             LanguageSettingsViewModel languageSettingsViewModel,
                             IEventAggregator eventAggregator)
         {
+
             _eventAggregator = eventAggregator;
             MenuViewModel = menuViewModel;
             NavigationBarViewModel = navigationBarViewModel;
@@ -46,10 +48,8 @@ namespace SEFLink.UI.HCI.ViewModels
             _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnMenuViewSelected);
             _eventAggregator.GetEvent<LanguageViewEvent>().Subscribe(OnLanguageViewSelected);
 
-            _eventAggregator.GetEvent<CancelOrderEvent>().Subscribe(OnCancelOrder);
-            _eventAggregator.GetEvent<CheckoutEvent>().Subscribe(OnCheckout);
-
-            _eventAggregator.GetEvent<OverlayClosedEvent>().Subscribe(OnOverlayClosed);
+            _eventAggregator.GetEvent<CloseDialogOverlayEvent>().Subscribe(OnOverlayClosed);
+            _eventAggregator.GetEvent<OpenDialogOverlayEvent>().Subscribe(OnOverlayOpened);
         }
 
         #endregion
@@ -124,20 +124,15 @@ namespace SEFLink.UI.HCI.ViewModels
             CurrentViewModel = LanguageSettingsViewModel;
             ViewTitle = _languageTitle;
         }
-
-        private void OnCancelOrder(CancelOrderEventArgs args)
-        {
-            DialogOverlayIsVisible = true;
-        }
-
-        private void OnCheckout(CheckoutEventArgs args)
-        {
-            DialogOverlayIsVisible = true;
-        }
         
-        private void OnOverlayClosed(OverlayClosedEventArgs args)
+        private void OnOverlayClosed()
         {
             DialogOverlayIsVisible = false;
+        }
+        
+        private void OnOverlayOpened()
+        {
+            DialogOverlayIsVisible = true;
         }
 
         #endregion

@@ -59,7 +59,7 @@ namespace SEFLink.UI.HCI.ViewModels
             get { return _foodText; }
             set { _foodText = value; OnPropertyChanged(); }
         }
-        
+
         public string DrinksText
         {
             get { return _drinksText; }
@@ -77,13 +77,13 @@ namespace SEFLink.UI.HCI.ViewModels
             get { return _foodIsVisible; }
             set { _foodIsVisible = value; OnPropertyChanged(); }
         }
-        
+
         public bool HelpIsVisible
         {
             get { return _helpIsVisible; }
             set { _helpIsVisible = value; OnPropertyChanged(); }
         }
-        
+
         public bool EnglishFlagIsVisible
         {
             get { return _englishFlagIsVisible; }
@@ -95,7 +95,7 @@ namespace SEFLink.UI.HCI.ViewModels
             get { return _bosnianFlagIsVisible; }
             set { _bosnianFlagIsVisible = value; OnPropertyChanged(); }
         }
-        
+
         public bool GermanFlagIsVisible
         {
             get { return _germanFlagIsVisible; }
@@ -127,14 +127,14 @@ namespace SEFLink.UI.HCI.ViewModels
         {
             if (args.Language == "English")
                 OnEnglishSelected();
-            
+
             if (args.Language == "Bosnian")
                 OnBosnianSelected();
-            
+
             if (args.Language == "German")
-                OnGermanSelected();            
+                OnGermanSelected();
         }
-        
+
         private void OnEnglishSelected()
         {
             EnglishFlagIsVisible = true;
@@ -144,7 +144,7 @@ namespace SEFLink.UI.HCI.ViewModels
             FoodText = English.Food;
             DrinksText = English.Drinks;
         }
-        
+
         private void OnBosnianSelected()
         {
             EnglishFlagIsVisible = false;
@@ -181,7 +181,17 @@ namespace SEFLink.UI.HCI.ViewModels
         {
             _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
             //_eventAggregator.GetEvent<HelpViewEvent>().Publish(new HelpViewEventArgs());
-            _eventAggregator.GetEvent<PaymentOptionsViewEvent>().Publish(new PaymentOptionsViewEventArgs());
+            //_eventAggregator.GetEvent<PaymentOptionsViewEvent>().Publish(new PaymentOptionsViewEventArgs());
+            _eventAggregator.GetEvent<AddItemEvent>().Publish(new AddItemEventArgs
+            {
+                OrderItem = new Models.OrderItem
+                {
+                    Image = "Sprite",
+                    Name = "Sprite 0.5l",
+                    Price = 1.99M,
+                    Description = "Beef hamburger with ketchup."
+                }
+            });
         }
 
         private void Execute_NavigateToLanguages()

@@ -121,8 +121,10 @@
     <Compile Include="Events\PreviousSettingsViewEvent.cs" />
     <Compile Include="Events\WindowStateChangedEvent.cs" />
     <Compile Include="HCI\Constants\LanguageConstants.cs" />
+    <Compile Include="HCI\Data\DataProvider.cs" />
     <Compile Include="HCI\Data\UndoStack.cs" />
-    <Compile Include="HCI\Events\DialogOverlayEvents\OverlayClosedEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\OpenDialogOverlayEvent.cs" />
+    <Compile Include="HCI\Events\DialogOverlayEvents\CloseDialogOverlayEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ChangeLanguageEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutEvent.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="HCI\Events\DialogOverlayEvents\RemoveItemEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\AddItemEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\PaymentViews\PaymentOptionsViewEvent.cs" />
+    <Compile Include="HCI\Helpers\OrderItemHelper.cs" />
     <Compile Include="HCI\Models\OrderItem.cs" />
     <Compile Include="HCI\AppViewModel.cs" />
     <Compile Include="HCI\ViewModels\DialogOverlayViewModel.cs" />
@@ -709,6 +712,9 @@
     <Resource Include="HCI\Assets\Icons\Food\pizza01.png" />
     <Resource Include="HCI\Assets\Icons\Food\pizza02.png" />
     <Resource Include="HCI\Assets\Icons\Food\pizza03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="HCI\Assets\Icons\Undo\Undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

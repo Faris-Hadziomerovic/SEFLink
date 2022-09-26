@@ -41,6 +41,7 @@ namespace SEFLink.UI.Startup
 
             // Other
             builder.RegisterType<HCI.ViewModels.OrderItemViewModel>().AsSelf();
+            builder.RegisterType<HCI.Data.UndoStack>().AsSelf();
 
             #endregion
 

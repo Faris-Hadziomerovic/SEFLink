@@ -87,10 +87,21 @@
     <SolidColorBrush x:Key="Button.Purple.Background.MouseOver" Color="#a0f" Opacity="1"/>
     <SolidColorBrush x:Key="Button.Purple.Background.Disabled" Color="#85f" Opacity="0.8"/>
     
+    <!-- Red -->
+    <SolidColorBrush x:Key="Button.Red.Background.Normal" Color="#DE4E4E"/>
+    <SolidColorBrush x:Key="Button.Red.Background.MouseOver" Color="#E17D7D" Opacity="1"/>
+    <SolidColorBrush x:Key="Button.Red.Background.Disabled" Color="#C0C0C0" Opacity="0.8"/>
+    
+    <!-- Unfocused -->
+    <SolidColorBrush x:Key="Button.Unfocused.Foreground.Normal" Color="#fff"/>
+    <SolidColorBrush x:Key="Button.Unfocused.Background.Normal" Color="#C0C0C0"/>
+    <SolidColorBrush x:Key="Button.Unfocused.Background.MouseOver" Color="#DEDEDE" Opacity="1"/>
+    <SolidColorBrush x:Key="Button.Unfocused.Background.Disabled" Color="#C0C0C0" Opacity="0.8"/>
+    
     <!-- Green -->
     <SolidColorBrush x:Key="Button.Green.Background.Normal" Color="#3fb722"/>
     <SolidColorBrush x:Key="Button.Green.Background.MouseOver" Color="#6bde4e" Opacity="1"/>
-    <SolidColorBrush x:Key="Button.Green.Background.Disabled" Color="#c7c7c7" Opacity="0.8"/>
+    <SolidColorBrush x:Key="Button.Green.Background.Disabled" Color="#C0C0C0" Opacity="0.8"/>
 
     <!-- Gray -->
     <SolidColorBrush x:Key="Button.Gray.Background.Normal" Color="#edeeef"/>

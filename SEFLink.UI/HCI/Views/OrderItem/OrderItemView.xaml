@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SEFLink.UI.HCI.Views.OrderItem" xmlns:viewmodels="clr-namespace:SEFLink.UI.HCI.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:OrderItemViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="200">
+             d:DesignHeight="55" d:DesignWidth="200">
 
     <UserControl.Resources>
 
@@ -15,7 +15,7 @@
         <Style x:Key="DescriptionTextStyle" TargetType="{x:Type TextBlock}">
 
             <Setter Property="Foreground" Value="#585858" />
-            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="Margin" Value="0 0 0 0" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="DemiBold" />
@@ -45,7 +45,7 @@
         
     </UserControl.Resources>
     
-    <Grid>
+    <Grid Height="55">
 
 
         <!--#region Grid Definitions -->
@@ -53,7 +53,7 @@
             <ColumnDefinition Width="5" />     <!-- margin -->
             <ColumnDefinition Width="auto" />     <!-- X -->
             <ColumnDefinition Width="5" />     <!-- separator -->
-            <ColumnDefinition Width="50" />     <!-- Image -->
+            <ColumnDefinition Width="60" />     <!-- Image -->
             <ColumnDefinition Width="*" />     <!-- Text -->
             <ColumnDefinition Width="5" />     <!-- margin -->
         </Grid.ColumnDefinitions>
@@ -66,20 +66,23 @@
         <!--#region Remove Item Button -->
         <Button Content="{StaticResource RemoveItemButtonContent}"                
                 Command="{Binding RemoveItemCommand}" 
-                Background="Transparent"
+                Focusable="False"
+                Height="20"
+                Width="20"
+                Style="{DynamicResource HelpButtonStyle}"
                 BorderThickness="0"
                 Grid.Column="1"/>
         <!--#endregion-->
 
         <!-- region Images -->
-        <Grid Grid.Column="3">
+        <Grid Grid.Column="3" 
+              Width="50" 
+              Height="40">
 
-            <Border Background="#fff"
+            <!--<Border Background="Transparent"
                     BorderBrush="#bababa"
-                    BorderThickness="0.5"
-                    Height="40"
-                    Width="45"
-                    Grid.Column="3"/>
+                    BorderThickness="1"                    
+                    Grid.Column="3"/>-->
 
             <!-- region Drink Images -->
             <Image Style="{DynamicResource Drinks.CafeLatte}"
@@ -110,6 +113,7 @@
             <Image Style="{DynamicResource Drinks.Sprite}"
                    Visibility="{Binding SpriteIsVisible, 
                                 Converter={StaticResource BoolToVisibility}}"
+                   Width="50"
                    Grid.Column="3"/>
             <!-- endregion -->
 
@@ -168,8 +172,8 @@
                 
                 <!--region Grid Definitions -->                
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*"/>           <!-- Margin -->
-                    <ColumnDefinition Width="0.8*"/>           <!-- Price -->
+                    <ColumnDefinition Width="0"/>           <!-- Margin -->
+                    <ColumnDefinition Width="40"/>           <!-- Price -->
                     <ColumnDefinition Width="auto"/>           <!-- Currency -->
                     <ColumnDefinition Width="*"/>              <!-- Margin -->
                 </Grid.ColumnDefinitions>
@@ -178,7 +182,7 @@
                             
                 <TextBlock Style="{StaticResource PriceTextStyle}"
                            Grid.Column="1"
-                           Text="{Binding Price, FallbackValue=5.00}"/>
+                           Text="{Binding PriceText, FallbackValue=5.00}"/>
 
                 <TextBlock Style="{StaticResource PriceTextStyle}"
                             Grid.Column="2"
