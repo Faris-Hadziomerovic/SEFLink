@@ -1,8 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Constants;
+using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
 using SEFLink.UI.HCI.Models;
 using static SEFLink.UI.HCI.Constants.LanguageConstants;
@@ -182,16 +184,12 @@ namespace SEFLink.UI.HCI.ViewModels
         {
             //_eventAggregator.GetEvent<HelpViewEvent>().Publish(new HelpViewEventArgs());
 
+            var random = new Random();
+
             _eventAggregator.GetEvent<AddItemEvent>().Publish(new AddItemEventArgs
             {
                 UndoExecuted = false,
-                OrderItem = new OrderItem
-                {
-                    Image = "Sprite",
-                    Name = "Sprite 0.5l",
-                    Price = 1.99M,
-                    Description = "Beef hamburger with ketchup."
-                }
+                OrderItem = DataProvider.FoodItems[random.Next(6)],
             });
 
             NavigateToMenu();

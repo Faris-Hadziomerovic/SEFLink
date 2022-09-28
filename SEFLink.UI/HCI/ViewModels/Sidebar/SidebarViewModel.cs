@@ -56,6 +56,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             _eventAggregator.GetEvent<AddItemEvent>().Subscribe(OnItemAdded);
             _eventAggregator.GetEvent<RemoveItemConfirmedEvent>().Subscribe(OnItemRemoved);
             _eventAggregator.GetEvent<CheckoutConfirmedEvent>().Subscribe(OnCheckoutConfirmed);
+            _eventAggregator.GetEvent<CancelOrderConfirmedEvent>().Subscribe(OnCancelOrderConfirmed);
             _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnReturnToMenu);
             _eventAggregator.GetEvent<FinishedOrderEvent>().Subscribe(OnOrderFinished);
             _eventAggregator.GetEvent<CartEmptiedDuringCheckoutEvent>().Subscribe(OnCartEmptiedDuringCheckout);
@@ -182,6 +183,11 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         {
             CancelIsVisible = true;
             CheckoutIsVisible = false;
+        }
+        
+        private void OnCancelOrderConfirmed()
+        {
+            ResetView();
         }
         
         private void OnReturnToMenu(MenuViewEventArgs args)

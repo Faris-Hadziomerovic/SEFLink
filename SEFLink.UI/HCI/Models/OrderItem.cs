@@ -7,10 +7,10 @@ namespace SEFLink.UI.HCI.Models
         public OrderItem()
         {
             var random = new Random();
-            Id = random.Next();
+            Id = Guid.NewGuid();
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

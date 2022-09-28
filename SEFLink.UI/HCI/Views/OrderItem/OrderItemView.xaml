@@ -52,7 +52,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />     <!-- margin -->
             <ColumnDefinition Width="auto" />     <!-- X -->
-            <ColumnDefinition Width="5" />     <!-- separator -->
+            <ColumnDefinition Width="0" />     <!-- separator -->
             <ColumnDefinition Width="60" />     <!-- Image -->
             <ColumnDefinition Width="*" />     <!-- Text -->
             <ColumnDefinition Width="5" />     <!-- margin -->
@@ -78,11 +78,6 @@
         <Grid Grid.Column="3" 
               Width="50" 
               Height="40">
-
-            <!--<Border Background="Transparent"
-                    BorderBrush="#bababa"
-                    BorderThickness="1"                    
-                    Grid.Column="3"/>-->
 
             <!-- region Drink Images -->
             <Image Style="{DynamicResource Drinks.CafeLatte}"
@@ -165,7 +160,7 @@
             <!--#endregion-->
 
             <TextBlock Style="{StaticResource DescriptionTextStyle}"
-                       Text="{Binding Description, FallbackValue=Hamburger}"
+                       Text="{Binding Name, FallbackValue=Hamburger}"
                        Grid.Row="1"/>
 
             <Grid Grid.Row="2">

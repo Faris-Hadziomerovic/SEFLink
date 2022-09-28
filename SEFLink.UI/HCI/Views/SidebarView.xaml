@@ -32,6 +32,7 @@
                         <Setter Property="Padding" Value="0" />
                         <Setter Property="Margin" Value="0 3" />
                         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                        <Setter Property="Focusable" Value="false" />
 
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -200,12 +201,18 @@
         </Grid>
         <!--#endregion-->
 
-        <!--region Remove Item Button Content -->
-        <Image x:Key="UndoButtonContent" 
-               Width="15"
-               Height="15"
-               Margin="0"
-               Style="{DynamicResource Other.UndoIcon}" />
+        <!--region Undo Button Content -->
+        <StackPanel x:Key="UndoButtonContent" Orientation="Horizontal">
+            <Image Style="{DynamicResource Other.UndoIcon}" 
+                   Width="15"
+                   Height="15"
+                   Margin="0"/>
+            <TextBlock Foreground="Black"
+                       Padding="15 0 0 0"
+                       FontWeight="DemiBold">
+                Undo
+            </TextBlock>
+        </StackPanel>
         <!--endregion-->
 
     </UserControl.Resources>
@@ -214,7 +221,7 @@
 
         <!--region Grid Definitions -->                
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>           <!-- Your Order Title -->
+            <RowDefinition Height="auto"/>           <!-- Your Order Title -->
             <RowDefinition Height="*"/>             <!-- Orders List -->
             <RowDefinition Height="auto"/>             <!-- Orders List -->
             <RowDefinition Height="auto"/>          <!-- Checkout and sub-total -->
@@ -229,11 +236,11 @@
             
             <!--region Grid Definitions -->                
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>             <!-- Margin -->
+                <RowDefinition Height="15"/>             <!-- Margin -->
                 <RowDefinition Height="auto"/>          <!-- Title -->
-                <RowDefinition Height="10"/>            <!-- Separator -->
+                <RowDefinition Height="15"/>            <!-- Separator -->
                 <RowDefinition Height="auto"/>          <!-- Border -->
-                <RowDefinition Height="*"/>             <!-- Margin -->
+                <RowDefinition Height="auto"/>             <!-- Margin -->
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -250,31 +257,32 @@
                        Text="{Binding TitleText, FallbackValue=Your Order}"/>
 
             <Border Background="#ababab" 
-                    Grid.Row="4" 
+                    Grid.Row="3" 
                     Grid.Column="1" 
                     Height="1" />
 
+            <!--#region Undo Button -->
+            <Button Content="{StaticResource UndoButtonContent}"                
+                    Command="{Binding UndoCommand}" 
+                    Visibility="{Binding UndoIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Focusable="False"
+                    Height="30"
+                    Width="80"
+                    Style="{DynamicResource GrayButtonStyle3}"
+                    BorderThickness="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Grid.Row="5"
+                    Grid.Column="1"/>
+            <!--#endregion-->
+            
         </Grid>
         <!--#endregion-->
 
-        <!--#region Undo Button -->
-        <Button Content="{StaticResource UndoButtonContent}"                
-                Command="{Binding UndoCommand}" 
-                Visibility="{Binding UndoIsVisible, Converter={StaticResource BoolToVisibility}}"
-                Focusable="False"
-                Height="20"
-                Width="20"
-                Style="{DynamicResource HelpButtonStyle}"
-                BorderThickness="0"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="10"
-                Grid.Row="0"/>
-        <!--#endregion-->
-
+        <!-- #region Documents ListView -->
         <Grid Grid.Row="1">
             
-            <!-- #region Documents ListView -->
             <ListView ItemsSource="{Binding OrderItems}" 
                       Style="{StaticResource OrderItemsListViewStyle}">
 
@@ -286,9 +294,9 @@
 
 
             </ListView>
-            <!--#endregion-->
 
         </Grid>        
+        <!--#endregion-->
         
         <!--#region Sub-Total -->
         <Grid Grid.Row="2">

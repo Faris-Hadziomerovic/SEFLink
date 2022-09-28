@@ -239,7 +239,7 @@ namespace SEFLink.UI.HCI.ViewModels
 
 		private void Execute_CancelOrder()
 		{
-            _eventAggregator.GetEvent<CancelOrderEvent>().Publish();
+            _eventAggregator.GetEvent<CancelOrderConfirmedEvent>().Publish();
 
 			_eventAggregator.GetEvent<FoodDrinkViewEvent>().Publish();            
 

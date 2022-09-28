@@ -226,7 +226,6 @@
 				</Style.Triggers>
 
 			</Style>
-			<!--#endregion-->
 
 			<!--#region Gray Button - Disabled: transparent Style-->
 			<Style x:Key="GrayButtonStyle2" BasedOn="{StaticResource GrayButtonStyle}" TargetType="{x:Type Button}">
@@ -234,6 +233,26 @@
 				<Style.Triggers>
 					<Trigger Property="IsEnabled" Value="False">
 						<Setter Property="Background" Value="{StaticResource Button.Gray2.Background.Disabled}"/>
+					</Trigger>
+
+				</Style.Triggers>
+
+			</Style>
+			<!--#endregion-->
+    
+			<!--#endregion--><!--#region Gray Button - Style-->
+			<Style x:Key="GrayButtonStyle3" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
+
+				<Setter Property="Background" Value="{StaticResource Button.Gray.Background.MouseOver}"/>
+				<Setter Property="Foreground" Value="{StaticResource Button.Gray.Foreground.Normal}"/>
+
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Button.Gray.Background.Disabled}"/>
+					</Trigger>
+
+					<Trigger Property="IsEnabled" Value="False">
+						<Setter Property="Background" Value="{StaticResource Button.Gray.Background.Disabled}"/>
 					</Trigger>
 
 				</Style.Triggers>

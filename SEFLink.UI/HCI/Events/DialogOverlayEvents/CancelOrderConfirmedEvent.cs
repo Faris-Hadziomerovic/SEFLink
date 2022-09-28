@@ -2,7 +2,7 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class CancelOrderConfirmedEvent : PubSubEvent<CancelOrderConfirmedArgs> { }
+    public class CancelOrderConfirmedEvent : PubSubEvent { }
 
-    public class CancelOrderConfirmedArgs { }
+    public class CancelOrderConfirmedEventArgs { }
 }
