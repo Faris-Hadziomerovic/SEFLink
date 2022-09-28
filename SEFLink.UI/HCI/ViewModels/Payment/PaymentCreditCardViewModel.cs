@@ -13,18 +13,14 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
         private string _infoText;
 
-        private string _cashText;
         private string _creditCardText;
 
-        private bool _cashIsVisible;
         private bool _creditCardIsVisible;
 
         private readonly IEventAggregator _eventAggregator;
 
-        public ICommand NavigateToCashCommand { get; }
         public ICommand NavigateToCreditCardCommand { get; }
         public ICommand NavigateBackCommand { get; }
-
         
         #endregion
 
@@ -35,11 +31,10 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
         {
             _eventAggregator = eventAggregator;
 
-            Setup();
-
-            NavigateToCashCommand = new DelegateCommand(Execute_NavigateToCash, CanExecute_NavigateToCash);
             NavigateToCreditCardCommand = new DelegateCommand(Execute_NavigateToCreditCard, CanExecute_NavigateToCreditCard);
             NavigateBackCommand = new DelegateCommand(Execute_NavigateBack, CanExecute_NavigateBack);
+
+            Setup();
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
@@ -49,28 +44,16 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
         #region Properties
 
-        public string CashText
-        {
-            get { return _cashText; }
-            set { _cashText = value; OnPropertyChanged(); }
-        }
-
-        public string CreditCardText
-        {
-            get { return _creditCardText; }
-            set { _creditCardText = value; OnPropertyChanged(); }
-        }
-
         public string InfoText
         {
             get { return _infoText; }
             set { _infoText = value; OnPropertyChanged(); }
         }
 
-        public bool CashIsVisible
+        public string CreditCardText
         {
-            get { return _cashIsVisible; }
-            set { _cashIsVisible = value; OnPropertyChanged(); }
+            get { return _creditCardText; }
+            set { _creditCardText = value; OnPropertyChanged(); }
         }
 
         public bool CreditCardIsVisible
@@ -87,7 +70,6 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
         private void Setup()
         {
             InfoText = "";
-            CashIsVisible = true;
             CreditCardIsVisible = true;
 
             OnEnglishSelected();
@@ -107,25 +89,17 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
         private void OnEnglishSelected()
         {
-            CashText = English.Cash;
             CreditCardText = English.CreditCard;
         }
 
         private void OnBosnianSelected()
         {
-            CashText = Bosnian.Cash;
             CreditCardText = Bosnian.CreditCard;
         }
 
         private void OnGermanSelected()
         {
-            CashText = German.Cash;
             CreditCardText = German.CreditCard;
-        }
-
-        private void Execute_NavigateToCash()
-        {
-            _eventAggregator.GetEvent<PaymentCashViewEvent>().Publish();
         }
 
         private void Execute_NavigateToCreditCard()
@@ -139,8 +113,6 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
         }
         
         private bool CanExecute_NavigateBack() => true;
-
-        private bool CanExecute_NavigateToCash() => true;
 
         private bool CanExecute_NavigateToCreditCard() => true;
 

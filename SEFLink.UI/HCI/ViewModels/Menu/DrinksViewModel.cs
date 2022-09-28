@@ -4,7 +4,6 @@ using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
 using SEFLink.UI.HCI.Helpers;
-using System;
 using System.Windows.Input;
 using static SEFLink.UI.HCI.Constants.LanguageConstants;
 
