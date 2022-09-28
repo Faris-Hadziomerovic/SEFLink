@@ -71,6 +71,31 @@
         </Style>
         <!--endregion-->
 
+        <!--region Cancel Button Style -->
+        <Style x:Key="CancelButtonStyle" BasedOn="{StaticResource RedButtonStyle}" TargetType="{x:Type Button}">
+
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="ContentStringFormat" Value="Center" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+								CornerRadius="25" 
+								Opacity="{TemplateBinding Opacity}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+        <!--endregion-->
+
         <!--region Sub-Total Border Style-->
         <Style x:Key="SubTotalBorderStyle" TargetType="{x:Type Border}">
 
@@ -140,6 +165,34 @@
                                    FontSize="16"
                                    FontWeight="DemiBold"
                                    Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </Grid>
+        <!--#endregion-->
+        
+        <!--#region Cancel Order Button code snippet-->
+        <Grid x:Key="CancelOrderButtonContent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ItemsControl ItemsSource="{Binding CancelText, FallbackValue=Cancel Order}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" 
+                                   VerticalAlignment="Center"                       
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   FontWeight="DemiBold"
+                                   Margin="0,0,2,0"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -269,8 +322,17 @@
         <!--#region Checkout Button -->
         <Button Command="{Binding CheckoutCommand}" 
                 Content="{StaticResource CheckoutButtonContent}" 
+                Visibility="{Binding CheckoutIsVisible, Converter={StaticResource BoolToVisibility}}"
                 Grid.Row="3" 
                 Style="{StaticResource CheckoutButtonStyle}"/>
+        <!--#endregion-->
+        
+        <!--#region Cancel Button -->
+        <Button Command="{Binding CancelOrderCommand}" 
+                Content="{StaticResource CancelOrderButtonContent}" 
+                Visibility="{Binding CancelIsVisible, Converter={StaticResource BoolToVisibility}}"                
+                Grid.Row="3" 
+                Style="{StaticResource CancelButtonStyle}"/>
         <!--#endregion-->
 
     </Grid>

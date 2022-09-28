@@ -4,6 +4,7 @@ using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Constants;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.Models;
 using static SEFLink.UI.HCI.Constants.LanguageConstants;
 
 namespace SEFLink.UI.HCI.ViewModels
@@ -39,12 +40,12 @@ namespace SEFLink.UI.HCI.ViewModels
         {
             _eventAggregator = eventAggregator;
 
-            Setup();
-
             NavigateToFoodCommand = new DelegateCommand(Execute_NavigateToFood, CanExecute_NavigateToFood);
             NavigateToDrinksCommand = new DelegateCommand(Execute_NavigateToDrinks, CanExecute_NavigateToDrinks);
             NavigateToLanguagesCommand = new DelegateCommand(Execute_NavigateToLanguages, CanExecute_NavigateToLanguages);
             NavigateToHelpCommand = new DelegateCommand(Execute_NavigateToHelp, CanExecute_NavigateToHelp);
+
+            Setup();
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
@@ -167,24 +168,24 @@ namespace SEFLink.UI.HCI.ViewModels
 
         private void Execute_NavigateToFood()
         {
-            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
-            _eventAggregator.GetEvent<FoodViewEvent>().Publish(new FoodViewEventArgs());
+            _eventAggregator.GetEvent<FoodViewEvent>().Publish();
+            NavigateToMenu();
         }
 
         private void Execute_NavigateToDrinks()
         {
-            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
-            _eventAggregator.GetEvent<DrinksViewEvent>().Publish(new DrinksViewEventArgs());
+            _eventAggregator.GetEvent<DrinksViewEvent>().Publish();
+            NavigateToMenu();
         }
 
         private void Execute_NavigateToHelp()
         {
-            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
             //_eventAggregator.GetEvent<HelpViewEvent>().Publish(new HelpViewEventArgs());
-            //_eventAggregator.GetEvent<PaymentOptionsViewEvent>().Publish(new PaymentOptionsViewEventArgs());
+
             _eventAggregator.GetEvent<AddItemEvent>().Publish(new AddItemEventArgs
             {
-                OrderItem = new Models.OrderItem
+                UndoExecuted = false,
+                OrderItem = new OrderItem
                 {
                     Image = "Sprite",
                     Name = "Sprite 0.5l",
@@ -192,6 +193,13 @@ namespace SEFLink.UI.HCI.ViewModels
                     Description = "Beef hamburger with ketchup."
                 }
             });
+
+            NavigateToMenu();
+        }
+
+        private void NavigateToMenu()
+        {
+            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs { OriginIsPaymentView = false });
         }
 
         private void Execute_NavigateToLanguages()

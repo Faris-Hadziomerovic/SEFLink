@@ -25,6 +25,7 @@ namespace SEFLink.UI.HCI.Data
         }
 
 
+
         public List<OrderItem> OrderItems
         {
             get { return _orderItems; }
@@ -32,7 +33,8 @@ namespace SEFLink.UI.HCI.Data
         }
 
 
-        private void OnUndo(UndoRemoveItemEventArgs args)
+
+        private void OnUndo()
         {
             if (OrderItems.Count == 0) return;
 

@@ -2,6 +2,7 @@
 using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Events;
+using System;
 using System.Windows.Input;
 
 namespace SEFLink.UI.HCI.ViewModels
@@ -36,12 +37,15 @@ namespace SEFLink.UI.HCI.ViewModels
             SelectEnglishCommand = new DelegateCommand(Execute_SelectEnglish, CanExecute_SelectEnglish);
             SelectBosnianCommand = new DelegateCommand(Execute_SelectBosnian, CanExecute_SelectBosnian);
             SelectGermanCommand = new DelegateCommand(Execute_SelectGerman, CanExecute_SelectGerman);
+
         }
 
         #endregion
 
 
         #region Properties
+
+        public bool OriginIsPayment { get; set; }
 
         public string InfoText
         {
@@ -83,23 +87,24 @@ namespace SEFLink.UI.HCI.ViewModels
         private void Execute_SelectEnglish()
         {
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Publish(new ChangeLanguageEventArgs { Language = "English" });            
-            _eventAggregator.GetEvent<FoodDrinkViewEvent>().Publish(new FoodDrinkViewEventArgs());
-            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
-        }
+            NavigateToMenuView();       
+        }  
 
         private void Execute_SelectBosnian()
         {
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Publish(new ChangeLanguageEventArgs { Language = "Bosnian" });            
-            _eventAggregator.GetEvent<FoodDrinkViewEvent>().Publish(new FoodDrinkViewEventArgs());
-            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
+            NavigateToMenuView();
         }
-
 
         private void Execute_SelectGerman()
         {
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Publish(new ChangeLanguageEventArgs { Language = "German" });            
-            _eventAggregator.GetEvent<FoodDrinkViewEvent>().Publish(new FoodDrinkViewEventArgs());
-            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs());
+            NavigateToMenuView();
+        }
+
+        private void NavigateToMenuView()
+        {
+            _eventAggregator.GetEvent<MenuViewEvent>().Publish(new MenuViewEventArgs { OriginIsPaymentView = OriginIsPayment});
         }
 
         private bool CanExecute_SelectEnglish() => true;

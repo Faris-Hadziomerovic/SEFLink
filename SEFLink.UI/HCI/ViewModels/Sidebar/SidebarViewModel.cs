@@ -20,6 +20,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
 
         private string _titleText;
         private string _checkoutText;
+        private string _cancelText;
         private string _subTotalText;
         private string _price;
 
@@ -45,18 +46,19 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             _eventAggregator = eventAggregator;
             _undoStack = undoStack;
 
-
-            Setup();
-
             CheckoutCommand = new DelegateCommand(Execute_Checkout, CanExecute_Checkout);
             CancelOrderCommand = new DelegateCommand(Execute_CancelOrder, CanExecute_CancelOrder);
             UndoCommand = new DelegateCommand(Execute_Undo, CanExecute_Undo);
 
+            Setup();
+
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
             _eventAggregator.GetEvent<AddItemEvent>().Subscribe(OnItemAdded);
             _eventAggregator.GetEvent<RemoveItemConfirmedEvent>().Subscribe(OnItemRemoved);
-            _eventAggregator.GetEvent<CheckoutConfirmedEvent>().Subscribe(OnCheckout);
-            _undoStack = undoStack;
+            _eventAggregator.GetEvent<CheckoutConfirmedEvent>().Subscribe(OnCheckoutConfirmed);
+            _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnReturnToMenu);
+            _eventAggregator.GetEvent<FinishedOrderEvent>().Subscribe(OnOrderFinished);
+            _eventAggregator.GetEvent<CartEmptiedDuringCheckoutEvent>().Subscribe(OnCartEmptiedDuringCheckout);
         }
 
         #endregion
@@ -65,11 +67,16 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         #region Properties
 
         public ObservableCollection<OrderItemViewModel> OrderItems { get; set; }
-        
+
         public string Price
         {
             get { return _price; }
-            set { _price = value; OnPropertyChanged(); }
+            set
+            {
+                _price = value; 
+                OnPropertyChanged();
+                ((DelegateCommand)CheckoutCommand).RaiseCanExecuteChanged();
+            }
         }
 
         public string TitleText
@@ -89,6 +96,12 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             get { return _checkoutText; }
             set { _checkoutText = value; OnPropertyChanged(); }
         }
+        
+        public string CancelText
+        {
+            get { return _cancelText; }
+            set { _cancelText = value; OnPropertyChanged(); }
+        }
 
         public bool CheckoutIsVisible
         {
@@ -101,7 +114,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             get { return _cancelIsVisible; }
             set { _cancelIsVisible = value; OnPropertyChanged(); }
         }
-        
+
         public bool UndoIsVisible
         {
             get { return _undoIsVisible; }
@@ -120,61 +133,10 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             TitleText = "";
             Price = $"{0.00M}";
             CheckoutIsVisible = true;
-            CancelIsVisible = true;
+            CancelIsVisible = false;
             UndoIsVisible = false;
 
             OnEnglishSelected();
-        }
-
-        private async void RefreshView()
-        {
-            await Task.Delay(100);
-
-            UndoIsVisible = _undoStack.OrderItems.Count > 0;
-        }
-        
-        private void OnCheckout(CheckoutConfirmedEventArgs args)
-        {
-
-        }
-
-        private void OnItemRemoved(RemoveItemConfirmedEventArgs args)
-        {
-            var OrderItemsCopy = OrderItems.Where(oi => oi.Id != args.Id).ToList();
-
-            OrderItems.Clear();
-
-            foreach (var item in OrderItemsCopy)
-            {
-                OrderItems.Add(item);
-            }
-
-            OrderItemsCopy.Clear();
-
-            CalculateTotalPrice();
-
-            RefreshView();
-        }
-
-        private void OnItemAdded(AddItemEventArgs args)
-        {
-            OrderItems.Add(OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, args.OrderItem));
-
-            CalculateTotalPrice();
-
-            RefreshView();
-        }
-
-        private void OnLanguageChanged(ChangeLanguageEventArgs args)
-        {
-            if (args.Language == "English")
-                OnEnglishSelected();
-
-            if (args.Language == "Bosnian")
-                OnBosnianSelected();
-
-            if (args.Language == "German")
-                OnGermanSelected();
         }
 
         private void CalculateTotalPrice()
@@ -194,9 +156,88 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             Price = $"{totalPrice}";
         }
 
+        private async void RefreshUndoButton()
+        {
+            await Task.Delay(100);
+
+            UndoIsVisible = _undoStack.OrderItems.Count > 0;
+        }
+
+        private void ResetView()
+        {
+            OrderItems.Clear();
+            _undoStack.OrderItems.Clear();
+            CancelIsVisible = false;
+            UndoIsVisible = false;
+            CheckoutIsVisible = true;
+            CalculateTotalPrice();
+        }
+
+        private void OnOrderFinished()
+        {
+            ResetView();
+        }
+
+        private void OnCheckoutConfirmed()
+        {
+            CancelIsVisible = true;
+            CheckoutIsVisible = false;
+        }
+        
+        private void OnReturnToMenu(MenuViewEventArgs args)
+        {
+
+            CancelIsVisible = args.OriginIsPaymentView;
+            CheckoutIsVisible = !args.OriginIsPaymentView;
+        }
+                
+        private void OnItemRemoved(RemoveItemConfirmedEventArgs args)
+        {
+            OrderItems.Remove(OrderItems.Where(oi => oi.Id == args.Id).First());
+
+            if (OrderItems.Count == 0)
+            {
+                _eventAggregator.GetEvent<CartEmptyEvent>().Publish();
+            }
+
+            CalculateTotalPrice();
+
+            RefreshUndoButton();
+        }
+
+        private void OnItemAdded(AddItemEventArgs args)
+        {
+            OrderItems.Add(OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, args.OrderItem));
+
+            CalculateTotalPrice();
+
+            RefreshUndoButton();
+        }
+        
+        private void OnCartEmptiedDuringCheckout()
+        {
+            CancelIsVisible = false;
+            CheckoutIsVisible = true;
+            CalculateTotalPrice();
+        }
+
+
+        private void OnLanguageChanged(ChangeLanguageEventArgs args)
+        {
+            if (args.Language == "English")
+                OnEnglishSelected();
+
+            if (args.Language == "Bosnian")
+                OnBosnianSelected();
+
+            if (args.Language == "German")
+                OnGermanSelected();
+        }
+
         private void OnEnglishSelected()
         {
             CheckoutText = English.Checkout;
+            CancelText = English.Cancel;
             SubTotalText = English.SubTotal;
             TitleText = English.YourOrder;
         }
@@ -204,6 +245,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private void OnBosnianSelected()
         {
             CheckoutText = Bosnian.Checkout;
+            CancelText = Bosnian.Cancel;
             SubTotalText = Bosnian.SubTotal;
             TitleText = Bosnian.YourOrder;
         }
@@ -211,35 +253,30 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private void OnGermanSelected()
         {
             CheckoutText = German.Checkout;
+            CancelText = German.Cancel;
             SubTotalText = German.SubTotal;
             TitleText = German.YourOrder;
         }
 
         private void Execute_Checkout()
         {
-            _eventAggregator.GetEvent<CheckoutEvent>().Publish(new CheckoutEventArgs());
-
-            RefreshView();
+            _eventAggregator.GetEvent<CheckoutEvent>().Publish();
         }
 
         private void Execute_CancelOrder()
         {
-            _eventAggregator.GetEvent<CancelOrderEvent>().Publish(new CancelOrderEventArgs());
-
-            RefreshView();
+            _eventAggregator.GetEvent<CancelOrderEvent>().Publish();
         }
 
         private void Execute_Undo()
         {
-            _eventAggregator.GetEvent<UndoRemoveItemEvent>().Publish(new UndoRemoveItemEventArgs());
-
-            RefreshView();
+            _eventAggregator.GetEvent<UndoRemoveItemEvent>().Publish();
         }
 
-        private bool CanExecute_Checkout() => true;
+        private bool CanExecute_Checkout() => OrderItems.Count > 0;
 
         private bool CanExecute_CancelOrder() => true;
-        
+
         private bool CanExecute_Undo() => true;
 
         #endregion

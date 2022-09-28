@@ -125,12 +125,15 @@
     <Compile Include="HCI\Data\UndoStack.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\OpenDialogOverlayEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CloseDialogOverlayEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\CartEmptiedDuringCheckoutEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\CartEmptyEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ChangeLanguageEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderConfirmedEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\EditItemEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ExpandItemDetailsEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\FinishedOrderEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ResetAppEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\UndoRemoveItemEvent.cs" />
     <Compile Include="HCI\Events\ViewSwitchEvents\AppViewEvent.cs" />

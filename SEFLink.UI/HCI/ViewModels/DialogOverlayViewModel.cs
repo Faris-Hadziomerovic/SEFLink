@@ -18,7 +18,7 @@ namespace SEFLink.UI.HCI.ViewModels
 		private string _confirmQuestion;
 		private string _cancelQuestion;
 
-		private string _cancelButtonText;
+		private string _cancelOrderButtonText;
 		private string _removeButtonText;
 		private string _confirmButtontext;
 
@@ -26,10 +26,13 @@ namespace SEFLink.UI.HCI.ViewModels
 		private bool _removeDialogIsVisible;
 		private bool _cancelOrderDialogIsVisible;
 
+		private string _cancelButtonText;
+		private string _alternateCancelButtonText;
+
 		private readonly IEventAggregator _eventAggregator;
 
 		public ICommand ConfirmCommand { get; }
-		public ICommand CancelCommand { get; }
+		public ICommand CloseCommand { get; }
 		public ICommand CancelOrderCommand { get; }
 		public ICommand RemoveCommand { get; }
 
@@ -44,10 +47,8 @@ namespace SEFLink.UI.HCI.ViewModels
 		{
 			_eventAggregator = eventAggregator;
 
-			Setup();
-
 			ConfirmCommand = new DelegateCommand(Execute_Confirm);
-			CancelCommand = new DelegateCommand(Execute_Cancel);
+			CloseCommand = new DelegateCommand(Execute_Close);
 			CancelOrderCommand = new DelegateCommand(Execute_CancelOrder);
 			RemoveCommand = new DelegateCommand(Execute_Remove);
 
@@ -56,6 +57,8 @@ namespace SEFLink.UI.HCI.ViewModels
 			_eventAggregator.GetEvent<RemoveItemEvent>().Subscribe(OnRemoveItem);
 			_eventAggregator.GetEvent<CheckoutEvent>().Subscribe(OnCheckout);
 			_eventAggregator.GetEvent<CancelOrderEvent>().Subscribe(OnCancelOrder);
+			
+			Setup();
 		}
 
 		#endregion
@@ -81,10 +84,22 @@ namespace SEFLink.UI.HCI.ViewModels
 			set { _removeButtonText = value; OnPropertyChanged(); }
 		}
 
+		public string CancelOrderButtonText
+		{
+			get { return _cancelOrderButtonText; }
+			set { _cancelOrderButtonText = value; OnPropertyChanged(); }
+		}
+		
 		public string CancelButtonText
 		{
 			get { return _cancelButtonText; }
 			set { _cancelButtonText = value; OnPropertyChanged(); }
+		}
+
+		public string AlternateCancelButtonText
+		{
+			get { return _alternateCancelButtonText; }
+			set { _alternateCancelButtonText = value; OnPropertyChanged(); }
 		}
 
 		public bool ConfirmDialogIsVisible
@@ -121,15 +136,28 @@ namespace SEFLink.UI.HCI.ViewModels
 			CancelOrderDialogIsVisible = false;
 		}
 		
-		private void OnCheckout(CheckoutEventArgs args)
+
+
+		private void OnCheckout()
 		{
 			Question = _confirmQuestion;
 
 			ConfirmDialogIsVisible = true;
-			RemoveDialogIsVisible = false;
 			CancelOrderDialogIsVisible = false;
+			RemoveDialogIsVisible = false;
 
 			_eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
+		}
+		
+		private void OnCancelOrder()
+		{			
+			Question = _cancelQuestion;
+
+			ConfirmDialogIsVisible = false;
+            CancelOrderDialogIsVisible = true;
+			RemoveDialogIsVisible = false;
+
+            _eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
 		}
 
         private void OnRemoveItem(RemoveItemEventArgs args)
@@ -139,19 +167,8 @@ namespace SEFLink.UI.HCI.ViewModels
 			Question = _removeQuestion;
 
 			ConfirmDialogIsVisible = false;
-			RemoveDialogIsVisible = true;
 			CancelOrderDialogIsVisible = false;
-
-            _eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
-		}
-		
-		private void OnCancelOrder(CancelOrderEventArgs args)
-		{			
-			Question = _cancelQuestion;
-
-			ConfirmDialogIsVisible = false;
-			RemoveDialogIsVisible = false;
-            CancelOrderDialogIsVisible = true;
+			RemoveDialogIsVisible = true;
 
             _eventAggregator.GetEvent<OpenDialogOverlayEvent>().Publish();
 		}
@@ -172,9 +189,11 @@ namespace SEFLink.UI.HCI.ViewModels
 		
 		private void OnEnglishSelected()
 		{
-			CancelButtonText = English.Cancel;
+			CancelOrderButtonText = English.CancelOrder;
 			RemoveButtonText = English.Remove;
 			ConfirmButtonText = English.Confirm;
+			AlternateCancelButtonText = English.AlternateCancel;
+			CancelButtonText = English.Cancel;
 
 			_confirmQuestion = English.ConfirmQuestion;
 			_removeQuestion = English.RemoveQuestion;
@@ -183,9 +202,11 @@ namespace SEFLink.UI.HCI.ViewModels
 
 		private void OnBosnianSelected()
 		{
-			CancelButtonText = Bosnian.Cancel;
+			CancelOrderButtonText = Bosnian.CancelOrder;
 			RemoveButtonText = Bosnian.Remove;
 			ConfirmButtonText = Bosnian.Confirm;
+			CancelButtonText = Bosnian.Cancel;
+			AlternateCancelButtonText = Bosnian.AlternateCancel;
 
 			_confirmQuestion = Bosnian.ConfirmQuestion;
 			_removeQuestion = Bosnian.RemoveQuestion;
@@ -194,9 +215,11 @@ namespace SEFLink.UI.HCI.ViewModels
 
 		private void OnGermanSelected()
 		{
-			CancelButtonText = German.Cancel;
+			CancelOrderButtonText = German.CancelOrder;
 			RemoveButtonText = German.Remove;
 			ConfirmButtonText = German.Confirm;
+			CancelButtonText = German.Cancel;
+			AlternateCancelButtonText = German.AlternateCancel;
 
 			_confirmQuestion = German.ConfirmQuestion;
 			_removeQuestion = German.RemoveQuestion;
@@ -207,29 +230,28 @@ namespace SEFLink.UI.HCI.ViewModels
 
 		private void Execute_Confirm()
 		{
-			_eventAggregator.GetEvent<CheckoutConfirmedEvent>().Publish(new CheckoutConfirmedEventArgs());            
+			_eventAggregator.GetEvent<CheckoutConfirmedEvent>().Publish();            
+			
+			_eventAggregator.GetEvent<PaymentOptionsViewEvent>().Publish();            
 			
 			_eventAggregator.GetEvent<CloseDialogOverlayEvent>().Publish();
 		}
 
-		private void Execute_Cancel()
-		{
-			_eventAggregator.GetEvent<CloseDialogOverlayEvent>().Publish();
-		}
-		
 		private void Execute_CancelOrder()
 		{
-            _eventAggregator.GetEvent<CancelOrderEvent>().Publish(new CancelOrderEventArgs());
+            _eventAggregator.GetEvent<CancelOrderEvent>().Publish();
+
+			_eventAggregator.GetEvent<FoodDrinkViewEvent>().Publish();            
 
             _eventAggregator.GetEvent<CloseDialogOverlayEvent>().Publish();
 		}
-
+		
 		private void Execute_Remove()
 		{
             _eventAggregator.GetEvent<RemoveItemConfirmedEvent>().Publish(new RemoveItemConfirmedEventArgs
             {
                 Id = _orderItem.Id,
-                OrderItem = new Models.OrderItem
+                OrderItem = new OrderItem
                 {
                     Id = _orderItem.Id,
                     Description = _orderItem.Description,
@@ -242,11 +264,10 @@ namespace SEFLink.UI.HCI.ViewModels
 			_eventAggregator.GetEvent<CloseDialogOverlayEvent>().Publish();
         }
 
-		private bool CanExecute_Checkout() => true;
-
-		private bool CanExecute_CancelOrder() => true;
-
-		private bool CanExecute_Undo() => true;
+		private void Execute_Close()
+		{
+			_eventAggregator.GetEvent<CloseDialogOverlayEvent>().Publish();
+		}
 
 		#endregion
 	}

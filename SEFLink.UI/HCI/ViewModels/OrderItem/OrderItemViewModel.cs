@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Prism.Commands;
 using Prism.Events;
-using SEFLink.Model;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.Models;
 
 namespace SEFLink.UI.HCI.ViewModels
 {
@@ -14,10 +13,14 @@ namespace SEFLink.UI.HCI.ViewModels
 
         private int _id;
 
+        private bool _isCartItem;
+
+        private string _image;
+        private string _name;
         private string _description;
         private decimal _price;
         private string _priceText;
-        private string _image;
+        private int _numberOfItems;
 
         #region Image Flags 
 
@@ -42,6 +45,9 @@ namespace SEFLink.UI.HCI.ViewModels
         private IEventAggregator _eventAggregator;
 
         public ICommand RemoveItemCommand { get; }
+        public ICommand AddItemCommand { get; }
+        public ICommand IncrementCommand { get; }
+        public ICommand DecrementCommand { get; }
 
         #endregion
 
@@ -49,21 +55,28 @@ namespace SEFLink.UI.HCI.ViewModels
 
         #region Constructor
 
-        public OrderItemViewModel(IEventAggregator eventAggregator, int id, string image, string description, decimal price)
+        public OrderItemViewModel(IEventAggregator eventAggregator, int id, string image, string name, string description, decimal price, bool isCartItem = true)
         {
             _eventAggregator = eventAggregator;
 
             Id = id;
             Image = image;
+            Name = name;
             Description = description;
             Price = price;
             PriceText = $"{price}";
 
-            Setup();
 
             RemoveItemCommand = new DelegateCommand(Execute_RemoveItem, CanExecute_RemoveItem);
+            AddItemCommand = new DelegateCommand(Execute_AddItem, CanExecute_AddItem);
+            IncrementCommand = new DelegateCommand(Execute_Increment, CanExecute_Increment);
+            DecrementCommand = new DelegateCommand(Execute_Decrement, CanExecute_Decrement);
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
+
+            Setup();
+
+            IsCartItem = isCartItem;
         }
 
         #endregion
@@ -72,10 +85,35 @@ namespace SEFLink.UI.HCI.ViewModels
 
         #region Properties
 
+        public bool IsCartItem
+        {
+            get { return _isCartItem; }
+            private set
+            {
+                _isCartItem = value;
+                OnPropertyChanged();
+                ((DelegateCommand)AddItemCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)RemoveItemCommand).RaiseCanExecuteChanged();
+
+            }
+        }
+
         public int Id
         {
             get => _id;
             private set => _id = value;
+        }
+
+        public string Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(); }
         }
 
         public string Description
@@ -96,10 +134,15 @@ namespace SEFLink.UI.HCI.ViewModels
             set { _priceText = value; OnPropertyChanged(); }
         }
 
-        public string Image
+        public int NumberOfItems
         {
-            get { return _image; }
-            set { _image = value; }
+            get { return _numberOfItems; }
+            set
+            {
+                _numberOfItems = value;
+                OnPropertyChanged();
+                ((DelegateCommand)DecrementCommand).RaiseCanExecuteChanged();
+            }
         }
 
 
@@ -188,6 +231,8 @@ namespace SEFLink.UI.HCI.ViewModels
 
         private void Setup()
         {
+            NumberOfItems = 1;
+
             ColaIsVisible = false;
             SpriteIsVisible = false;
             FantaIsVisible = false;
@@ -270,7 +315,7 @@ namespace SEFLink.UI.HCI.ViewModels
             _eventAggregator.GetEvent<RemoveItemEvent>().Publish(new RemoveItemEventArgs
             {
                 Id = _id,
-                OrderItem = new Models.OrderItem
+                OrderItem = new OrderItem
                 {
                     Id = Id,
                     Description = Description,
@@ -294,7 +339,29 @@ namespace SEFLink.UI.HCI.ViewModels
             //});
         }
 
-        private bool CanExecute_RemoveItem() => true;
+        private void Execute_AddItem()
+        {
+            _eventAggregator.GetEvent<AddItemEvent>().Publish(new AddItemEventArgs
+            {
+                UndoExecuted = false,
+                OrderItem = new OrderItem
+                {
+                    Image = Image,
+                    Name = Name,
+                    Description = Description,
+                    Price = Price
+                }
+            });
+        }
+
+        private void Execute_Increment() => NumberOfItems++;
+
+        private void Execute_Decrement() => NumberOfItems--;
+
+        private bool CanExecute_RemoveItem() => IsCartItem;
+        private bool CanExecute_AddItem() => !IsCartItem;
+        private bool CanExecute_Increment() => true;
+        private bool CanExecute_Decrement() => NumberOfItems > 0;
 
         #endregion
     }

@@ -42,15 +42,6 @@
             <local:NavigationBarView DataContext="{Binding NavigationBarViewModel}"/>
         <!--endregion-->
 
-        <!--region Navigation Bar Content Title used for testing -->
-            <Button Content="{Binding ViewTitle}" 
-                        HorizontalAlignment="Center"
-                        WindowChrome.IsHitTestVisibleInChrome="False" 
-                        Focusable="False"
-                        IsEnabled="False"
-                        Style="{DynamicResource TitleBarNavButtonStyle}"/>
-        <!--endregion-->
-
         <!--region Content -->
         <ContentControl Content="{Binding CurrentViewModel}" 
                             Focusable="False"

@@ -2,6 +2,10 @@
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.ViewModels.Payment;
+using SEFLink.UI.HCI.Views.Payment;
+using System;
+using System.Collections.Generic;
 
 namespace SEFLink.UI.HCI.ViewModels
 {
@@ -16,7 +20,7 @@ namespace SEFLink.UI.HCI.ViewModels
         private LanguageSettingsViewModel _languageSettingsViewModel;
 
         private object _currentViewModel;
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
 
         private bool _dialogOverlayIsVisible;
 
@@ -68,7 +72,7 @@ namespace SEFLink.UI.HCI.ViewModels
             get { return _navigationBarViewModel; }
             set { _navigationBarViewModel = value; OnPropertyChanged(); }
         }
-        
+
         public DialogOverlayViewModel DialogOverlayViewModel
         {
             get { return _dialogOverlayViewModel; }
@@ -122,14 +126,29 @@ namespace SEFLink.UI.HCI.ViewModels
         private void OnLanguageViewSelected(LanguageViewEventArgs args)
         {
             CurrentViewModel = LanguageSettingsViewModel;
+            LanguageSettingsViewModel.OriginIsPayment = IsOfPaymentViewModelType(MenuViewModel.CurrentViewModel);
             ViewTitle = _languageTitle;
         }
-        
+
+        private bool IsOfPaymentViewModelType(object currentViewModel)
+        {
+            var viewModelType = currentViewModel.GetType();
+
+            List<Type> paymentViewModelTypes = new List<Type>
+            {
+                typeof(PaymentOptionsViewModel),
+                typeof(PaymentCreditCardViewModel),
+                typeof(PaymentCashViewModel)
+            };
+
+            return paymentViewModelTypes.Contains(viewModelType);
+        }
+
         private void OnOverlayClosed()
         {
             DialogOverlayIsVisible = false;
         }
-        
+
         private void OnOverlayOpened()
         {
             DialogOverlayIsVisible = true;

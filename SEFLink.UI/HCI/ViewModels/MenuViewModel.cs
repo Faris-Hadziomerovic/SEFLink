@@ -124,32 +124,32 @@ namespace SEFLink.UI.HCI.ViewModels
             OnStartViewSelected();
         }
 
-        private void OnStartViewSelected(FoodDrinkViewEventArgs args = null)
+        private void OnStartViewSelected()
         {
             CurrentViewModel = FoodDrinkViewModel;
         }
 
-        private void OnDrinksViewSelected(DrinksViewEventArgs args)
+        private void OnDrinksViewSelected()
         {
             CurrentViewModel = DrinksViewModel;
         }
 
-        private void OnFoodViewSelected(FoodViewEventArgs args)
+        private void OnFoodViewSelected()
         {
             CurrentViewModel = FoodViewModel;
         }
 
-        private void OnPaymentOptionsViewSelected(PaymentOptionsViewEventArgs args)
+        private void OnPaymentOptionsViewSelected()
         {
             CurrentViewModel = PaymentOptionsViewModel;
         }
         
-        private void OnPaymentCashViewSelected(PaymentCashViewEventArgs args)
+        private void OnPaymentCashViewSelected()
         {
             CurrentViewModel = PaymentCashViewModel;
         }
 
-        private void OnPaymentCreditCardViewSelected(PaymentCreditCardViewEventArgs args)
+        private void OnPaymentCreditCardViewSelected()
         {
             CurrentViewModel = PaymentCreditCardViewModel;
         }

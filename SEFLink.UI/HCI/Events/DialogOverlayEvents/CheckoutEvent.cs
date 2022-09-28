@@ -2,7 +2,7 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class CheckoutEvent : PubSubEvent<CheckoutEventArgs> { }
+    public class CheckoutEvent : PubSubEvent { }
 
     public class CheckoutEventArgs { }
 }

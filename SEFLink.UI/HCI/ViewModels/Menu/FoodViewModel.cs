@@ -123,12 +123,12 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
 
         private void Execute_NavigateToFood()
         {
-            _eventAggregator.GetEvent<FoodViewEvent>().Publish(new FoodViewEventArgs());
+            _eventAggregator.GetEvent<FoodViewEvent>().Publish();
         }
 
         private void Execute_NavigateToDrinks()
         {
-            _eventAggregator.GetEvent<DrinksViewEvent>().Publish(new DrinksViewEventArgs());
+            _eventAggregator.GetEvent<DrinksViewEvent>().Publish();
         }
 
         private bool CanExecute_NavigateToFood() => true;

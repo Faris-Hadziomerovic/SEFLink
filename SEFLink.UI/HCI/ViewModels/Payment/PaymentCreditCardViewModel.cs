@@ -122,12 +122,12 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
         private void Execute_NavigateToCash()
         {
-            _eventAggregator.GetEvent<PaymentCashViewEvent>().Publish(new PaymentCashViewEventArgs());
+            _eventAggregator.GetEvent<PaymentCashViewEvent>().Publish();
         }
 
         private void Execute_NavigateToCreditCard()
         {
-            _eventAggregator.GetEvent<PaymentCreditCardViewEvent>().Publish(new PaymentCreditCardViewEventArgs());
+            _eventAggregator.GetEvent<PaymentCreditCardViewEvent>().Publish();
         }
 
         private bool CanExecute_NavigateToCash() => true;

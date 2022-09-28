@@ -2,7 +2,7 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class CheckoutConfirmedEvent : PubSubEvent<CheckoutConfirmedEventArgs> { }
+    public class CheckoutConfirmedEvent : PubSubEvent { }
 
     public class CheckoutConfirmedEventArgs { }
 }

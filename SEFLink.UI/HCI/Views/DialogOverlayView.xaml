@@ -116,31 +116,6 @@
         <!--#endregion-->
         
         <!--#region Cancel Button code snippet-->
-        <Grid x:Key="CancelOrderButtonContent">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-
-            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=No}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}" 
-                                   VerticalAlignment="Center"                       
-                                   HorizontalAlignment="Center"
-                                   FontSize="16"
-                                   FontWeight="DemiBold"
-                                   Margin="0,0,3,0"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-        </Grid>
 
         <Grid x:Key="CancelCancelButtonContent">
             <Grid.ColumnDefinitions>
@@ -148,7 +123,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=No}">
+            <ItemsControl ItemsSource="{Binding AlternateCancelButtonText, FallbackValue=No}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" />
@@ -249,15 +224,14 @@
         </Grid>
         <!--#endregion-->
 
-
-        <!--#region Cancel order Button code snippet-->
-        <Grid x:Key="CancelButtonContent">
+        <!--#region Cancel Order Button code snippet-->
+        <Grid x:Key="CancelOrderButtonContent">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
 
-            <ItemsControl ItemsSource="{Binding CancelButtonText, FallbackValue=Cancel Order}">
+            <ItemsControl ItemsSource="{Binding CancelOrderButtonText, FallbackValue=Cancel Order}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" />
@@ -270,7 +244,7 @@
                                    HorizontalAlignment="Center"
                                    FontSize="16"
                                    FontWeight="DemiBold"
-                                   Margin="0,0,3,0"/>
+                                   Margin="0,0,1,0"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -301,7 +275,7 @@
                     Grid.RowSpan="5"
                     CornerRadius="30"/>
 
-            <TextBlock Text="{Binding Question, FallbackValue=Remove Order Item?}"
+            <TextBlock Text="{Binding Question, FallbackValue=Cancel whole order?}"
                        FontSize="30"
                        Grid.Row="1"
                        HorizontalAlignment="Center"
@@ -313,7 +287,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="35"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -321,7 +295,7 @@
                 <Button Style="{StaticResource RemoveButtonStyle}"
                         Content="{StaticResource CancelOrderButtonContent}"
                         Command="{Binding CancelOrderCommand}"
-                        Width="150"
+                        Width="200"
                         Height="50"
                         Grid.Column="3">
                     
@@ -329,7 +303,7 @@
 
                 <Button Style="{StaticResource CancelButtonStyle}"                        
                         Content="{StaticResource CancelCancelButtonContent}"
-                        Command="{Binding CancelCommand}"
+                        Command="{Binding CloseCommand}"
                         Width="150"
                         Height="50"
                         Grid.Column="1">
@@ -386,7 +360,7 @@
 
                 <Button Style="{StaticResource CancelButtonStyle}"                        
                         Content="{StaticResource CancelRemoveButtonContent}"
-                        Command="{Binding CancelCommand}"
+                        Command="{Binding CloseCommand}"
                         Width="150"
                         Height="50"
                         Grid.Column="1">
@@ -443,7 +417,7 @@
 
                 <Button Style="{StaticResource CancelButtonStyle}"                        
                         Content="{StaticResource CancelConfirmButtonContent}"
-                        Command="{Binding CancelCommand}"
+                        Command="{Binding CloseCommand}"
                         Width="150"
                         Height="50"
                         Grid.Column="1">

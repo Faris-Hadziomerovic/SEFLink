@@ -2,9 +2,7 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class DrinksViewEvent : PubSubEvent<DrinksViewEventArgs>
-    {
-    }
+    public class DrinksViewEvent : PubSubEvent { }
 
     public class DrinksViewEventArgs
     {

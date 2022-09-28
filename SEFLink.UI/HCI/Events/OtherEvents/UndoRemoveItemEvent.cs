@@ -2,7 +2,7 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class UndoRemoveItemEvent : PubSubEvent<UndoRemoveItemEventArgs> { }
+    public class UndoRemoveItemEvent : PubSubEvent { }
 
     public class UndoRemoveItemEventArgs { }
 }

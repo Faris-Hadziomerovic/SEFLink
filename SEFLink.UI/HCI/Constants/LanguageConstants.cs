@@ -14,9 +14,11 @@ namespace SEFLink.UI.HCI.Constants
             public const string SubTotal = "SUB-TOTAL";
             public const string Checkout = "Checkout";
 
+            public const string CancelOrder = "Cancel Order";
             public const string Confirm = "Confirm";
             public const string Remove = "Remove";
             public const string Cancel = "Cancel";
+            public const string AlternateCancel = "No";
 
             public const string ConfirmQuestion = "Confirm Order?";
             public const string RemoveQuestion = "Remove Order Item?";
@@ -34,9 +36,11 @@ namespace SEFLink.UI.HCI.Constants
             public const string SubTotal = "UKUPNO";
             public const string Checkout = "Završi";
 
+            public const string CancelOrder = "Prekini narudžbu";
             public const string Confirm = "Potvrdi";
             public const string Remove = "Ukloni";
             public const string Cancel = "Prekini";
+            public const string AlternateCancel = "Ne";
 
             public const string ConfirmQuestion = "Potvrdi narudžbu?";
             public const string RemoveQuestion = "Ukloni odabranu stavku?";
@@ -54,13 +58,15 @@ namespace SEFLink.UI.HCI.Constants
             public const string SubTotal = "GESAMT";
             public const string Checkout = "Abschließen";
 
-            public const string Confirm = "Confirm";
-            public const string Remove = "Remove";
-            public const string Cancel = "Cancel";
+            public const string CancelOrder = "Bestellung stornieren";
+            public const string Confirm = "Bestätigen";
+            public const string Remove = "Entfernen";
+            public const string Cancel = "Stornieren";
+            public const string AlternateCancel = "Nein";
 
-            public const string ConfirmQuestion = "Confirm Order?";
-            public const string RemoveQuestion = "Remove Order Item?";
-            public const string CancelOrderQuestion = "Cancel whole order?";
+            public const string ConfirmQuestion = "Bestellung bestätigen?";
+            public const string RemoveQuestion = "Gegenstand entfernen?";
+            public const string CancelOrderQuestion = "Gesamte bestellung stornieren?";
         }
     }
 }

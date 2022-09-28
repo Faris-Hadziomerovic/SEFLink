@@ -8,16 +8,11 @@ namespace SEFLink.UI.HCI.Helpers
     {
         #region Helper Methods
 
-        public static OrderItemViewModel CreateOrderItemViewModel(IEventAggregator eventAggregator, OrderItem item)
+        public static OrderItemViewModel CreateOrderItemViewModel(IEventAggregator eventAggregator, OrderItem item, bool isCartItem = true)
         {            
-            return new OrderItemViewModel(eventAggregator, item.Id, item.Image, item.Name, item.Price);
+            return new OrderItemViewModel(eventAggregator, item.Id, item.Image, item.Name, item.Description, item.Price, isCartItem);
         }
 
         #endregion
-    }
-
-    public enum DocumentInfoType
-    {
-        Incoming = 1, Outgoing = 2
     }
 }

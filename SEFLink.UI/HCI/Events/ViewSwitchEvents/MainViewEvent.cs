@@ -6,5 +6,6 @@ namespace SEFLink.UI.HCI.Events
 
     public class MenuViewEventArgs
     {
+        public bool OriginIsPaymentView { get; set; }
     }
 }

@@ -2,9 +2,7 @@
 
 namespace SEFLink.UI.HCI.Events
 {
-    public class PaymentCreditCardViewEvent : PubSubEvent<PaymentCreditCardViewEventArgs>
-    {
-    }
+    public class PaymentCreditCardViewEvent : PubSubEvent { }
 
     public class PaymentCreditCardViewEventArgs
     {
