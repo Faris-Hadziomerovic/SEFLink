@@ -43,30 +43,9 @@
 
             </Grid>
         <!--#endregion-->
-
-        <!--#region Credit Card Button code snippet-->
-        <Grid x:Key="CreditCardButtonContent">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="0.7*"/>
-                </Grid.RowDefinitions>
-
-
-                <Image Style="{DynamicResource Menu.CreditCardIcon}"/>
-
-                <TextBlock Text="{Binding CreditCardText}"
-                           Grid.Row="1"
-                           VerticalAlignment="Center"                       
-                           HorizontalAlignment="Center"
-                           FontSize="16"
-                           FontWeight="DemiBold"/>
-
-            </Grid>
-        <!--#endregion-->
         
     </UserControl.Resources>
     
-    <!--region Content-->
     <Grid>
             
         <Grid.ColumnDefinitions>
@@ -87,6 +66,5 @@
                 Content="{StaticResource CashButtonContent}"/>
                 
     </Grid>
-    <!--endregion-->
     
 </UserControl>
