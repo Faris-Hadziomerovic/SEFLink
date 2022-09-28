@@ -1,7 +1,9 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using SEFLink.UI.Events;
+using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.Helpers;
 using System;
 using System.Windows.Input;
 using static SEFLink.UI.HCI.Constants.LanguageConstants;
@@ -15,17 +17,20 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private string _infoText;
 
         private string _foodText;
-        private string _drinksText;
 
         private bool _foodIsVisible;
-        private bool _drinksIsVisible;
 
         private readonly IEventAggregator _eventAggregator;
 
         public ICommand NavigateToFoodCommand { get; }
-        public ICommand NavigateToDrinksCommand { get; }
         public ICommand NavigateBackCommand { get; }
 
+        private OrderItemViewModel _hamburgerViewModel;
+        private OrderItemViewModel _chickenViewModel;
+        private OrderItemViewModel _friesViewModel;
+        private OrderItemViewModel _pepperoniPizzaViewModel;
+        private OrderItemViewModel _napolitanPizzaViewModel;
+        private OrderItemViewModel _mexicanPizzaViewModel;
 
         #endregion
 
@@ -36,12 +41,10 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         {
             _eventAggregator = eventAggregator;
 
-            Setup();
-
             NavigateToFoodCommand = new DelegateCommand(Execute_NavigateToFood, CanExecute_NavigateToFood);
-            NavigateToDrinksCommand = new DelegateCommand(Execute_NavigateToDrinks, CanExecute_NavigateToDrinks);
             NavigateBackCommand = new DelegateCommand(Execute_NavigateBack, CanExecute_NavigateBack);
 
+            Setup();
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
@@ -57,12 +60,6 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             set { _foodText = value; OnPropertyChanged(); }
         }
 
-        public string DrinksText
-        {
-            get { return _drinksText; }
-            set { _drinksText = value; OnPropertyChanged(); }
-        }
-
         public string InfoText
         {
             get { return _infoText; }
@@ -75,10 +72,40 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             set { _foodIsVisible = value; OnPropertyChanged(); }
         }
 
-        public bool DrinksIsVisible
+        public OrderItemViewModel HamburgerViewModel
         {
-            get { return _drinksIsVisible; }
-            set { _drinksIsVisible = value; OnPropertyChanged(); }
+            get { return _hamburgerViewModel; }
+            set { _hamburgerViewModel = value; OnPropertyChanged(); }
+        }
+
+        public OrderItemViewModel ChickenViewModel
+        {
+            get { return _chickenViewModel; }
+            set { _chickenViewModel = value; OnPropertyChanged(); }
+        }
+
+        public OrderItemViewModel FriesViewModel
+        {
+            get { return _friesViewModel; }
+            set { _friesViewModel = value; OnPropertyChanged(); }
+        }
+
+        public OrderItemViewModel NapolitanPizzaViewModel
+        {
+            get { return _napolitanPizzaViewModel; }
+            set { _napolitanPizzaViewModel = value; OnPropertyChanged(); }
+        }
+
+        public OrderItemViewModel PepperoniPizzaViewModel
+        {
+            get { return _pepperoniPizzaViewModel; }
+            set { _pepperoniPizzaViewModel = value; OnPropertyChanged(); }
+        }
+
+        public OrderItemViewModel MexicanPizzaViewModel
+        {
+            get { return _mexicanPizzaViewModel; }
+            set { _mexicanPizzaViewModel = value; OnPropertyChanged(); }
         }
 
         #endregion
@@ -89,8 +116,14 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private void Setup()
         {
             InfoText = "";
-            FoodIsVisible = true;
-            DrinksIsVisible = true;
+            FoodIsVisible = false;
+
+            HamburgerViewModel = OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, DataProvider.Food.Hamburger, false);
+            ChickenViewModel = OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, DataProvider.Food.ChickenTenders, false);
+            FriesViewModel = OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, DataProvider.Food.FrenchFries, false);
+            PepperoniPizzaViewModel = OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, DataProvider.Food.PepperoniPizza, false);
+            NapolitanPizzaViewModel = OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, DataProvider.Food.NapolitanPizza, false);
+            MexicanPizzaViewModel = OrderItemHelper.CreateOrderItemViewModel(_eventAggregator, DataProvider.Food.MexicanPizza, false);
 
             OnEnglishSelected();
         }
@@ -110,29 +143,21 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private void OnEnglishSelected()
         {
             FoodText = English.Food;
-            DrinksText = English.Drinks;
         }
 
         private void OnBosnianSelected()
         {
             FoodText = Bosnian.Food;
-            DrinksText = Bosnian.Drinks;
         }
 
         private void OnGermanSelected()
         {
             FoodText = German.Food;
-            DrinksText = German.Drinks;
         }
 
         private void Execute_NavigateToFood()
         {
             _eventAggregator.GetEvent<FoodViewEvent>().Publish();
-        }
-
-        private void Execute_NavigateToDrinks()
-        {
-            _eventAggregator.GetEvent<DrinksViewEvent>().Publish();
         }
 
         private void Execute_NavigateBack()
@@ -143,8 +168,6 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         private bool CanExecute_NavigateBack() => true;
 
         private bool CanExecute_NavigateToFood() => true;
-
-        private bool CanExecute_NavigateToDrinks() => true;
 
         #endregion
     }
