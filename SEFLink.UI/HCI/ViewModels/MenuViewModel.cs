@@ -1,6 +1,7 @@
 ﻿using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.Events.OtherEvents;
 using SEFLink.UI.HCI.ViewModels.Menu;
 using SEFLink.UI.HCI.ViewModels.Payment;
 
@@ -59,6 +60,8 @@ namespace SEFLink.UI.HCI.ViewModels
             _eventAggregator.GetEvent<PaymentOptionsViewEvent>().Subscribe(OnPaymentOptionsViewSelected);
             _eventAggregator.GetEvent<PaymentCashViewEvent>().Subscribe(OnPaymentCashViewSelected);
             _eventAggregator.GetEvent<PaymentCreditCardViewEvent>().Subscribe(OnPaymentCreditCardViewSelected);
+            
+            _eventAggregator.GetEvent<CheckoutCanceledEvent>().Subscribe(OnStartViewSelected);
         }
 
         #endregion

@@ -13,6 +13,20 @@
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
 
+        <!--#region Navigate Back Button code snippet-->
+        <Grid x:Key="NavigateBackButtonContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Image Style="{DynamicResource Other.BackIcon}"
+                   Height="40"
+                   Width="40"/>
+
+        </Grid>
+        <!--#endregion-->
+        
         <!--#region Food Button code snippet-->
             <Grid x:Key="FoodButtonContent">
                 <Grid.RowDefinitions>
@@ -57,36 +71,51 @@
     
     <Grid>
         
-        <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>       <!-- Content View -->
-                <ColumnDefinition Width="auto"/>    <!-- Sidebar View -->
-            </Grid.ColumnDefinitions>
-        
-        <!--region Content-->
-            <Grid Grid.Column="0">
+
+        <!--region Info message -->
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>       <!-- Margin -->
+                <RowDefinition Height="auto"/>      <!-- Content -->
+                <RowDefinition Height="5*"/>       <!-- Margin -->
+            </Grid.RowDefinitions>
             
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                    <ColumnDefinition Width="auto"/>    <!-- Food Button -->
-                    <ColumnDefinition Width="50"/>      <!-- Separator -->
-                    <ColumnDefinition Width="auto"/>    <!-- Drinks Button -->
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding InfoText, FallbackValue=What do you want to order?}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="30" 
+                       FontWeight="DemiBold"
+                       Grid.Row="1"/>
+            
+        </Grid>
+        <!--endregion-->
+                       
+        <!--region Content-->
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>       <!-- Margin -->
+                <ColumnDefinition Width="auto"/>    <!-- Food Button -->
+                <ColumnDefinition Width="90"/>      <!-- Separator -->
+                <ColumnDefinition Width="auto"/>    <!-- Drinks Button -->
+                <ColumnDefinition Width="*"/>       <!-- Margin -->
+            </Grid.ColumnDefinitions>
 
 
-                <Button Command="{Binding NavigateToFoodCommand}" 
-                        Style="{DynamicResource MenuButtonStyle}"
-                        Grid.Column="1"
-                        Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
-                        Content="{StaticResource FoodButtonContent}"/>
+            <Button Command="{Binding NavigateToFoodCommand}" 
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Grid.Column="1"
+                    Visibility="{Binding FoodIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Content="{StaticResource FoodButtonContent}"/>
 
-                <Button Command="{Binding NavigateToDrinksCommand}" 
-                        Style="{DynamicResource MenuButtonStyle}"
-                        Grid.Column="3"
-                        Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
-                        Content="{StaticResource DrinksButtonContent}"/>
+            <Button Command="{Binding NavigateToDrinksCommand}" 
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Grid.Column="3"
+                    Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Content="{StaticResource DrinksButtonContent}"/>
 
-            </Grid>
+        </Grid>
         <!--endregion-->
         
         

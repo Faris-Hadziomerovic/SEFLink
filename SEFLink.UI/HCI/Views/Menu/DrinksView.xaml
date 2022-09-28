@@ -31,6 +31,20 @@
 
             </Grid>
         <!--#endregion-->
+        
+        <!--#region Navigate Back Button code snippet-->
+        <Grid x:Key="NavigateBackButtonContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Image Style="{DynamicResource Other.BackIcon}"
+                   Height="40"
+                   Width="40"/>
+
+        </Grid>
+        <!--#endregion-->
 
         <!--#region Drinks Button code snippet-->
             <Grid x:Key="DrinksButtonContent">
@@ -55,29 +69,32 @@
     </UserControl.Resources>
     
      <!--region Content-->
-            <Grid Grid.Column="0">
-            
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                    <ColumnDefinition Width="auto"/>   
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                </Grid.ColumnDefinitions>
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>       <!-- Margin -->
-                    <RowDefinition Height="auto"/>   
-                    <RowDefinition Height="*"/>       <!-- Margin -->
-                </Grid.RowDefinitions>
-
-
-                <Button Command="{Binding NavigateToDrinksCommand}" 
-                        Style="{DynamicResource MenuButtonStyle}"
-                        Grid.Column="1"
-                        Grid.Row="1"
-                        Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
-                        Content="{StaticResource DrinksButtonContent}"/>
-                
-            </Grid>
+     <Grid>
+                              
+         <Grid.ColumnDefinitions>
+             <ColumnDefinition Width="*"/>       <!-- Margin -->
+             <ColumnDefinition Width="auto"/>   
+             <ColumnDefinition Width="*"/>       <!-- Margin -->
+         </Grid.ColumnDefinitions>
+                 
+         <Grid.RowDefinitions>
+             <RowDefinition Height="*"/>       <!-- Margin -->
+             <RowDefinition Height="auto"/>   
+             <RowDefinition Height="*"/>       <!-- Margin -->
+         </Grid.RowDefinitions>
+     
+         <Button Style="{DynamicResource BackButtonStyle}"
+                 Content="{StaticResource NavigateBackButtonContent}"
+                 Command="{Binding NavigateBackCommand}"/>
+     
+         <Button Command="{Binding NavigateToDrinksCommand}" 
+                 Style="{DynamicResource MenuButtonStyle}"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 Visibility="{Binding DrinksIsVisible, Converter={StaticResource BoolToVisibility}}"
+                 Content="{StaticResource DrinksButtonContent}"/>
+                 
+     </Grid>
         <!--endregion-->
         
 </UserControl>

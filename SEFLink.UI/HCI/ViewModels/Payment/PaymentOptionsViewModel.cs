@@ -2,6 +2,7 @@
 using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.Events.OtherEvents;
 using System.Windows.Input;
 using static SEFLink.UI.HCI.Constants.LanguageConstants;
 
@@ -23,6 +24,7 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
         public ICommand NavigateToCashCommand { get; }
         public ICommand NavigateToCreditCardCommand { get; }
+        public ICommand CancelCheckoutCommand { get; }
 
         #endregion
 
@@ -37,6 +39,7 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
             NavigateToCashCommand = new DelegateCommand(Execute_NavigateToCash, CanExecute_NavigateToCash);
             NavigateToCreditCardCommand = new DelegateCommand(Execute_NavigateToCreditCard, CanExecute_NavigateToCreditCard);
+            CancelCheckoutCommand = new DelegateCommand(Execute_CancelCheckout, CanExecute_CancelCheckout);
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
@@ -106,18 +109,21 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
         {
             CashText = English.Cash;
             CreditCardText = English.CreditCard;
+            InfoText = English.HowToPayQuestion;
         }
 
         private void OnBosnianSelected()
         {
             CashText = Bosnian.Cash;
             CreditCardText = Bosnian.CreditCard;
+            InfoText = Bosnian.HowToPayQuestion;
         }
 
         private void OnGermanSelected()
         {
             CashText = German.Cash;
             CreditCardText = German.CreditCard;
+            InfoText = German.HowToPayQuestion;
         }
 
         private void Execute_NavigateToCash()
@@ -129,6 +135,13 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
         {
             _eventAggregator.GetEvent<PaymentCreditCardViewEvent>().Publish();
         }
+
+        private void Execute_CancelCheckout()
+        {
+            _eventAggregator.GetEvent<CheckoutCanceledEvent>().Publish();
+        }
+
+        private bool CanExecute_CancelCheckout() => true;
 
         private bool CanExecute_NavigateToCash() => true;
 

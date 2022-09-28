@@ -106,18 +106,21 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         {
             FoodText = English.Food;
             DrinksText = English.Drinks;
+            InfoText = English.WhatToOrderQuestion;
         }
 
         private void OnBosnianSelected()
         {
             FoodText = Bosnian.Food;
             DrinksText = Bosnian.Drinks;
+            InfoText = Bosnian.WhatToOrderQuestion;
         }
 
         private void OnGermanSelected()
         {
             FoodText = German.Food;
             DrinksText = German.Drinks;
+            InfoText = German.WhatToOrderQuestion;
         }
 
         private void Execute_NavigateToFood()

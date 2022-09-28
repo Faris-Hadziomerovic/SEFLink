@@ -240,7 +240,7 @@
 			</Style>
 			<!--#endregion-->
     
-			<!--#endregion--><!--#region Gray Button - Style-->
+			<!--#region Gray Button - Style-->
 			<Style x:Key="GrayButtonStyle3" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
 				<Setter Property="Background" Value="{StaticResource Button.Gray.Background.MouseOver}"/>
@@ -600,7 +600,26 @@
 		</Style>
 		<!--#endregion-->
 
-		<!--#region Languages View Flag Button Style-->
+		<!--#region Navigate Back Button style -->
+		<Style x:Key="BackButtonStyle" BasedOn="{StaticResource TransparentCircularButtonStyle}" TargetType="{x:Type Button}">
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="Margin" Value="25" />
+			<Setter Property="Width" Value="50" />
+			<Setter Property="Height" Value="50" />
+			<Setter Property="Focusable" Value="false" />
+			<Setter Property="Cursor" Value="Hand" />
+
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="true">
+					<Setter Property="Background" Value="{StaticResource Button.Gray.Background.MouseOver}" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<!--#endregion-->
+
+
+    <!--#region Languages View Flag Button Style-->
 		<Style x:Key="LanguagesViewFlagButtonStyle" BasedOn="{StaticResource ColoredButtonStyle}" TargetType="{x:Type Button}">
 
 			<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>

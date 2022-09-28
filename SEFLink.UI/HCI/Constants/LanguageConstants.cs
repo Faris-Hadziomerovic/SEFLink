@@ -23,6 +23,9 @@ namespace SEFLink.UI.HCI.Constants
             public const string ConfirmQuestion = "Confirm Order?";
             public const string RemoveQuestion = "Remove Order Item?";
             public const string CancelOrderQuestion = "Cancel whole order?";
+
+            public const string WhatToOrderQuestion = "What do you want to order?";
+            public const string HowToPayQuestion = "How do you want to pay?";
         }
         
         public static class Bosnian
@@ -45,6 +48,9 @@ namespace SEFLink.UI.HCI.Constants
             public const string ConfirmQuestion = "Potvrdi narudžbu?";
             public const string RemoveQuestion = "Ukloni odabranu stavku?";
             public const string CancelOrderQuestion = "Prekini narudžbu?";
+
+            public const string WhatToOrderQuestion = "Šta želite naručiti?";
+            public const string HowToPayQuestion = "Kako želite platiti?";
         }
         
         public static class German
@@ -67,6 +73,9 @@ namespace SEFLink.UI.HCI.Constants
             public const string ConfirmQuestion = "Bestellung bestätigen?";
             public const string RemoveQuestion = "Gegenstand entfernen?";
             public const string CancelOrderQuestion = "Gesamte bestellung stornieren?";
+
+            public const string WhatToOrderQuestion = "Was wollen Sie bestellen?";
+            public const string HowToPayQuestion = "Wie möchten Sie zahlen?";
         }
     }
 }

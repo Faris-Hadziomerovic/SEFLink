@@ -11,6 +11,21 @@
     <UserControl.Resources>
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        
+        <!--#region Cancel Checkout Button code snippet-->
+        <Grid x:Key="CancelCheckoutButtonContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Image Style="{DynamicResource Other.BackIcon}"
+                   Height="40"
+                   Width="40"
+                   />
+
+        </Grid>
+        <!--#endregion-->
 
         <!--#region Cash Button code snippet-->
         <Grid x:Key="CashButtonContent">
@@ -56,35 +71,56 @@
     
     <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>   <!-- Content View -->
-        </Grid.ColumnDefinitions>
+        <!--region Cancel Checkout Button -->
+        <Button Style="{DynamicResource BackButtonStyle}"
+                Content="{StaticResource CancelCheckoutButtonContent}"
+                Command="{Binding CancelCheckoutCommand}"/>
+        <!--endregion-->
+
+        <!--region Info message -->
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>       <!-- Margin -->
+                <RowDefinition Height="auto"/>      <!-- Content -->
+                <RowDefinition Height="5*"/>       <!-- Margin -->
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="{Binding InfoText, FallbackValue=How do you want to pay?}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="30" 
+                       FontWeight="DemiBold"
+                       Grid.Row="1"/>
+            
+        </Grid>
+        <!--endregion-->
 
         <!--region Content-->
-            <Grid Grid.Column="0">
+        <Grid>
             
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                    <ColumnDefinition Width="auto"/>    <!-- Cash Button -->
-                    <ColumnDefinition Width="50"/>      <!-- Separator -->
-                    <ColumnDefinition Width="auto"/>    <!-- Credit Card Button -->
-                    <ColumnDefinition Width="*"/>       <!-- Margin -->
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>       <!-- Margin -->
+                <ColumnDefinition Width="auto"/>    <!-- Cash Button -->
+                <ColumnDefinition Width="90"/>      <!-- Separator -->
+                <ColumnDefinition Width="auto"/>    <!-- Credit Card Button -->
+                <ColumnDefinition Width="*"/>       <!-- Margin -->
+            </Grid.ColumnDefinitions>
 
 
-                <Button Command="{Binding NavigateToCashCommand}" 
-                        Style="{DynamicResource MenuButtonStyle}"
-                        Grid.Column="1"
-                        Visibility="{Binding CashIsVisible, Converter={StaticResource BoolToVisibility}}"
-                        Content="{StaticResource CashButtonContent}"/>
+            <Button Command="{Binding NavigateToCashCommand}" 
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Grid.Column="1"
+                    Visibility="{Binding CashIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Content="{StaticResource CashButtonContent}"/>
 
-                <Button Command="{Binding NavigateToCreditCardCommand}" 
-                        Style="{DynamicResource MenuButtonStyle}"
-                        Grid.Column="3"
-                        Visibility="{Binding CreditCardIsVisible, Converter={StaticResource BoolToVisibility}}"
-                        Content="{StaticResource CreditCardButtonContent}"/>
+            <Button Command="{Binding NavigateToCreditCardCommand}" 
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Grid.Column="3"
+                    Visibility="{Binding CreditCardIsVisible, Converter={StaticResource BoolToVisibility}}"
+                    Content="{StaticResource CreditCardButtonContent}"/>
 
-            </Grid>
+        </Grid>
         <!--endregion-->
         
         

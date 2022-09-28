@@ -10,6 +10,20 @@
 
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
 
+        <!--#region Navigate Back Button code snippet-->
+        <Grid x:Key="NavigateBackButtonContent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Image Style="{DynamicResource Other.BackIcon}"
+                   Height="40"
+                   Width="40"/>
+
+        </Grid>
+        <!--#endregion-->
+        
         <!--#region Cash Button code snippet-->
         <Grid x:Key="CashButtonContent">
                 <Grid.RowDefinitions>
@@ -53,22 +67,26 @@
     </UserControl.Resources>
     
     <!--region Content-->
-        <Grid Grid.Column="0">
+    <Grid>
             
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>       <!-- Margin -->
-                <ColumnDefinition Width="auto"/>   
-                <ColumnDefinition Width="*"/>       <!-- Margin -->
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>       <!-- Margin -->
+            <ColumnDefinition Width="auto"/>   
+            <ColumnDefinition Width="*"/>       <!-- Margin -->
+        </Grid.ColumnDefinitions>
+
+        <Button Style="{DynamicResource BackButtonStyle}"
+                Content="{StaticResource NavigateBackButtonContent}"
+                Command="{Binding NavigateBackCommand}"/>
 
 
-            <Button Command="{Binding NavigateToCashCommand}" 
-                        Style="{DynamicResource MenuButtonStyle}"
-                        Grid.Column="1"
-                        Visibility="{Binding CashIsVisible, Converter={StaticResource BoolToVisibility}}"
-                        Content="{StaticResource CashButtonContent}"/>
+        <Button Command="{Binding NavigateToCashCommand}" 
+                Style="{DynamicResource MenuButtonStyle}"
+                Grid.Column="1"
+                Visibility="{Binding CashIsVisible, Converter={StaticResource BoolToVisibility}}"
+                Content="{StaticResource CashButtonContent}"/>
                 
-        </Grid>
+    </Grid>
     <!--endregion-->
     
 </UserControl>

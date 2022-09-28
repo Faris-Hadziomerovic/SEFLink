@@ -23,7 +23,9 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
         public ICommand NavigateToCashCommand { get; }
         public ICommand NavigateToCreditCardCommand { get; }
+        public ICommand NavigateBackCommand { get; }
 
+        
         #endregion
 
 
@@ -37,6 +39,7 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
 
             NavigateToCashCommand = new DelegateCommand(Execute_NavigateToCash, CanExecute_NavigateToCash);
             NavigateToCreditCardCommand = new DelegateCommand(Execute_NavigateToCreditCard, CanExecute_NavigateToCreditCard);
+            NavigateBackCommand = new DelegateCommand(Execute_NavigateBack, CanExecute_NavigateBack);
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
@@ -129,6 +132,13 @@ namespace SEFLink.UI.HCI.ViewModels.Payment
         {
             _eventAggregator.GetEvent<PaymentCreditCardViewEvent>().Publish();
         }
+        
+        private void Execute_NavigateBack()
+        {
+            _eventAggregator.GetEvent<PaymentOptionsViewEvent>().Publish();
+        }
+        
+        private bool CanExecute_NavigateBack() => true;
 
         private bool CanExecute_NavigateToCash() => true;
 

@@ -3,9 +3,8 @@ using Prism.Events;
 using SEFLink.UI.Events;
 using SEFLink.UI.HCI.Data;
 using SEFLink.UI.HCI.Events;
+using SEFLink.UI.HCI.Events.OtherEvents;
 using SEFLink.UI.HCI.Helpers;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,14 +51,14 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
 
             Setup();
 
+            _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnReturnToMenu);
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
             _eventAggregator.GetEvent<AddItemEvent>().Subscribe(OnItemAdded);
             _eventAggregator.GetEvent<RemoveItemConfirmedEvent>().Subscribe(OnItemRemoved);
             _eventAggregator.GetEvent<CheckoutConfirmedEvent>().Subscribe(OnCheckoutConfirmed);
             _eventAggregator.GetEvent<CancelOrderConfirmedEvent>().Subscribe(OnCancelOrderConfirmed);
-            _eventAggregator.GetEvent<MenuViewEvent>().Subscribe(OnReturnToMenu);
+            _eventAggregator.GetEvent<CheckoutCanceledEvent>().Subscribe(OnCheckoutCanceled);
             _eventAggregator.GetEvent<FinishedOrderEvent>().Subscribe(OnOrderFinished);
-            _eventAggregator.GetEvent<CartEmptiedDuringCheckoutEvent>().Subscribe(OnCartEmptiedDuringCheckout);
         }
 
         #endregion
@@ -220,13 +219,12 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
             RefreshUndoButton();
         }
         
-        private void OnCartEmptiedDuringCheckout()
+        private void OnCheckoutCanceled()
         {
             CancelIsVisible = false;
             CheckoutIsVisible = true;
             CalculateTotalPrice();
         }
-
 
         private void OnLanguageChanged(ChangeLanguageEventArgs args)
         {

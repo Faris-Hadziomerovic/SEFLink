@@ -24,6 +24,7 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
 
         public ICommand NavigateToFoodCommand { get; }
         public ICommand NavigateToDrinksCommand { get; }
+        public ICommand NavigateBackCommand { get; }
 
         #endregion
 
@@ -38,10 +39,11 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
 
             NavigateToFoodCommand = new DelegateCommand(Execute_NavigateToFood, CanExecute_NavigateToFood);
             NavigateToDrinksCommand = new DelegateCommand(Execute_NavigateToDrinks, CanExecute_NavigateToDrinks);
+            NavigateBackCommand = new DelegateCommand(Execute_NavigateBack, CanExecute_NavigateBack);
 
             _eventAggregator.GetEvent<ChangeLanguageEvent>().Subscribe(OnLanguageChanged);
         }
-
+      
         #endregion
 
 
@@ -130,6 +132,13 @@ namespace SEFLink.UI.HCI.ViewModels.Menu
         {
             _eventAggregator.GetEvent<DrinksViewEvent>().Publish();
         }
+
+        private void Execute_NavigateBack()
+        {
+            _eventAggregator.GetEvent<FoodDrinkViewEvent>().Publish();
+        }
+
+        private bool CanExecute_NavigateBack() => true;
 
         private bool CanExecute_NavigateToFood() => true;
 

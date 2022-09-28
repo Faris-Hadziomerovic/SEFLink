@@ -131,6 +131,7 @@
     <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CheckoutEvent.cs" />
     <Compile Include="HCI\Events\DialogOverlayEvents\CancelOrderConfirmedEvent.cs" />
+    <Compile Include="HCI\Events\OtherEvents\CheckoutCanceledEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\EditItemEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\ExpandItemDetailsEvent.cs" />
     <Compile Include="HCI\Events\OtherEvents\FinishedOrderEvent.cs" />
@@ -188,6 +189,9 @@
     </Compile>
     <Compile Include="HCI\Views\NavigationBarView.xaml.cs">
       <DependentUpon>NavigationBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HCI\Views\OrderItem\MenuItemCardView.xaml.cs">
+      <DependentUpon>MenuItemCardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="HCI\Views\OrderItem\OrderItemView.xaml.cs">
       <DependentUpon>OrderItemView.xaml</DependentUpon>
@@ -277,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HCI\Views\NavigationBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HCI\Views\OrderItem\MenuItemCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
